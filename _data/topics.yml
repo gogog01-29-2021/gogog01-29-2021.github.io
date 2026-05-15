@@ -1,0 +1,34 @@
+# -----------------------------------------------------------------------------
+# Blog topic taxonomy  (edit THIS file to manage categories)
+# -----------------------------------------------------------------------------
+# - Each top-level entry is a BIG category.
+# - `children:` holds SUB-categories (add/remove freely).
+# - `slug:` is the Jekyll category string. A post appears under a node when its
+#   front matter declares:   categories: [<slug>]
+#
+# To ADD a big category:   add a new top-level "- name: / slug:" block.
+# To ADD a sub category:   add an entry under that big category's `children:`.
+# A category page becomes browsable once at least one post uses its slug.
+# -----------------------------------------------------------------------------
+
+- name: LLM
+  slug: llm
+  children: []
+
+- name: Math
+  slug: math
+  children:
+    - name: Topology
+      slug: topology
+    - name: Set Theory
+      slug: set-theory
+    - name: Calculus
+      slug: calculus
+    - name: Linear Algebra
+      slug: linear-algebra
+    - name: Differential Equations
+      slug: differential-equations
+
+- name: Physics
+  slug: physics
+  children: []
