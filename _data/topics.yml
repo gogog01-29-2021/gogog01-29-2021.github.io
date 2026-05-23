@@ -6,6 +6,11 @@
 # - `slug:` is the Jekyll category string. A post appears under a node when its
 #   front matter declares:   categories: [<slug>]
 #
+# ROLL-UP: a post that should show under a big category AND a sub-category
+# declares BOTH slugs, e.g.  categories: [math, probability].  Jekyll registers
+# the post under every slug in the list, so the big category aggregates all of
+# its children automatically.
+#
 # To ADD a big category:   add a new top-level "- name: / slug:" block.
 # To ADD a sub category:   add an entry under that big category's `children:`.
 # A category page becomes browsable once at least one post uses its slug.
@@ -13,7 +18,9 @@
 
 - name: LLM
   slug: llm
-  children: []
+  children:
+    - name: AI Agents
+      slug: ai-agents
 
 - name: Math
   slug: math
@@ -28,6 +35,8 @@
       slug: linear-algebra
     - name: Differential Equations
       slug: differential-equations
+    - name: Probability & Stochastic Processes
+      slug: probability
 
 - name: Physics
   slug: physics

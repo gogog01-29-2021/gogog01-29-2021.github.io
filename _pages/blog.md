@@ -29,24 +29,52 @@ pagination:
   </div>
   {% endif %}
 
-{% if site.display_tags and site.display_tags.size > 0 or site.display_categories and site.display_categories.size > 0 %}
+{% comment %}
+  Data-driven topic hierarchy. Edit _data/topics.yml to manage it.
+  Roll-up: posts declare categories: [big, sub] so a big category aggregates
+  all of its sub-category posts. Empty nodes render muted (no broken links).
+{% endcomment %}
+
+  <div class="topic-tree mb-4">
+    <h3 class="mb-2">Browse by topic</h3>
+    <ul class="list-unstyled mb-0">
+      {% for big in site.data.topics %}
+        {% assign big_n = site.categories[big.slug] | size %}
+        <li class="mb-1">
+          {% if big_n > 0 %}
+            <strong><a href="{{ big.slug | prepend: '/blog/category/' | relative_url }}">{{ big.name }}</a></strong>
+            <span class="text-muted">({{ big_n }})</span>
+          {% else %}
+            <strong class="text-muted">{{ big.name }}</strong>
+            <span class="text-muted">(0)</span>
+          {% endif %}
+          {% if big.children and big.children.size > 0 %}
+            <ul>
+              {% for child in big.children %}
+                {% assign child_n = site.categories[child.slug] | size %}
+                <li>
+                  {% if child_n > 0 %}
+                    <a href="{{ child.slug | prepend: '/blog/category/' | relative_url }}">{{ child.name }}</a>
+                    <span class="text-muted">({{ child_n }})</span>
+                  {% else %}
+                    <span class="text-muted">{{ child.name }} (0)</span>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+{% if site.display_tags and site.display_tags.size > 0 %}
 
   <div class="tag-category-list">
     <ul class="p-0 m-0">
       {% for tag in site.display_tags %}
         <li>
           <i class="fa-solid fa-hashtag fa-sm"></i> <a href="{{ tag | slugify | prepend: '/blog/tag/' | relative_url }}">{{ tag }}</a>
-        </li>
-        {% unless forloop.last %}
-          <p>&bull;</p>
-        {% endunless %}
-      {% endfor %}
-      {% if site.display_categories.size > 0 and site.display_tags.size > 0 %}
-        <p>&bull;</p>
-      {% endif %}
-      {% for category in site.display_categories %}
-        <li>
-          <i class="fa-solid fa-tag fa-sm"></i> <a href="{{ category | slugify | prepend: '/blog/category/' | relative_url }}">{{ category }}</a>
         </li>
         {% unless forloop.last %}
           <p>&bull;</p>

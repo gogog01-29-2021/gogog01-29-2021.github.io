@@ -1,14 +1,7 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - gogog01-29-2021
 
 repo_description_lines_max: 2
 
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+  - gogog01-29-2021/gogog01-29-2021.github.io
