@@ -72,11 +72,22 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-risk-models-and-monte-carlo-estimating-the-loss-you-cannot-close",
+            },{id: "post-enhanced-poet-and-the-architecture-of-open-ended-intelligence",
         
-          title: "Risk models and Monte Carlo: estimating the loss you cannot close",
+          title: "Enhanced POET — and the architecture of open-ended intelligence",
         
-        description: "A risk-analysis survey of how Monte Carlo turned risk modeling from closed-form approximation into loss-exposure estimation — the field first, then where my tri-system model sits inside it. Top references analyzed as 5-field cards.",
+        description: "Reading-archive entry on Wang et al. (ICML 2020). The paper makes a precise claim about open-ended search; this entry extracts that claim and uses it to anchor a five-axis framework — Discovery × Representation × Selection × Transfer × Memory × Meta — that names what the rest of the field is each (separately) optimizing.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/enhanced-poet/";
+          
+        },
+      },{id: "post-monte-carlo-for-risk-estimation-from-sampling-to-quantum",
+        
+          title: "Monte Carlo for risk estimation: from sampling to quantum",
+        
+        description: "A risk-analysis survey of how Monte Carlo turned risk into something estimable rather than guessed at — from the Metropolis–Ulam estimator through CVaR and rare-event variance reduction, then where amortized variational methods (VAE) and quantum amplitude estimation actually fit. Field-first; thirteen 5-field reference cards at the end.",
         section: "Posts",
         handler: () => {
           
