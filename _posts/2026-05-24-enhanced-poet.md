@@ -14,8 +14,7 @@ $$
 \newcommand{\E}{\mathbb{E}}
 $$
 
-{% comment %} Hero image — generate via _templates/reading-archive-image-prompt.md, then save to assets/img/reading-archive/enhanced-poet.png and uncomment the next line. {% endcomment %}
-{% comment %}{% include figure.liquid path="assets/img/reading-archive/enhanced-poet.png" class="img-fluid rounded z-depth-1" caption="Reading-archive page for Enhanced POET." %}{% endcomment %}
+{% include figure.liquid path="assets/img/reading-archive/enhanced-poet.png" class="img-fluid rounded z-depth-1" caption="Reading-archive page for Enhanced POET — composed in Figma per the locked accuracy rules (no fake handwriting, no fabricated quotes/metadata)." %}
 
 ## Metadata
 
