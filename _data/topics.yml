@@ -37,7 +37,17 @@
       slug: differential-equations
     - name: Probability & Stochastic Processes
       slug: probability
+    - name: Finance
+      slug: finance
 
 - name: Physics
   slug: physics
   children: []
+
+- name: Reading
+  slug: reading
+  children:
+    - name: Books
+      slug: books
+    - name: Papers
+      slug: papers
