@@ -14,7 +14,7 @@ $$
 \newcommand{\E}{\mathbb{E}}
 $$
 
-{% include figure.liquid path="assets/img/reading-archive/enhanced-poet.png" class="img-fluid rounded z-depth-1" caption="Reading-archive page for Enhanced POET — composed in Figma per the locked accuracy rules (no fake handwriting, no fabricated quotes/metadata)." %}
+{% include figure.liquid path="assets/img/reading-archive/enhanced-poet.png" class="img-fluid rounded z-depth-1" caption="Reading-archive infographic — generated via gpt-5.4-image-2 (OpenRouter). The author metadata block was patched locally for fidelity, since image models routinely mistransliterate uncommon names — per the locked no-fabrication rules." %}
 
 ## Metadata
 
@@ -126,6 +126,8 @@ metric (ANNECS) that does not let either axis cheat. Read in that light,
 most of the field's progress is one-axis: LLMs push R, RL pushes S,
 meta-learning pushes T, memory architectures push M. POET pushes D + T.
 Nobody yet pushes the product.
+
+{% include figure.liquid path="assets/img/reading-archive/enhanced-poet-figma.png" class="img-fluid rounded z-depth-1" caption="Text-accurate framework schematic (composed in Figma) — D · R · S · T · M as a row, Meta as the operator above. Use this as the source of truth for the labels; the AI infographic at the top of the post is the editorial visual, this is the spec." %}
 
 ## 5-field card (uniform with the other research posts)
 
