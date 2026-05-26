@@ -1,0 +1,23 @@
+# Curated reference essays and papers that scaffold the research direction.
+# Each entry renders as an image-card on /references/. Add new entries below.
+# Accuracy rule (locked): only real published works with verifiable URLs.
+# Image is optional — entry still renders without one. Do NOT fabricate quotes;
+# `one_line` should be a faithful paraphrase or omitted.
+
+- title: The Bitter Lesson
+  author: Richard S. Sutton
+  year: 2019
+  category: essay
+  url: http://www.incompleteideas.net/IncIdeas/BitterLesson.html
+  image: /assets/img/references/sutton-bitter-lesson.png
+  one_line: >
+    Seventy years of AI research show that general methods leveraging
+    computation are, in the long run, the most effective — and by a large
+    margin.
+  why: >
+    The single most-cited modern essay on research direction in AI. The core
+    observation — that scaling generic computation eventually beats encoding
+    clever human priors — is the empirical scaffold for almost everything
+    downstream: large language models, RL scaling laws, the agent-loop work,
+    and the Discovery + Selection axes of the framework in the Enhanced POET
+    reading-archive entry. Worth re-reading periodically to recalibrate.
