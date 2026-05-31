@@ -18,9 +18,7 @@ $$
 \newcommand{\Wtwo}{W_2}
 $$
 
-{% comment %} Hero image: composing a Figma schematic next; uncomment when assets/img/reading-archive/anshu-arunachalam.png lands.
-{% include figure.liquid path="assets/img/reading-archive/anshu-arunachalam.png" class="img-fluid rounded z-depth-1" caption="Reading-archive page for Anshu & Arunachalam (2023)." %}
-{% endcomment %}
+{% include figure.liquid path="assets/img/reading-archive/anshu-arunachalam.png" class="img-fluid rounded z-depth-1" caption="Reading-archive page for Anshu & Arunachalam (2023): Direct register (drafts + advisor feedback, locked) on the left, Indirect register (my extensions, subject to revision) on the right." %}
 
 ## Compact map of direct references (top-down)
 
