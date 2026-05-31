@@ -126,6 +126,7 @@ The two halves of the elementary split in the sanity check ($\tfrac{2\pi}{3}$ an
 **Open threads ▸**
 - *For which numerators $N(z)$ does $\oint \frac{N(z)}{z(2z+1)(z+2)}\,dz$ vanish?* The condition is $\Res_{0}+\Res_{-1/2}=0$, a single linear equation in the coefficients of $N$. Map the kernel.
 - *What does the outside pole $z=-2$ know?* Compute $\Res_{z=-2}=+\tfrac12$ and the residue at infinity, and revisit in Rung 4.
+- *Real vs complex residue.* Both interior residues here are real; the Interlude below reads a real residue as a source/sink and a complex one as a vortex of the Pólya vector field.
 
 ## Rung 3 — Number theory: a cyclotomic numerator over a palindromic denominator
 
@@ -203,6 +204,44 @@ The two substitutions used earlier are this same machinery in coordinates: $u=\t
 **Open threads ▸**
 - *Lift one dimension.* What 2-form $d\omega$ on what surface has our circle integral as its boundary value? Make "the zero is a boundary that bounds" literal.
 - *Discrete Stokes.* State the summation-by-parts / lattice analogue and check the vanishing survives discretization (relevant to numerically evaluating such integrals without catastrophic cancellation).
+- *The vector-field instance.* The Interlude below works this Green's-theorem reading out explicitly through the Pólya vector field — circulation plus flux of $(u,-v)$.
+
+---
+
+# Interlude — one line integral, two readings: parametric curve vs vector field
+
+The five lenses split along a hidden seam. Rungs 1–2 read the integral as a *parametrized curve*; Rung 5 reads it as a *vector field*. Naming that seam is itself a finding — it explains *why* the two give the same zero.
+
+**Parametric reading.** $z(t)=e^{it}$ is a curve $\gamma:[0,2\pi]\to\C$, and
+
+$$
+\oint_\gamma g(z)\,dz=\int_0^{2\pi} g(z(t))\,z'(t)\,dt,\qquad g(z)=\frac{z^2+z+1}{z(2z+1)(z+2)},
+$$
+
+is *exactly* the $dt$-integral of Rungs 1–2 (the original integral is $\tfrac1i\oint_\gamma g\,dz$) — a *function traced along a path*.
+
+**Vector-field reading (the Pólya field).** Write $g=u+iv$ and form the **Pólya vector field** $V=(u,-v)$. Then
+
+$$
+\oint_C g\,dz=\underbrace{\oint_C(u\,dx-v\,dy)}_{\text{circulation of }V}\;+\;i\underbrace{\oint_C(u\,dy+v\,dx)}_{\text{flux of }V}.
+$$
+
+Where $g$ is holomorphic the Cauchy–Riemann equations make $V$ simultaneously **curl-free and divergence-free**; each pole is a point source, sink, or vortex. The residues do the bookkeeping:
+
+$$
+\text{circulation}=-2\pi\,\mathrm{Im}\!\sum\Res,\qquad \text{flux}=2\pi\,\mathrm{Re}\!\sum\Res.
+$$
+
+> **Statement (source–sink reading, best paper-ready).** *Both interior residues are **real** ($+\tfrac12$ at $z=0$, $-\tfrac12$ at $z=-\tfrac12$), so neither pole is a vortex: $z=0$ is a pure **source** of the Pólya field (flux $+\pi$) and $z=-\tfrac12$ a pure **sink** (flux $-\pi$). They are equal and opposite, so the unit circle encloses zero net flux and zero circulation — and the integral is $0$.*
+
+(Checked numerically: $\mathrm{Re}\oint=\mathrm{Im}\oint=0$, and the flux through a tiny circle is $+\pi$ around $z=0$ and $-\pi$ around $z=-\tfrac12$.)
+
+This is the bridge. The elementary/parametric lens and the Green–Stokes/field lens are not two proofs but one object seen two ways: a function dragged once around a loop, or an incompressible irrotational flow with a source and an equal sink inside that loop.
+
+**Open threads ▸**
+- *When does a vortex appear?* A residue with nonzero imaginary part contributes circulation, not just flux. Which numerators $N(z)$ over $z(2z+1)(z+2)$ produce a complex interior residue, and what does the resulting swirl look like?
+- *Re-winding.* $z=e^{int}$ traverses the circle $n$ times and the answer stays $0$; track separately what $n$ does to circulation vs flux (it scales the winding-number weight of Rung 4).
+- *Area form.* Green's theorem turns each part into a double integral over the disk; is there a manifestly-zero integrand on the punctured disk (away from the source and sink) that exhibits the cancellation without evaluating residues?
 
 ---
 
@@ -221,6 +260,8 @@ Reading the ladder bottom-up collapses it; here are the five lenses side by side
 | **Number theory** | $\Phi_3$ over a palindrome | a Fourier-coefficient sum cancels | $c_0+2c_1=\tfrac13-\tfrac26$ |
 | **Topology** | a class in $H^1(X)$ | the cycle pairs to zero | $1\cdot\tfrac12+1\cdot(-\tfrac12)$ |
 | **Green–Stokes** | $\int_{\partial\Omega}\omega$ | $\omega$ is closed off the poles | $2\pi i\sum\Res=0$ |
+
+A sixth row would be the *bridge* itself — parametric curve ⇄ Pólya vector field (the Interlude above) — the seam along which the elementary and the Green–Stokes lenses turn out to be one object.
 
 **Synthesis (kept deliberately short).** The five "whys" are not five coincidences. The Fourier-coefficient identity $c_0+2c_1=0$ (number theory) *is* the residue cancellation (complex analysis), *is* the homology pairing evaluating to zero (topology), *is* a boundary integral of a closed form (Stokes); the calculus computation is the same statement after a rationalizing diffeomorphism. One object, one zero, five faithful descriptions — and each rung's open threads point to the family of integrals where the zero either persists or breaks.
 

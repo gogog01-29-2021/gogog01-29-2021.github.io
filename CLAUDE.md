@@ -33,6 +33,14 @@ enough for a reader to know what the five are.)
 Tone: **Math-compact body + Best-paper-ready statements (boxed lemmas) +
 Professor-cautious open-threads.** References: included via `{% cite %}`.
 
+Added 2026-05-31 (post-publish): an **Interlude — parametric curve vs vector field**
+between Rung 5 and Section B, built on the **Pólya vector field** $V=(u,-v)$ for
+$g=u+iv$. ∮ g dz = circulation + i·flux of V; real interior residues ⇒ $z=0$ is a
+pure source (flux $+\pi$), $z=-\tfrac12$ a pure sink (flux $-\pi$), equal & opposite
+⇒ zero net flux and circulation. This is the bridge tying the elementary/parametric
+and Green–Stokes lenses together. "Five lenses" branding kept (it is synthesis glue,
+not a sixth lens). Numerically verified: circulation = flux = 0.
+
 ## Per-article workflow contract (locked — follow in this exact order)
 
 Control me in precise order; do **not** do everything at once. Before any prose,
