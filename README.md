@@ -292,6 +292,10 @@ Run the test yourself: [Google Lighthouse PageSpeed Insights](https://pagespeed.
 
 <!--ts-->
 
+- [Sunghyun Kim — research blog](#sunghyun-kim--research-blog)
+  - [Goal](#goal)
+  - [What an agent should do here](#what-an-agent-should-do-here)
+    - [Current article (2026-05-31)](#current-article-2026-05-31)
 - [al-folio](#al-folio)
   - [User community](#user-community)
   - [Lighthouse PageSpeed Insights](#lighthouse-pagespeed-insights)
