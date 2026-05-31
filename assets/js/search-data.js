@@ -79,7 +79,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-anshu-amp-arunachalam-and-where-rl-es-quantum-state-estimation-lives-inside-it",
+            },{id: "post-one-vanishing-integral-five-lenses-why-π-1-2cos-t-5-4cos-t-dt-0",
+        
+          title: "One vanishing integral, five lenses: why ∫₀²π (1+2cos t)/(5+4cos t) dt = 0...",
+        
+        description: "A single definite integral that evaluates to exactly zero, proved five ways — Weierstrass substitution, residues, cyclotomic/Dirichlet-kernel number theory, winding numbers and de Rham cohomology, and the Green–Stokes generalization. Each lens is written as a settled core plus open threads to expand in a later edit.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/vanishing-integral-five-lenses/";
+          
+        },
+      },{id: "post-anshu-amp-arunachalam-and-where-rl-es-quantum-state-estimation-lives-inside-it",
         
           title: "Anshu &amp; Arunachalam — and where RL-ES quantum state estimation lives inside it...",
         
