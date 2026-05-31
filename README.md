@@ -1,3 +1,44 @@
+<!-- ============================================================ -->
+<!-- PROJECT README — Sunghyun Kim's research blog                -->
+<!-- (the upstream al-folio theme README follows below)           -->
+<!-- ============================================================ -->
+
+# Sunghyun Kim — research blog
+
+English, equation-heavy research blog on the al-folio Jekyll theme.
+**Live:** https://gogog01-29-2021.github.io
+
+## Goal
+
+Produce long-form "완전 정복" deep-dive posts — rigorous, big-picture, more
+expanded and higher quality than the reference blog — in English, with clean
+editable markdown and **only real references (no fabrication)**.
+
+## What an agent should do here
+
+Writing is gated by a strict **per-article workflow** (see `CLAUDE.md` for the
+full contract). In order, and one step at a time:
+
+1. **Structure / outline** → 2. **Detail level** (always concrete worked
+examples, never only "meaning") → 3. **Reference list** (real works → `_bibliography/references.bib`, never `papers.bib`) → 4. **Tone** (from the palette).
+
+Each post is **layered**: a *settled core* (Direct, locked) + *open threads*
+(Indirect, revisable later). Every article ships **two Figma-composed images**
+(hero + schematic; Figma — not AI image-gen — for math, to keep symbols exact).
+
+**Non-negotiables:** nothing deploys without explicit authorization; ask in
+plain lettered text (no popups — they crash the terminal); never delete
+`.nojekyll` on `gh-pages`; every `{% cite %}` key must exist in `references.bib`.
+
+### Current article (2026-05-31)
+
+`_posts/2026-05-31-vanishing-integral-five-lenses.md` — proving
+∫₀²π (1+2cos t)/(5+4cos t) dt = 0 across five lenses: **Weierstrass substitution,
+residues, cyclotomic/Dirichlet-kernel number theory, winding numbers + de Rham
+cohomology, and the Green–Stokes generalization.**
+
+---
+
 # al-folio
 
 <div align="center">
