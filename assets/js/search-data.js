@@ -112,6 +112,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/enhanced-poet/";
           
         },
+      },{id: "post-the-agent-loop-a-field-guide-to-agentic-ai-architectures",
+        
+          title: "The agent loop: a field guide to agentic AI architectures",
+        
+        description: "A survey-first deep dive into what an AI agent actually is — the loop, its seven sub-problems, the design space for each, and where the open research lives. The field first; my own work only at the end.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/the-agent-loop-field-guide/";
+          
+        },
       },{id: "post-monte-carlo-for-risk-estimation-from-sampling-to-quantum",
         
           title: "Monte Carlo for risk estimation: from sampling to quantum",
