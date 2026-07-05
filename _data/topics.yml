@@ -31,6 +31,8 @@
       slug: set-theory
     - name: Calculus
       slug: calculus
+    - name: Complex Analysis
+      slug: complex-analysis
     - name: Linear Algebra
       slug: linear-algebra
     - name: Differential Equations
