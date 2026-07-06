@@ -1,0 +1,24 @@
+{%- comment -%}
+  Recursive topic-tree renderer (supports arbitrary depth — upper/lower concepts).
+  Params:
+    include.nodes  — list of { name, slug, children? }
+    include.depth  — current depth (0 = top; top level rendered bold)
+  A node links to /blog/category/<slug>/ ; leaf slugs are what posts declare and
+  what drives live URLs, so they stay stable across ontology regenerations.
+{%- endcomment -%}
+<ul>
+{%- for node in include.nodes -%}
+  <li>
+    {%- assign url = '/blog/category/' | append: node.slug | relative_url -%}
+    {%- if include.depth == 0 -%}
+    <strong><a href="{{ url }}">{{ node.name }}</a></strong>
+    {%- else -%}
+    <a href="{{ url }}">{{ node.name }}</a>
+    {%- endif -%}
+    {%- if node.children and node.children.size > 0 -%}
+      {%- assign next_depth = include.depth | plus: 1 -%}
+      {%- include topic-tree.liquid nodes=node.children depth=next_depth -%}
+    {%- endif -%}
+  </li>
+{%- endfor -%}
+</ul>

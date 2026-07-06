@@ -7,22 +7,7 @@ nav_order: 2
 description: Browse posts by topic. The taxonomy is data-driven — edit <code>_data/topics.yml</code> to add a big category or a sub-category.
 ---
 
-{% assign base = '/blog/category/' %}
-
-<ul>
-{% for big in site.data.topics %}
-  <li>
-    <strong><a href="{{ base | append: big.slug | relative_url }}">{{ big.name }}</a></strong>
-    {% if big.children and big.children.size > 0 %}
-    <ul>
-      {% for child in big.children %}
-      <li><a href="{{ base | append: child.slug | relative_url }}">{{ child.name }}</a></li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-  </li>
-{% endfor %}
-</ul>
+{% include topic-tree.liquid nodes=site.data.topics depth=0 %}
 
 ---
 
