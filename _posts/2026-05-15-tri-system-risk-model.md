@@ -4,7 +4,7 @@ title: "Monte Carlo for risk estimation: from sampling to quantum"
 date: 2026-05-15 16:00:00+0900
 description: A risk-analysis survey of how Monte Carlo turned risk into something estimable rather than guessed at — from the Metropolis–Ulam estimator through CVaR and rare-event variance reduction, then where amortized variational methods (VAE) and quantum amplitude estimation actually fit. Field-first; thirteen 5-field reference cards at the end.
 tags: math quantum-computing risk finance
-categories: [math, finance, probability]
+categories: [math, probability-finance, probability, finance]
 related_posts: false
 toc:
   sidebar: left

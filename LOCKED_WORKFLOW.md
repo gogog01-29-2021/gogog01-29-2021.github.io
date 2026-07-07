@@ -45,12 +45,31 @@ Pick one register per article. The assistant must **ask** (plain lettered text �
 
 ## 4. Classification (topic tree)
 
-- The taxonomy lives in `_data/topics.yml` (big categories → children).
-- Every post declares `categories: [<slug>, ...]`; roll-up = declare parent + child
-  (e.g. `categories: [math, probability]`).
-- **Every declared slug must exist in `topics.yml`.** If a post needs a sector that
-  does not exist yet, the sector is **added to `topics.yml`** (under the correct
-  upper branch) in the **same commit** as the post — never left dangling.
+- `_data/topics.yml` is a **generated snapshot** of the LLM-derived ontology, not a
+  hand-maintained source of truth. It nests to **arbitrary depth** (upper concepts /
+  lower concepts).
+- Every post declares `categories: [<slug>, ...]` = its **full ancestor path** so the
+  roll-up makes every level browsable (e.g. `categories: [math, analysis, complex-analysis]`).
+- **Every declared slug must exist in `topics.yml`.** Missing → dangling → blocked by
+  the guard.
+
+### Agent-driven classification engine (mode A)
+
+Runs as part of the writing workflow — no external service. On each new/edited post:
+
+1. **Extract concepts** — read the post's prose and name the concepts it covers.
+2. **Place it** — match concepts to existing leaf nodes; if none fits, **create a new
+   node under the correct upper branch**.
+3. **Rebalance** — if a branch has grown "too many" siblings (LLM judgment, no fixed
+   number), introduce an **upper-concept** grouping node, or split into lower-concept
+   children (LLM picks per case).
+4. **Regenerate** `topics.yml` and set the post's `categories:` to its full ancestor path.
+5. **URL stability (hard):** never rename an existing **leaf** slug — only regroup it
+   under new upper-concept nodes. Renaming a leaf breaks its live `/blog/category/…` URL.
+6. **Validate** with `scripts/check-workflow.sh`, then deploy on the author's OK.
+
+*Future:* the concept-extraction step (1) generalizes into "auto concept finding from
+what I write (chain-of-thought concepts)" — the same pipeline, richer front end.
 
 ## 5. Deploy (hard rule)
 

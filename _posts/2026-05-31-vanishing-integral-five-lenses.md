@@ -4,7 +4,7 @@ title: "One vanishing integral, five lenses: why ∫₀²π (1+2cos t)/(5+4cos t
 date: 2026-05-31 12:00:00+0900
 description: A single definite integral that evaluates to exactly zero, proved five ways — Weierstrass substitution, residues, cyclotomic/Dirichlet-kernel number theory, winding numbers and de Rham cohomology, and the Green–Stokes generalization. Each lens is written as a settled core plus open threads to expand in a later edit.
 tags: math complex-analysis number-theory topology calculus
-categories: [math, complex-analysis]
+categories: [math, analysis, complex-analysis]
 related_posts: false
 toc:
   sidebar: left

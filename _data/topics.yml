@@ -1,18 +1,19 @@
 # -----------------------------------------------------------------------------
-# Blog topic taxonomy  (edit THIS file to manage categories)
+# Blog topic taxonomy  (GENERATED — do not hand-maintain as the source of truth)
 # -----------------------------------------------------------------------------
-# - Each top-level entry is a BIG category.
-# - `children:` holds SUB-categories (add/remove freely).
-# - `slug:` is the Jekyll category string. A post appears under a node when its
-#   front matter declares:   categories: [<slug>]
+# This file is a serialized snapshot of the LLM-derived ontology. It is
+# regenerated from the corpus of posts + their concepts by the agent-driven
+# classification engine (see LOCKED_WORKFLOW.md §4). Depth is arbitrary:
+# `children:` may nest to any level (upper concepts / lower concepts).
 #
-# ROLL-UP: a post that should show under a big category AND a sub-category
-# declares BOTH slugs, e.g.  categories: [math, probability].  Jekyll registers
-# the post under every slug in the list, so the big category aggregates all of
-# its children automatically.
+# RULES enforced by scripts/check-workflow.sh:
+# - Every slug a post declares in `categories:` must appear somewhere in this tree.
+# - Leaf slugs are STABLE: they drive /blog/category/<slug>/ URLs and are never
+#   renamed by a regeneration (only regrouped under new upper-concept nodes).
 #
-# To ADD a big category:   add a new top-level "- name: / slug:" block.
-# To ADD a sub category:   add an entry under that big category's `children:`.
+# ROLL-UP: a post is registered under every slug it lists. To make an upper
+# concept browsable, the post declares the full ancestor path, e.g.
+#   categories: [math, analysis, complex-analysis]
 # A category page becomes browsable once at least one post uses its slug.
 # -----------------------------------------------------------------------------
 
@@ -25,22 +26,34 @@
 - name: Math
   slug: math
   children:
-    - name: Topology
-      slug: topology
-    - name: Set Theory
-      slug: set-theory
-    - name: Calculus
-      slug: calculus
-    - name: Complex Analysis
-      slug: complex-analysis
-    - name: Linear Algebra
-      slug: linear-algebra
-    - name: Differential Equations
-      slug: differential-equations
-    - name: Probability & Stochastic Processes
-      slug: probability
-    - name: Finance
-      slug: finance
+    - name: Analysis
+      slug: analysis
+      children:
+        - name: Calculus
+          slug: calculus
+        - name: Complex Analysis
+          slug: complex-analysis
+        - name: Differential Equations
+          slug: differential-equations
+    - name: Algebra & Foundations
+      slug: algebra-foundations
+      children:
+        - name: Linear Algebra
+          slug: linear-algebra
+        - name: Set Theory
+          slug: set-theory
+    - name: Geometry & Topology
+      slug: geometry-topology
+      children:
+        - name: Topology
+          slug: topology
+    - name: Probability & Finance
+      slug: probability-finance
+      children:
+        - name: Probability & Stochastic Processes
+          slug: probability
+        - name: Finance
+          slug: finance
 
 - name: Physics
   slug: physics
