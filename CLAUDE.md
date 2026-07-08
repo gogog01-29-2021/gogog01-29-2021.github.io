@@ -15,31 +15,29 @@ Produce wmh6525-style "완전 정복" deep-dive posts — long-form, rigorous, b
 surveys — in English, **higher quality and more expanded** than the reference,
 with clean editable markdown and real (never fabricated) references.
 
-### Active article goal — 2026-05-31
+### Canonical workflow doc
 
-Write `_posts/2026-05-31-vanishing-integral-five-lenses.md`: prove
-$\int_0^{2\pi}\frac{1+2\cos t}{5+4\cos t}\,dt = 0$ and show *the same zero* from
-**five named lenses**, each as a settled core + expandable open-thread tail:
+**`LOCKED_WORKFLOW.md` (repo root) is the single source of truth** for how posts are
+written and shipped, and it is machine-enforced. The summary below stays for quick
+reference; if the two ever disagree, `LOCKED_WORKFLOW.md` wins.
 
-1. **Elementary calculus** — Weierstrass $u=\tan(t/2)$ → $\int(\tfrac{1}{u^2+1}-\tfrac{3}{u^2+9})du=\pi-\pi$.
-2. **Complex analysis** — $z=e^{it}$; interior residues $\Res_0=+\tfrac12$, $\Res_{-1/2}=-\tfrac12$ cancel.
-3. **Number theory** — numerator $=\Phi_3$ (order-1 Dirichlet kernel); denominator palindromic, reciprocal roots $-\tfrac12,-2$; the integral $=2\pi(c_0+2c_1)=0$ on the Poisson-kernel Fourier coefficients.
-4. **Algebraic topology** — winding numbers + de Rham class of a meromorphic 1-form; the cycle pairs to $0$.
-5. **Green–Stokes** — residue theorem = Stokes with punctures; $\int_{\partial\Omega}\omega=\int_\Omega d\omega$.
+### Shipped infrastructure (2026-07)
 
-(Naming all five explicitly is mandatory — "five lenses" alone is not specific
-enough for a reader to know what the five are.)
-
-Tone: **Math-compact body + Best-paper-ready statements (boxed lemmas) +
-Professor-cautious open-threads.** References: included via `{% cite %}`.
-
-Added 2026-05-31 (post-publish): an **Interlude — parametric curve vs vector field**
-between Rung 5 and Section B, built on the **Pólya vector field** $V=(u,-v)$ for
-$g=u+iv$. ∮ g dz = circulation + i·flux of V; real interior residues ⇒ $z=0$ is a
-pure source (flux $+\pi$), $z=-\tfrac12$ a pure sink (flux $-\pi$), equal & opposite
-⇒ zero net flux and circulation. This is the bridge tying the elementary/parametric
-and Green–Stokes lenses together. "Five lenses" branding kept (it is synthesis glue,
-not a sixth lens). Numerically verified: circulation = flux = 0.
+- **`/write/`** (`_pages/write.md`) — client-side Markdown+LaTeX draft studio with live
+  MathJax preview, tone palette, `topics.yml`-driven category picker, export `.md`.
+  No backend/login (Editor option A; B/C recorded in `BLOG_FEATURE_OPTIONS.md`).
+- **`scripts/check-workflow.sh`** — deterministic guard. Run before any deploy; it
+  fails on unknown category slugs, unresolved `{% cite %}` keys, papers/references bib
+  mixing, or a missing `.nojekyll`.
+- **Generated ontology** — `_data/topics.yml` is a **generated snapshot** of an
+  LLM-derived taxonomy, nested to arbitrary depth via `_includes/topic-tree.liquid`.
+  Classification is **agent-driven** (extract concepts → place → rebalance into
+  upper/lower concepts → regenerate → set post `categories:` to the full ancestor
+  path). **Never rename an existing leaf slug** — it drives a live `/blog/category/…`
+  URL. Full procedure in `LOCKED_WORKFLOW.md` §4.
+- Last article shipped: `_posts/2026-05-31-vanishing-integral-five-lenses.md` (live).
+- **Next phase (goal):** auto concept-finding from prose (chain-of-thought concepts)
+  feeding the same ontology engine.
 
 ## Per-article workflow contract (locked — follow in this exact order)
 

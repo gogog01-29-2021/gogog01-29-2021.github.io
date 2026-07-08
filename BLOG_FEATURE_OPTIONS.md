@@ -41,11 +41,15 @@ blog." Good fallback for long deep-dive posts.
 
 - At write time, a post's content is matched to `_data/topics.yml`; `categories:` are
   assigned; **if no sector fits, the new node is added under its correct upper branch
-  in the same commit** (never left dangling). Roll-up = declare parent + child, e.g.
-  `categories: [math, complex-analysis]`.
+  in the same commit** (never left dangling). Roll-up = declare the full ancestor
+  path, e.g. `categories: [math, analysis, complex-analysis]`.
+- `_data/topics.yml` is a **generated snapshot** (arbitrary depth), not hand-authored;
+  leaf slugs stay stable across regenerations. See `LOCKED_WORKFLOW.md` §4.
 - `scripts/check-workflow.sh` **fails the deploy** if any post declares a category
   missing from the tree (also checks cite-key resolution, bib non-mixing, `.nojekyll`).
-- First run already caught `complex-analysis` missing and it was added under **Math**.
+- First run caught `complex-analysis` missing; a later regeneration regrouped Math's
+  8 flat children under **Analysis / Algebra & Foundations / Geometry & Topology /
+  Probability & Finance** (leaf slugs unchanged).
 
 ### Other options (choose later)
 
