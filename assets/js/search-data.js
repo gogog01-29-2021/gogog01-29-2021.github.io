@@ -18,7 +18,7 @@ ninja.data = [{
           },
         },{id: "nav-topics",
           title: "topics",
-          description: "Browse posts by topic. The taxonomy is data-driven — edit _data/topics.yml to add a big category or a sub-category.",
+          description: "Browse posts by topic. The taxonomy is a generated snapshot of an LLM-derived ontology in _data/topics.yml, nested to arbitrary depth.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/topics/";
