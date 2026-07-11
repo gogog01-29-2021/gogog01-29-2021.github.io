@@ -79,7 +79,29 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-one-vanishing-integral-five-lenses-why-π-1-2cos-t-5-4cos-t-dt-0",
+            },{id: "post-qwen-vla-one-model-for-manipulation-navigation-and-trajectory",
+        
+          title: "Qwen-VLA — one model for manipulation, navigation, and trajectory",
+        
+        description: "Deep reading note on Qwen-VLA (arXiv 2605.30280): a Qwen3.5-4B VLM backbone + a 1.15B DiT flow-matching action decoder, unified across tasks, environments, and robot embodiments via embodiment-aware prompt conditioning.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/qwen-vla/";
+          
+        },
+      },{id: "post-icml-2026-live-archive",
+        
+          title: "ICML 2026 — live archive",
+        
+        description: "A running, super-detailed archive of ICML 2026 — day by day, plus workshops, tutorials, and standout papers. Updated live through the conference.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/icml-2026/";
+          
+        },
+      },{id: "post-one-vanishing-integral-five-lenses-why-π-1-2cos-t-5-4cos-t-dt-0",
         
           title: "One vanishing integral, five lenses: why ∫₀²π (1+2cos t)/(5+4cos t) dt = 0...",
         
