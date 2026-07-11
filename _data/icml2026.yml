@@ -1,0 +1,50 @@
+# -----------------------------------------------------------------------------
+# ICML 2026 index map — catalog of talks & papers, classified by topic.
+# -----------------------------------------------------------------------------
+# This is the INDEX (the map): lightweight entries that link out to arXiv / code
+# and carry keywords + a topic. Full blog posts are written LATER for selected
+# entries and linked back via `post:`. Grows in batches; the full accepted-paper
+# list pulls from PMLR / OpenReview.
+#
+# Per-entry schema:
+#   title / speaker, authors, affiliation, topic, arxiv, code, keywords[], post,
+#   when (schedule), note (integrity flags). Only `title|speaker` + `topic` are
+#   required; anything unverified is left null, never guessed.
+# -----------------------------------------------------------------------------
+
+invited_talks:
+  - speaker: Pascale Fung
+    affiliation: "HKUST; Director, CAiRE"
+    title: null # official title TBA on the schedule
+    topic: agentic-ai
+  - speaker: Susan Athey
+    affiliation: "Stanford GSB"
+    title: "Causal Inference with Transformer Models"
+    when: "Tue Jul 7, 16:00 KST, Hall C"
+    topic: causal-inference
+  - speaker: Sham M. Kakade
+    affiliation: "Harvard; Kempner Institute"
+    title: null
+    topic: ml-theory
+  - speaker: Aviv Regev
+    affiliation: "Genentech (EVP, Research & Early Development)"
+    title: null
+    topic: computational-biology
+  - speaker: Verena Rieser
+    affiliation: "Google DeepMind"
+    title: null
+    topic: nlp-dialogue
+  - speaker: Arvind Narayanan
+    affiliation: "Princeton; Director, CITP"
+    title: null
+    topic: ai-policy
+
+papers:
+  - title: "Qwen-VLA: Unifying Vision-Language-Action Modeling across Tasks, Environments, and Robot Embodiments"
+    authors: "Qwen Team"
+    topic: robotics-vla
+    arxiv: "2605.30280"
+    code: "https://github.com/QwenLM/Qwen-VLA"
+    keywords: [vla, dit-decoder, flow-matching, embodiment-aware, cross-embodiment]
+    post: "/blog/2026/qwen-vla/"
+    note: "arXiv May 2026; cross-listed VLA reference (not confirmed in ICML 2026 proceedings)."

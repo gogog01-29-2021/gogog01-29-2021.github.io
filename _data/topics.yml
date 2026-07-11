@@ -66,3 +66,9 @@
       slug: books
     - name: Papers
       slug: papers
+
+- name: Conferences
+  slug: conferences
+  children:
+    - name: ICML 2026
+      slug: icml-2026
