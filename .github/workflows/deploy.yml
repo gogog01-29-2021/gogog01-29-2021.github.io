@@ -71,6 +71,10 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
+      - name: Enforce writing workflow rules 🔒
+        run: bash scripts/check-workflow.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Setup Ruby 💎
         uses: ruby/setup-ruby@v1
         with:
