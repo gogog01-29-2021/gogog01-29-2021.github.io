@@ -48,3 +48,10 @@ papers:
     keywords: [vla, dit-decoder, flow-matching, embodiment-aware, cross-embodiment]
     post: "/blog/2026/qwen-vla/"
     note: "arXiv May 2026; cross-listed VLA reference (not confirmed in ICML 2026 proceedings)."
+  - title: "Spatial Memory for Out-of-Vision Manipulation in Vision-Language-Action"
+    authors: "Pengteng Li, Weiyu Guo, He Zhang, et al."
+    topic: robotics-vla
+    arxiv: null
+    code: null
+    keywords: [vla, spatial-memory, out-of-vision, manipulation]
+    note: "Verified ICML 2026 (regular) via OpenReview /notes/search; arXiv/code TBC."
