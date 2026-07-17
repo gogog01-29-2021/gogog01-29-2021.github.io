@@ -79,7 +79,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-qwen-vla-one-model-for-manipulation-navigation-and-trajectory",
+            },{id: "post-vla-models-through-the-lens-of-adaptation",
+        
+          title: "VLA models through the lens of adaptation",
+        
+        description: "A survey-first deep dive into vision-language-action models, organized around the one axis that actually measures progress — adaptation across bodies, tasks, action spaces, and distributions — with Qwen-VLA as the worked case.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/vla-adaptation/";
+          
+        },
+      },{id: "post-qwen-vla-one-model-for-manipulation-navigation-and-trajectory",
         
           title: "Qwen-VLA — one model for manipulation, navigation, and trajectory",
         
