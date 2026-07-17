@@ -178,12 +178,67 @@ adaptation**, where even the strongest current numbers are low. A VLA that is an
 embodied *foundation* model, rather than a very good benchmark policy, will be decided
 there.
 
-## References
+## Reference map
+
+*Not a flat list — a **clustered web**. Each paper links to its **[arXiv]** (formal) and,
+where one exists, an **[on this blog]** deep-note (informal). The **→** edges are the
+spider: follow them to jump from any paper to the work it builds on or leads to.*
+
+### ① The VLA lineage — *scale → web-knowledge → open → continuous*
+
+> RT-1 proved scale on real-robot data; **RT-2** turned actions into web-knowledge text
+> tokens; **OpenVLA / Octo** opened the recipe; **π0** made the decoder continuous —
+> the move that **Qwen-VLA** inherits.
+
+- <a id="rm-rt1"></a>**RT-1** · [arXiv](https://arxiv.org/abs/2212.06817) — transformer at real-robot scale. → leads to [RT-2](#rm-rt2)
+- <a id="rm-rt2"></a>**RT-2** · [arXiv](https://arxiv.org/abs/2307.15818) — actions as text tokens (web knowledge). → open version [OpenVLA](#rm-openvla); continuous successor [π0](#rm-pi0); token axis [§B.3](#b3-action-space-adaptation--discrete-tokens-vs-continuous-flow)
+- <a id="rm-palme"></a>**PaLM-E** · [arXiv](https://arxiv.org/abs/2303.03378) — sensor states inside the LM. → sibling [RT-2](#rm-rt2)
+- <a id="rm-openvla"></a>**OpenVLA** · [arXiv](https://arxiv.org/abs/2406.09246) — open VLA recipe. → generalist cousin [Octo](#rm-octo)
+- <a id="rm-octo"></a>**Octo** · [arXiv](https://arxiv.org/abs/2405.12213) — open generalist policy. → cross-body [CrossFormer](#rm-crossformer)
+- <a id="rm-roboflamingo"></a>**RoboFlamingo** · [arXiv](https://arxiv.org/abs/2311.01378) — VLM backbone as imitator. → backbone idea in [Qwen-VLA](#rm-qwen)
+- <a id="rm-pi0"></a>**π0** · [arXiv](https://arxiv.org/abs/2410.24164) — flow-matching continuous decoder. → same decoder family as [Qwen-VLA](#rm-qwen); theory [Flow Matching](#rm-flow)
+
+### ② How actions are emitted — *discrete tokens vs continuous flow*
+
+> The fork of §B.3: quantize actions into tokens, or generate them continuously.
+
+- <a id="rm-fast"></a>**FAST** · [arXiv](https://arxiv.org/abs/2501.09747) — frequency-space action tokens. → discrete counterpart to [Diffusion Policy](#rm-dp); pairs with [RT-2](#rm-rt2)
+- <a id="rm-dp"></a>**Diffusion Policy** · [arXiv](https://arxiv.org/abs/2303.04137) — action chunk as denoising. → architecture [DiT](#rm-dit); chunking [ACT](#rm-act)
+- <a id="rm-act"></a>**ACT / ALOHA** · [arXiv](https://arxiv.org/abs/2304.13705) — action chunking + low-cost bimanual. → also a benchmark, see [④](#rm-aloha-bench)
+- <a id="rm-dit"></a>**DiT** · [arXiv](https://arxiv.org/abs/2212.09748) — transformer diffusion backbone. → the decoder in [π0](#rm-pi0) and [Qwen-VLA](#rm-qwen)
+- <a id="rm-flow"></a>**Flow Matching** · [arXiv](https://arxiv.org/abs/2210.02747) — the training objective. → used by [π0](#rm-pi0), [Qwen-VLA](#rm-qwen)
+
+### ③ One policy, many bodies — *embodiment & task unification*
+
+> The §B.1–B.2 bet: pool bodies and tasks into one policy.
+
+- <a id="rm-openx"></a>**Open X-Embodiment** · [arXiv](https://arxiv.org/abs/2310.08864) — 22-robot pooled dataset + RT-X. → scaled by [CrossFormer](#rm-crossformer)
+- <a id="rm-crossformer"></a>**CrossFormer** · [arXiv](https://arxiv.org/abs/2408.11812) — one transformer across 20 embodiments. → language-described bodies in [Qwen-VLA](#rm-qwen)
+- <a id="rm-vint"></a>**ViNT** · [arXiv](https://arxiv.org/abs/2306.14846) — cross-robot navigation foundation. → navigation benchmarks [R2R](#rm-r2r)/[RxR](#rm-rxr)
+- <a id="rm-gato"></a>**GATO** · [arXiv](https://arxiv.org/abs/2205.06175) — one net, 600+ tasks. → maximalist ancestor of [Qwen-VLA](#rm-qwen)
+
+### ④ Where we measure — *benchmarks*
+
+> The §B.4 proving grounds. Qwen-VLA is scored on all of these.
+
+- <a id="rm-libero"></a>**LIBERO** · [arXiv](https://arxiv.org/abs/2306.03310) — lifelong-transfer manipulation.
+- <a id="rm-simpler"></a>**SimplerEnv** · [arXiv](https://arxiv.org/abs/2405.05941) — real-to-sim manipulation eval.
+- <a id="rm-r2r"></a>**R2R** · [arXiv](https://arxiv.org/abs/1711.07280) — vision-and-language navigation. → multilingual scale-up [RxR](#rm-rxr)
+- <a id="rm-rxr"></a>**RxR** · [arXiv](https://arxiv.org/abs/2010.07954) — multilingual, denser VLN.
+- <a id="rm-aloha-bench"></a>**ALOHA (real-world OOD)** · [arXiv](https://arxiv.org/abs/2304.13705) — the OOD stress test. → method side [②](#rm-act)
+
+### ⑤ The anchor
+
+- <a id="rm-qwen"></a>**Qwen-VLA** · [arXiv](https://arxiv.org/abs/2605.30280) · [on this blog]({{ '/blog/2026/qwen-vla/' | relative_url }}) — pulls the flow-matching decoder from [②](#rm-flow), language-described embodiment from [③](#rm-crossformer), and is scored on [④](#rm-libero). The worked case of §C.
+
+<details markdown="1">
+<summary>Formal cited bibliography (auto-generated)</summary>
 
 {% bibliography --file references --cited %}
 
-*All references above are established, published works with verified arXiv
-identifiers. A few very recent (2025–2026) systems named in prose — RoboTwin, DOMINO,
-NaVILA, Uni-NaVid, RoboCat — are mentioned but not formally cited pending second-source
-venue confirmation; benchmark numbers attributed to Qwen-VLA are cited to that paper,
-not re-derived.*
+</details>
+
+*All entries are established works with verified arXiv identifiers. Very recent (2025–26)
+systems named in prose — RoboTwin, DOMINO, NaVILA, Uni-NaVid, RoboCat — are mentioned but
+not formally cited pending second-source venue confirmation. **Informal / project-page
+links** can be layered onto each node next (verified before adding — none fabricated).*
