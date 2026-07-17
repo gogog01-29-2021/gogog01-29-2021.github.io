@@ -15,6 +15,12 @@ Produce wmh6525-style "완전 정복" deep-dive posts — long-form, rigorous, b
 surveys — in English, **higher quality and more expanded** than the reference,
 with clean editable markdown and real (never fabricated) references.
 
+### Knowledge base
+
+**Start at [`docs/README.md`](docs/README.md)** — the connected record of how this blog
+is built and run (architecture, decisions, ICML archive + automation, VLA series +
+reference maps). Excluded from the Jekyll build; lives in GitHub to be remembered.
+
 ### Canonical workflow doc
 
 **`LOCKED_WORKFLOW.md` (repo root) is the single source of truth** for how posts are
