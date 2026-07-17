@@ -179,6 +179,7 @@ include: ["_pages", "_scripts"]
 exclude:
   - _templates/
   - bin/
+  - docs/
   - CONTRIBUTING.md
   - CUSTOMIZE.md
   - Dockerfile
