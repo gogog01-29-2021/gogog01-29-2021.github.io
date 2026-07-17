@@ -67,6 +67,12 @@
     - name: Papers
       slug: papers
 
+- name: Robotics & Embodied AI
+  slug: robotics-embodied
+  children:
+    - name: Vision-Language-Action
+      slug: vla
+
 - name: Conferences
   slug: conferences
   children:
