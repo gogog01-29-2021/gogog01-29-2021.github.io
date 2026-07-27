@@ -14,6 +14,8 @@ agents, not on the published site. Follow the links to spider through it.
   map, the mass-index blocker, and the scheduled PMLR auto-pull routine.
 - **[VLA series & reference maps](vla-and-refmap.md)** — the VLA article, Qwen-VLA note,
   verified reference set, and the clustered/spiderable reference-map pattern.
+- **[Reasoning / Chain-of-Thought series](reasoning-cot.md)** — explicit vs latent CoT;
+  CoGHP as the worked case (latent chain-of-thought in offline RL).
 
 ## Also in the repo root
 
