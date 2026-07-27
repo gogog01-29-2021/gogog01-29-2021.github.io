@@ -79,7 +79,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-vla-models-through-the-lens-of-adaptation",
+            },{id: "post-chain-of-goals-latent-chain-of-thought-for-long-horizon-offline-rl",
+        
+          title: "Chain-of-Goals: latent chain-of-thought for long-horizon offline RL",
+        
+        description: "A review of CoGHP (arXiv 2602.03389), read as a case study in *internal* chain-of-thought: latent subgoals as reasoning steps inside a single autoregressive control policy — the big problem, the method, the honest numbers, and where it points.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/coghp-latent-chain-of-thought/";
+          
+        },
+      },{id: "post-vla-models-through-the-lens-of-adaptation",
         
           title: "VLA models through the lens of adaptation",
         
