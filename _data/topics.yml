@@ -73,6 +73,12 @@
     - name: Vision-Language-Action
       slug: vla
 
+- name: Reinforcement Learning
+  slug: reinforcement-learning
+  children:
+    - name: Offline & Goal-Conditioned RL
+      slug: offline-gcrl
+
 - name: Conferences
   slug: conferences
   children:
