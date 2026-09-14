@@ -79,7 +79,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-sector-specialized-financial-llms-filing-evidence-calculation-tools-and-verifiable-reasoning",
+            },{id: "post-orchestrator-workers-augmented-function-calling-agent-loop-the-combination-nobody-39-s-tried",
+        
+          title: "Orchestrator-Workers + Augmented Function-Calling + Agent Loop: The Combination Nobody&#39;s Tried",
+        
+        description: "Three agent-design patterns exist separately in the literature — task-decomposing orchestrators, tool-augmented reasoning, and iterative loops with escalation. Nobody has combined all three with fine-tuning specifically for working inside that loop. This is the general framing; the financial-LLM post is one worked instance of it.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/orchestrator-workers-augfc-agent-loop/";
+          
+        },
+      },{id: "post-sector-specialized-financial-llms-filing-evidence-calculation-tools-and-verifiable-reasoning",
         
           title: "Sector-Specialized Financial LLMs: Filing Evidence, Calculation Tools, and Verifiable Reasoning",
         
