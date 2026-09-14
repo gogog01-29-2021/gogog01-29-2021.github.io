@@ -79,7 +79,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-chain-of-goals-latent-chain-of-thought-for-long-horizon-offline-rl",
+            },{id: "post-sector-specialized-financial-llms-filing-evidence-calculation-tools-and-verifiable-reasoning",
+        
+          title: "Sector-Specialized Financial LLMs: Filing Evidence, Calculation Tools, and Verifiable Reasoning",
+        
+        description: "A research-framing post: why nobody has combined fine-tuning, an agent loop, and escalation for evidence-grounded financial reasoning — and the two open questions that matter most (a chain-of-thought method for tool-verifiable calculation, and how to generate training data for it).",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/sector-specialized-financial-llms/";
+          
+        },
+      },{id: "post-chain-of-goals-latent-chain-of-thought-for-long-horizon-offline-rl",
         
           title: "Chain-of-Goals: latent chain-of-thought for long-horizon offline RL",
         
