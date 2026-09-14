@@ -38,4 +38,4 @@ kept in a `<details>` block. First implemented in the VLA post — see
 Push `main` → "Deploy site" Action → `jekyll build` → JamesIves force-pushes `_site/` to
 `gh-pages`. **`gh-pages` must keep a root `.nojekyll`** or Pages re-runs Jekyll and the
 site 404s. The guard checks for it. Commit identity for this repo:
-`Sunghyun Kim <gogog01-29-2021@users.noreply.github.com>`, no Anthropic co-author.
+`Seonghyun <gogog01-29-2021@users.noreply.github.com>`, no Anthropic co-author.

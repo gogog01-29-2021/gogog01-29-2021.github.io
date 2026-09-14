@@ -1,9 +1,9 @@
 <!-- ============================================================ -->
-<!-- PROJECT README — Sunghyun Kim's research blog                -->
+<!-- PROJECT README — Seonghyun's research blog                    -->
 <!-- (the upstream al-folio theme README follows below)           -->
 <!-- ============================================================ -->
 
-# Sunghyun Kim — research blog
+# Seonghyun — research blog
 
 English, equation-heavy research blog on the al-folio Jekyll theme.
 **Live:** https://gogog01-29-2021.github.io
@@ -292,7 +292,7 @@ Run the test yourself: [Google Lighthouse PageSpeed Insights](https://pagespeed.
 
 <!--ts-->
 
-- [Sunghyun Kim — research blog](#sunghyun-kim--research-blog)
+- [Seonghyun — research blog](#seonghyun--research-blog)
   - [Goal](#goal)
   - [What an agent should do here](#what-an-agent-should-do-here)
     - [Current article (2026-05-31)](#current-article-2026-05-31)

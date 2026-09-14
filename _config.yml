@@ -3,18 +3,18 @@
 # -----------------------------------------------------------------------------
 
 title: blank # the website title (if blank, full name will be used instead)
-first_name: Sunghyun
+first_name: Seonghyun
 middle_name:
-last_name: Kim
+last_name:
 contact_note: >
   Best reached by email.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Sunghyun Kim — research on AI-agent architectures, reinforcement learning, and risk modeling for human–AI interaction.
+  Seonghyun — research on AI-agent architectures, reinforcement learning, and risk modeling for human–AI interaction.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
   Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: Sunghyun Kim, AI agents, reinforcement learning, risk modeling, human-AI interaction, machine learning
+keywords: Seonghyun, AI agents, reinforcement learning, risk modeling, human-AI interaction, machine learning
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
@@ -272,8 +272,8 @@ display_categories: ["math", "llm", "physics"] # these categories will be displa
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Kim]
-  first_name: [Sunghyun, S.]
+  last_name: [Seonghyun]
+  first_name: []
 
   style: apa
   locale: en

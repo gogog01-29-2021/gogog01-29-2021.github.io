@@ -24,7 +24,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-I am **Sunghyun Kim** — a full-stack and machine-learning engineer working on
+I am **Seonghyun** — a full-stack and machine-learning engineer working on
 agentic AI systems.
 
 My current focus is the design and evaluation of **AI-agent architectures**:

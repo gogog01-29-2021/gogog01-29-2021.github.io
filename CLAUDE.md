@@ -2,9 +2,9 @@
 
 ---
 
-# Sunghyun Kim's research blog — agent working agreement
+# Seonghyun's research blog — agent working agreement
 
-This repo is **not** a generic al-folio deployment. It is Sunghyun Kim's English,
+This repo is **not** a generic al-folio deployment. It is Seonghyun's English,
 equation-heavy research blog (live: https://gogog01-29-2021.github.io). The
 al-folio theme docs above still apply for *mechanics*; the rules below govern
 *how content gets written and shipped*.
