@@ -1,13 +1,15 @@
 // Blog paywall worker.
 // Validates a Polar license key (same pattern as eastside/billing.py's validate_license)
-// and, if granted (or if the caller is the admin), returns the full gated article content.
-// No subscriber database: every request is validated live against Polar.
+// and, depending on which benefit the key grants, returns the free-tier or full (free +
+// paid) article content. No subscriber database: every request is validated live against
+// Polar. Admin key bypasses Polar entirely and always gets full content.
 
 import sectorSpecializedFinancialLlms from "./articles/sector-specialized-financial-llms.js";
 
 const POLAR_VALIDATE_URL = "https://api.polar.sh/v1/customer-portal/license-keys/validate";
 
-// Full article content, keyed by slug (must match the `slug` the post's widget posts).
+// Tiered article content, keyed by slug (must match the `slug` the post's widget posts).
+// Each entry is { free, paid } — free-tier keys get `free`; paid-tier keys get `free + paid`.
 const ARTICLES = {
   "sector-specialized-financial-llms": sectorSpecializedFinancialLlms,
 };
@@ -27,19 +29,19 @@ function json(data, status, env) {
   });
 }
 
-async function validatePolarKey(key, env) {
+// Returns "paid", "free", or null (not granted / unrecognized benefit).
+async function resolveTier(key, env) {
   const res = await fetch(POLAR_VALIDATE_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ key, organization_id: env.POLAR_ORGANIZATION_ID }),
   });
-  if (!res.ok) return { granted: false };
+  if (!res.ok) return null;
   const data = await res.json();
-  const granted = (data.status || "").toLowerCase() === "granted";
-  if (env.POLAR_BENEFIT_ID && data.benefit_id !== env.POLAR_BENEFIT_ID) {
-    return { granted: false };
-  }
-  return { granted, data };
+  if ((data.status || "").toLowerCase() !== "granted") return null;
+  if (data.benefit_id === env.POLAR_PAID_BENEFIT_ID) return "paid";
+  if (data.benefit_id === env.POLAR_FREE_BENEFIT_ID) return "free";
+  return null;
 }
 
 export default {
@@ -65,23 +67,29 @@ export default {
 
     const slug = (body.slug || "").trim();
     const key = (body.license_key || "").trim();
-    if (!slug || !ARTICLES[slug]) {
+    const article = ARTICLES[slug];
+    if (!slug || !article) {
       return json({ ok: false, error: "unknown article" }, 404, env);
     }
     if (!key) {
       return json({ ok: false, error: "license key required" }, 400, env);
     }
 
-    // Admin bypass: you always get full access with your own admin key, no Polar round-trip.
+    // Admin bypass: always full access, no Polar round-trip.
     if (env.ADMIN_KEY && key === env.ADMIN_KEY) {
-      return json({ ok: true, admin: true, content: ARTICLES[slug] }, 200, env);
+      return json(
+        { ok: true, admin: true, tier: "paid", content: article.free + article.paid },
+        200,
+        env
+      );
     }
 
-    const { granted } = await validatePolarKey(key, env);
-    if (!granted) {
+    const tier = await resolveTier(key, env);
+    if (!tier) {
       return json({ ok: false, error: "license not valid or not active" }, 403, env);
     }
 
-    return json({ ok: true, content: ARTICLES[slug] }, 200, env);
+    const content = tier === "paid" ? article.free + article.paid : article.free;
+    return json({ ok: true, tier, content }, 200, env);
   },
 };
