@@ -1,0 +1,9 @@
+name = "blog-paywall"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+account_id = "dc864fa0bbc8cef92372c606ceddb6e3"
+
+[vars]
+POLAR_ORGANIZATION_ID = "13bd28dc-7348-4386-95f2-fef34b3699d4"
+POLAR_BENEFIT_ID = "b27571ff-fe24-48dc-a4d0-5cd2cc40883b"
+ALLOWED_ORIGIN = "https://gogog01-29-2021.github.io"
