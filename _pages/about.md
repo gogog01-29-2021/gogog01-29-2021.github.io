@@ -22,6 +22,9 @@ latest_posts:
   enabled: true
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
+
+connections:
+  enabled: true # renders a graph of posts linked via each post's `related:` frontmatter
 ---
 
 I am **Seonghyun** — a full-stack and machine-learning engineer working on

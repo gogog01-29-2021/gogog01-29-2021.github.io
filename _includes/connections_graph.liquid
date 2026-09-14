@@ -1,0 +1,106 @@
+{% assign edges = '' | split: '' %}
+{% for post in site.posts %}
+  {% if post.related %}
+    {% for item in post.related %}
+      {% assign target = site.posts | where: 'slug', item.slug | first %}
+      {% if target %}
+        {% capture edge %}{{ post.url | relative_url }}|{{ post.title }}|{{ target.url | relative_url }}|{{ target.title }}|{{ item.note }}{% endcapture %}
+        {% assign edges = edges | push: edge %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% if edges.size > 0 %}
+  <div id="connections-graph" style="margin: 1rem 0; overflow-x: auto;"></div>
+  <script id="connections-data" type="application/json">
+    [
+      {% for edge in edges %}
+        {% assign parts = edge | split: "|" %}
+        {
+          "sourceUrl": {{ parts[0] | jsonify }},
+          "sourceTitle": {{ parts[1] | jsonify }},
+          "targetUrl": {{ parts[2] | jsonify }},
+          "targetTitle": {{ parts[3] | jsonify }},
+          "note": {{ parts[4] | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  </script>
+  <script>
+    (function () {
+      var edges = JSON.parse(document.getElementById('connections-data').textContent);
+      var nodesByUrl = {};
+      edges.forEach(function (e) {
+        nodesByUrl[e.sourceUrl] = e.sourceTitle;
+        nodesByUrl[e.targetUrl] = e.targetTitle;
+      });
+      var urls = Object.keys(nodesByUrl);
+      var n = urls.length;
+      var width = Math.min(640, Math.max(360, n * 140));
+      var height = 320;
+      var cx = width / 2;
+      var cy = height / 2;
+      var radius = Math.min(width, height) / 2 - 70;
+
+      var pos = {};
+      urls.forEach(function (u, i) {
+        var angle = (2 * Math.PI * i) / n - Math.PI / 2;
+        pos[u] = { x: cx + radius * Math.cos(angle), y: cy + radius * Math.sin(angle) };
+      });
+
+      var svgNS = 'http://www.w3.org/2000/svg';
+      var svg = document.createElementNS(svgNS, 'svg');
+      svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+      svg.setAttribute('width', '100%');
+      svg.setAttribute('style', 'max-width:' + width + 'px; display:block; margin:0 auto;');
+
+      edges.forEach(function (e) {
+        var a = pos[e.sourceUrl],
+          b = pos[e.targetUrl];
+        var line = document.createElementNS(svgNS, 'line');
+        line.setAttribute('x1', a.x);
+        line.setAttribute('y1', a.y);
+        line.setAttribute('x2', b.x);
+        line.setAttribute('y2', b.y);
+        line.setAttribute('stroke', 'var(--global-divider-color)');
+        line.setAttribute('stroke-width', '1.5');
+        var title = document.createElementNS(svgNS, 'title');
+        title.textContent = e.note;
+        line.appendChild(title);
+        svg.appendChild(line);
+      });
+
+      urls.forEach(function (u) {
+        var p = pos[u];
+        var a = document.createElementNS(svgNS, 'a');
+        a.setAttributeNS('http://www.w3.org/1999/xlink', 'href', u);
+        a.setAttribute('href', u);
+
+        var circle = document.createElementNS(svgNS, 'circle');
+        circle.setAttribute('cx', p.x);
+        circle.setAttribute('cy', p.y);
+        circle.setAttribute('r', 8);
+        circle.setAttribute('fill', 'var(--global-theme-color)');
+        a.appendChild(circle);
+
+        var label = document.createElementNS(svgNS, 'text');
+        label.setAttribute('x', p.x);
+        label.setAttribute('y', p.y + (p.y < cy ? -14 : 24));
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('font-size', '11');
+        label.setAttribute('fill', 'var(--global-text-color)');
+        var title = nodesByUrl[u];
+        label.textContent = title.length > 28 ? title.slice(0, 26) + '…' : title;
+        var titleEl = document.createElementNS(svgNS, 'title');
+        titleEl.textContent = title;
+        label.appendChild(titleEl);
+        a.appendChild(label);
+
+        svg.appendChild(a);
+      });
+
+      document.getElementById('connections-graph').appendChild(svg);
+    })();
+  </script>
+{% endif %}

@@ -5,6 +5,9 @@ date: 2026-09-14 12:00:00+0900
 description: "A research-framing post: why nobody has combined fine-tuning, an agent loop, and escalation for evidence-grounded financial reasoning — and the two open questions that matter most (a chain-of-thought method for tool-verifiable calculation, and how to generate training data for it)."
 tags: financial-llm chain-of-thought tool-use agent-loop orchestrator-workers retrieval-augmentation
 categories: [llm, ai-agents, math, probability-finance, finance]
+related:
+  - slug: orchestrator-workers-augfc-agent-loop
+    note: "the general framing this post is one worked instance of"
 related_posts: false
 toc:
   sidebar: left
@@ -15,7 +18,7 @@ toc:
 > deliberately left out; the architecture and open questions are what's real here.
 
 Financial filings are full of numbers a general-purpose LLM can compute but not reliably
-*prove* — operating margin, growth rates, leverage ratios — because nothing forces the
+_prove_ — operating margin, growth rates, leverage ratios — because nothing forces the
 model's reasoning to correspond to the evidence it's citing. This post asks what a
 sector-specialized, tool-grounded, verifiably-reasoning financial LLM would actually
 require: the research gap, the two open questions, the proposed architecture, and the

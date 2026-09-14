@@ -56,6 +56,12 @@ layout: default
       {% include latest_posts.liquid %}
     {% endif %}
 
+    <!-- Connections between posts -->
+    {% if page.connections and page.connections.enabled %}
+      <h2>connections</h2>
+      {% include connections_graph.liquid %}
+    {% endif %}
+
     <!-- Selected papers -->
     {% if page.selected_papers %}
       <h2>

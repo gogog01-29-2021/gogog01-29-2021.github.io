@@ -1,0 +1,18 @@
+{% if page.related and page.related.size > 0 %}
+  <div
+    class="related-work"
+    style="border-left:3px solid var(--global-theme-color); padding:0.75rem 1rem; margin:1.5rem 0; background:var(--global-card-bg-color); border-radius:4px;"
+  >
+    <strong>Related on this blog</strong>
+    <ul style="margin:0.4rem 0 0 0;">
+      {% for item in page.related %}
+        {% assign target = site.posts | where: 'slug', item.slug | first %}
+        {% if target %}
+          <li>
+            <a href="{{ target.url | relative_url }}">{{ target.title }}</a> — {{ item.note }}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
