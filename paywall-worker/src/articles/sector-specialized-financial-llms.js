@@ -63,6 +63,35 @@ const free = `
   evidence and see if you get the same number.
 </p>
 
+<p><strong>Worked example (illustrative — a synthetic filing snippet, not a real
+company):</strong></p>
+<pre style="white-space:pre-wrap;background:rgba(127,127,127,0.08);padding:0.9rem;border-radius:6px;font-size:0.85em;">
+Filing excerpt (Income Statement, FY2025, in $M):
+  Total revenue ............ 1,240
+  Cost of goods sold ........  610
+  Operating expenses ........  340
+  Operating income ..........  290   [line 14]
+  Net income .................  205
+
+Typed reasoning trace:
+  1. evidence_citation: { field: "total_revenue", value: 1240,
+                           source: "Income Statement, line 4" }
+  2. evidence_citation: { field: "operating_income", value: 290,
+                           source: "Income Statement, line 14" }
+  3. tool_call: { tool: "divide",
+                   args: { numerator: 290, denominator: 1240 },
+                   result: 0.2339 }
+  4. composition: "operating_margin = operating_income / total_revenue
+                    = 290 / 1240 = 23.4%"
+</pre>
+<p>
+  The point of the trace isn't the arithmetic — a model can already do that — it's that
+  steps 1–2 are <em>pointers</em> into the filing (checkable against the source text),
+  step 3 is a real tool invocation (checkable by re-running it), and step 4 is nothing
+  more than restating step 3's result. There is no step where the model is "reasoning"
+  in a way that can silently diverge from the evidence.
+</p>
+
 <h2>4. RQ2 — where does the training data come from?</h2>
 <p>
   <strong>How do you generate a dataset that teaches this behavior</strong>, rather than
@@ -76,6 +105,30 @@ const free = `
   doesn't match the ground-truth calculation. The hard part isn't generating chains —
   it's generating chains that are <em>provably</em> grounded, so the training signal
   doesn't just teach a model to sound rigorous.
+</p>
+
+<p><strong>Worked example — one calculation template, instantiated:</strong></p>
+<pre style="white-space:pre-wrap;background:rgba(127,127,127,0.08);padding:0.9rem;border-radius:6px;font-size:0.85em;">
+Template: operating_margin
+  inputs:  {revenue: <field:total_revenue>, op_income: <field:operating_income>}
+  formula: op_income / revenue
+  requires_fields: [total_revenue, operating_income]
+
+Instantiation against one extracted filing:
+  extracted_fields = {total_revenue: 1240, operating_income: 290,
+                       source_lines: {total_revenue: 4, operating_income: 14}}
+  generated_trace  = [evidence_citation x2, tool_call(divide), composition]
+  ground_truth     = 290 / 1240 = 0.2339
+
+Filter step: replay generated_trace's tool_call against extracted_fields.
+  If replayed result != ground_truth (within tolerance) -> discard the example.
+  If a citation's source_line doesn't match extracted_fields' source -> discard.
+</pre>
+<p>
+  Multiply this across calculation templates (margin, growth rate, leverage, coverage
+  ratios, …) and a corpus of filings, and the filter step is what turns "an LLM
+  generated some CoT" into "a dataset where every kept example is provably grounded" —
+  the generation model doesn't need to be trustworthy, only the filter does.
 </p>
 `;
 
