@@ -1,0 +1,119 @@
+{% assign edges = '' | split: '' %}
+{% for post in site.posts %}
+  {% if post.related %}
+    {% for item in post.related %}
+      {% assign target = site.posts | where: 'slug', item.slug | first %}
+      {% if target %}
+        {% capture edge %}{{ post.url | relative_url }}|{{ target.url | relative_url }}{% endcapture %}
+        {% assign edges = edges | push: edge %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+<div id="knowledge-map" style="margin: 1rem 0; overflow-x: auto;"></div>
+<script id="knowledge-map-posts" type="application/json">
+  [
+    {% for post in site.posts %}
+      {
+        "url": {{ post.url | relative_url | jsonify }},
+        "title": {{ post.title | jsonify }},
+        "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
+        "category": {{ post.categories | first | default: "uncategorized" | jsonify }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+</script>
+<script id="knowledge-map-edges" type="application/json">
+  [
+    {% for edge in edges %}
+      {% assign parts = edge | split: "|" %}
+      { "source": {{ parts[0] | jsonify }}, "target": {{ parts[1] | jsonify }} }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+</script>
+<script>
+  (function () {
+    var posts = JSON.parse(document.getElementById('knowledge-map-posts').textContent);
+    var edges = JSON.parse(document.getElementById('knowledge-map-edges').textContent);
+    if (posts.length === 0) return;
+
+    var byUrl = {};
+    posts.forEach(function (p) {
+      byUrl[p.url] = p;
+    });
+
+    var categories = [];
+    posts.forEach(function (p) {
+      if (categories.indexOf(p.category) === -1) categories.push(p.category);
+    });
+    var palette = ['#4C8DFF', '#22C55E', '#F97316', '#A855F7', '#EF4444', '#06B6D4', '#EAB308'];
+    function colorFor(cat) {
+      var i = categories.indexOf(cat);
+      return palette[i % palette.length];
+    }
+
+    var n = posts.length;
+    var width = Math.min(760, Math.max(420, n * 90));
+    var height = Math.min(760, Math.max(420, n * 90));
+    var cx = width / 2,
+      cy = height / 2;
+    var radius = Math.min(width, height) / 2 - 90;
+
+    var pos = {};
+    posts.forEach(function (p, i) {
+      var angle = (2 * Math.PI * i) / n - Math.PI / 2;
+      pos[p.url] = { x: cx + radius * Math.cos(angle), y: cy + radius * Math.sin(angle) };
+    });
+
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('style', 'max-width:' + width + 'px; display:block; margin:0 auto;');
+
+    edges.forEach(function (e) {
+      var a = pos[e.source],
+        b = pos[e.target];
+      if (!a || !b) return;
+      var line = document.createElementNS(svgNS, 'line');
+      line.setAttribute('x1', a.x);
+      line.setAttribute('y1', a.y);
+      line.setAttribute('x2', b.x);
+      line.setAttribute('y2', b.y);
+      line.setAttribute('stroke', 'var(--global-divider-color)');
+      line.setAttribute('stroke-width', '1.5');
+      svg.appendChild(line);
+    });
+
+    posts.forEach(function (p) {
+      var pp = pos[p.url];
+      var a = document.createElementNS(svgNS, 'a');
+      a.setAttributeNS('http://www.w3.org/1999/xlink', 'href', p.url);
+      a.setAttribute('href', p.url);
+
+      var circle = document.createElementNS(svgNS, 'circle');
+      circle.setAttribute('cx', pp.x);
+      circle.setAttribute('cy', pp.y);
+      circle.setAttribute('r', 9);
+      circle.setAttribute('fill', colorFor(p.category));
+      var title = document.createElementNS(svgNS, 'title');
+      title.textContent = p.title + ' (' + p.date + ')';
+      circle.appendChild(title);
+      a.appendChild(circle);
+
+      var label = document.createElementNS(svgNS, 'text');
+      label.setAttribute('x', pp.x);
+      label.setAttribute('y', pp.y + (pp.y < cy ? -14 : 24));
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('font-size', '10');
+      label.setAttribute('fill', 'var(--global-text-color)');
+      label.textContent = p.title.length > 24 ? p.title.slice(0, 22) + '…' : p.title;
+      a.appendChild(label);
+
+      svg.appendChild(a);
+    });
+
+    document.getElementById('knowledge-map').appendChild(svg);
+  })();
+</script>
