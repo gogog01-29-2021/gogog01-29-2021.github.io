@@ -8,6 +8,8 @@ categories: [llm, ai-agents]
 related:
   - slug: sector-specialized-financial-llms
     note: "a worked instance of this gap in one domain (financial filing evidence + calculation)"
+  - slug: kmux-observer-ambient-agent-attention
+    note: "the human-facing complement — when should a person's attention get pulled to a session, rather than when the model escalates itself"
 related_posts: false
 toc:
   sidebar: left
