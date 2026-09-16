@@ -79,7 +79,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-orchestrator-workers-augmented-function-calling-agent-loop-the-combination-nobody-39-s-tried",
+            },{id: "post-ambient-attention-for-long-running-agent-sessions-kmux-observer",
+        
+          title: "Ambient Attention for Long-Running Agent Sessions: kmux-observer",
+        
+        description: "Dashboards fail for watching multiple long-running AI agent sessions — context-switch cost, staleness, visual noise, disconnection from the actual session. kmux-observer&#39;s answer: treat sessions like browser tabs, not dashboard rows. What it is, what&#39;s actually built (v0.1) vs. planned, and how it connects to the agent-loop escalation question.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/kmux-observer-ambient-agent-attention/";
+          
+        },
+      },{id: "post-orchestrator-workers-augmented-function-calling-agent-loop-the-combination-nobody-39-s-tried",
         
           title: "Orchestrator-Workers + Augmented Function-Calling + Agent Loop: The Combination Nobody&#39;s Tried",
         
