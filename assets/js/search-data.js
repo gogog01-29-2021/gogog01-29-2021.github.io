@@ -39,7 +39,7 @@ ninja.data = [{
           },
         },{id: "nav-projects",
           title: "projects",
-          description: "A growing collection of your cool projects.",
+          description: "Agent systems and computer-vision work, outside the blog&#39;s research-writing track.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
@@ -53,7 +53,7 @@ ninja.data = [{
           },
         },{id: "nav-cv",
           title: "CV",
-          description: "This is a description of the page. You can modify it in &#39;_pages/cv.md&#39;. You can also change or remove the top pdf download button.",
+          description: "Full-stack and machine-learning engineer working on agentic AI systems, reinforcement learning, and stochastic risk models of human–AI interaction.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
@@ -226,7 +226,17 @@ ninja.data = [{
             },},{id: "news-launched-this-research-blog-notes-on-ai-agent-architectures-reinforcement-learning-and-human-ai-interaction-risk",
           title: 'Launched this research blog — notes on AI-agent architectures, reinforcement learning, and human–AI...',
           description: "",
-          section: "News",},{id: "teachings-data-science-fundamentals",
+          section: "News",},{id: "projects-cv-lpr-license-plate-detection-recognition-pipeline",
+          title: 'CV-LPR — license-plate detection + recognition pipeline',
+          description: "A two-stage computer-vision pipeline — YOLO-based plate detection feeding an LPRNet-based character-sequence recognizer — wired through a Kafka producer/consumer for streaming results.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/cv-lpr/";
+            },},{id: "projects-eastside-an-agentic-browser-you-own-end-to-end",
+          title: 'Eastside — an agentic browser you own end-to-end',
+          description: "A desktop AI browser where the app is the browser itself (bundled Chromium) and an agent drives it with per-action consent — no browser-use, no Playwright in the path.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/eastside/";
+            },},{id: "teachings-data-science-fundamentals",
           title: 'Data Science Fundamentals',
           description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
           section: "Teachings",handler: () => {
@@ -248,7 +258,7 @@ ninja.data = [{
         title: 'email',
         section: 'Socials',
         handler: () => {
-          window.open("mailto:%69%72%6F%6E%67%61%6C%61%63%74%69%63%6F%30%30%30%30@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+          window.open("mailto:%69%72%6F%6E%77%61%72%30%30%30%30@%6E%61%76%65%72.%63%6F%6D", "_blank");
         },
       },{
         id: 'social-rss',
