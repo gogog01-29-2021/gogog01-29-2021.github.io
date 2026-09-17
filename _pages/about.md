@@ -8,7 +8,8 @@ profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
-  more_info: # TODO: add affiliation / location / contact once you want them public
+  more_info: >
+    <p>ironwar0000@naver.com</p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
@@ -42,5 +43,5 @@ This site collects my notes, working papers, and a research blog. The posts
 lean technical and equation-heavy; they are written for readers who want the
 math, not just the intuition.
 
-> This page is a first pass. Bio, photo (`assets/img/prof_pic.jpg`), contact
-> details, and the publications list are placeholders to fill in.
+> Profile photo (`assets/img/prof_pic.jpg`) is still the theme's placeholder
+> image — pending a real one.

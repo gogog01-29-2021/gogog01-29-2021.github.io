@@ -2,10 +2,10 @@
 layout: page
 title: projects
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: Agent systems and computer-vision work, outside the blog's research-writing track.
 nav: true
 nav_order: 4
-display_categories: [work, fun]
+display_categories: [agents, computer-vision]
 horizontal: false
 ---
 
