@@ -1,34 +1,30 @@
 cv:
   name: Seonghyun
-  label: AI-agent & machine-learning engineer
+  headline: AI-agent & machine-learning engineer
   email: "ironwar0000@naver.com"
-  location: ""
-  image: ""
-  summary: >
-    Full-stack and machine-learning engineer working on agentic AI systems —
-    orchestrator–worker loops, tool-augmented reasoning, and stochastic risk
-    models of human–AI interaction.
-
+  location:
   social_networks:
     - network: GitHub
       username: gogog01-29-2021
 
   sections:
+    Summary:
+      - bullet: >
+          Full-stack and machine-learning engineer working on agentic AI
+          systems — orchestrator–worker loops, tool-augmented reasoning, and
+          stochastic risk models of human–AI interaction.
+
     Skills:
-      - name: Agentic AI
-        icon: fa-solid fa-robot
-        keywords: "Orchestrator–worker loops, tool/function calling, escalation"
-      - name: Machine learning
-        icon: fa-solid fa-hashtag
-        keywords: "Reinforcement learning, preference optimization, agent loops"
-      - name: Risk modeling
-        icon: fa-solid fa-triangle-exclamation
-        keywords: "Stochastic models, Monte Carlo, human–AI interaction risk"
+      - label: Agentic AI
+        details: "Orchestrator–worker loops, tool/function calling, escalation"
+      - label: Machine learning
+        details: "Reinforcement learning, preference optimization, agent loops"
+      - label: Risk modeling
+        details: "Stochastic models, Monte Carlo, human–AI interaction risk"
 
     Interests:
-      - name: Human–AI interaction risk
-        icon: fa-solid fa-tag
-        keywords: "Trust dynamics, bias migration, flash-risk"
+      - label: Human–AI interaction risk
+        details: "Trust dynamics, bias migration, flash-risk"
 
 # NOTE: minimal honest CV. Education / Experience / Publications intentionally
 # omitted rather than fabricated — fill in real entries when you want them public.
