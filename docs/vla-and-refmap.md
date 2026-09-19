@@ -5,10 +5,10 @@ pattern), [decisions](decisions.md) (D8).
 
 ## Posts
 
-| Post | Path / URL | Notes |
-|---|---|---|
-| Survey | `_posts/2026-07-17-vla-adaptation.md` → `/blog/2026/vla-adaptation/` | "VLA through the lens of adaptation" — 4 axes + Qwen-VLA worked case + critical §D |
-| Deep note | `_posts/2026-07-11-qwen-vla.md` → `/blog/2026/qwen-vla/` | Qwen-VLA reading note |
+| Post      | Path / URL                                                           | Notes                                                                              |
+| --------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Survey    | `_posts/2026-07-17-vla-adaptation.md` → `/blog/2026/vla-adaptation/` | "VLA through the lens of adaptation" — 4 axes + Qwen-VLA worked case + critical §D |
+| Deep note | `_posts/2026-07-11-qwen-vla.md` → `/blog/2026/qwen-vla/`             | Qwen-VLA reading note                                                              |
 
 Ontology node: `Robotics & Embodied AI → Vision-Language-Action`
 (`robotics-embodied` / `vla`). Tone: Clean-academic body + Best-paper-ready claims +
@@ -30,15 +30,19 @@ zero-shot **26.6%**.
 
 ## Verified reference set (in `_bibliography/references.bib`)
 
-21 keys added, arXiv-verified: `qwen2026vla`, `brohan2022rt1`, `brohan2023rt2`,
-`driess2023palme`, `kim2024openvla`, `ghosh2024octo`, `black2024pi0`,
+21 keys from the original pass, arXiv-verified: `qwen2026vla`, `brohan2022rt1`,
+`brohan2023rt2`, `driess2023palme`, `kim2024openvla`, `ghosh2024octo`, `black2024pi0`,
 `li2023roboflamingo`, `chi2023diffusion`, `peebles2023dit`, `zhao2023act`,
 `pertsch2025fast`, `lipman2023flowmatching`, `padalkar2024openx`, `doshi2024crossformer`,
 `shah2023vint`, `reed2022gato`, `liu2023libero`, `li2024simplerenv`, `anderson2018r2r`,
 `ku2020rxr`.
 
-**Named-but-not-cited** (pending second-source venue confirmation): RoboTwin, DOMINO,
-NaVILA, Uni-NaVid, RoboCat.
+**+5 added 2026-09-20** (previously named-but-not-cited, now formally cited via
+`{% cite %}` in the post): `mu2025robotwin` (RoboTwin, arXiv 2504.13059),
+`fang2026domino` (DOMINO, arXiv 2603.15620, ECCV 2026), `cheng2024navila` (NaVILA,
+arXiv 2412.04453), `zhang2024uninavid` (Uni-NaVid, arXiv 2412.06224), `bousmalis2023robocat`
+(RoboCat, arXiv 2306.11706). NaVILA/Uni-NaVid/RoboCat also got new reference-map nodes in
+cluster ③ (they weren't discussed in prose before, only named in the closing note).
 
 ## Reference-map pattern
 

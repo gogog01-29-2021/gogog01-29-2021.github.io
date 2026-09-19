@@ -19,7 +19,7 @@ $$
 
 > This is a survey-first note: **map the field and its sub-problems before any one
 > system takes the stage.** [Qwen-VLA]({{ '/blog/2026/qwen-vla/' | relative_url }})
-> {% cite qwen2026vla --file references %} appears only as *one point* in a design
+> {% cite qwen2026vla --file references %} appears only as _one point_ in a design
 > space that exists with or without it. Numbers attributed to a paper are stated as
 > that paper reports them; my own judgment is quarantined to §D.
 
@@ -36,8 +36,8 @@ $$
 
 The lineage is short and fast. RT-1 {% cite brohan2022rt1 --file references %} showed a
 single transformer absorbing large-scale real-robot data; RT-2
-{% cite brohan2023rt2 --file references %} made the decisive move of *reusing a
-vision-language model's web knowledge* by emitting actions as text tokens; PaLM-E
+{% cite brohan2023rt2 --file references %} made the decisive move of _reusing a
+vision-language model's web knowledge_ by emitting actions as text tokens; PaLM-E
 {% cite driess2023palme --file references %} folded continuous sensor states into the
 language model itself. OpenVLA {% cite kim2024openvla --file references %} and Octo
 {% cite ghosh2024octo --file references %} opened the recipe; RoboFlamingo
@@ -45,16 +45,16 @@ language model itself. OpenVLA {% cite kim2024openvla --file references %} and O
 imitator; $\pi_0$ {% cite black2024pi0 --file references %} replaced discrete action
 tokens with a **flow-matching** continuous decoder.
 
-### A.2 Why *adaptation* is the right axis
+### A.2 Why _adaptation_ is the right axis
 
 It is tempting to rank VLAs by a headline success rate. That is the wrong axis. A
 policy that scores 97% on one benchmark suite and collapses on a new robot, a new
-task family, or a mildly shifted environment has not demonstrated a *foundation
-model* — it has demonstrated overfitting at scale.
+task family, or a mildly shifted environment has not demonstrated a _foundation
+model_ — it has demonstrated overfitting at scale.
 
 > **Claim (the axis).** The quantity that separates a benchmark policy from an
 > embodied foundation model is **adaptation**: how cheaply one set of weights
-> survives a change of *body*, *task*, *action space*, or *distribution*.
+> survives a change of _body_, _task_, _action space_, or _distribution_.
 
 The rest of this note is organized around those four changes.
 
@@ -67,14 +67,14 @@ naive fix is a per-robot output head; it does not scale and it forbids transfer.
 Two lines attack this. Open X-Embodiment {% cite padalkar2024openx --file references %}
 pooled 22 robots into one dataset and trained RT-X models that transfer across
 bodies; CrossFormer {% cite doshi2024crossformer --file references %} pushed further —
-a *single* transformer across manipulation, navigation, locomotion, and aviation with
+a _single_ transformer across manipulation, navigation, locomotion, and aviation with
 no manual action/observation-space alignment. On the navigation side, ViNT
 {% cite shah2023vint --file references %} is a cross-robot navigation foundation model
 with positive transfer to unseen platforms.
 
 The newest lever is to describe the body **in language**. Instead of a learned
 embodiment embedding, a textual description of the current robot and its control
-convention is placed in the prompt — so the *same* weights specialize at inference by
+convention is placed in the prompt — so the _same_ weights specialize at inference by
 reading who they are driving. This is the "tool-schema" pattern from software agents,
 imported into robotics.
 
@@ -92,7 +92,7 @@ alongside manipulation suites.
 
 ### B.3 Action-space adaptation — discrete tokens vs continuous flow
 
-How a VLA *emits* an action is a real design axis, not an implementation detail.
+How a VLA _emits_ an action is a real design axis, not an implementation detail.
 
 - **Discrete tokens.** RT-2 {% cite brohan2023rt2 --file references %} bins each
   action dimension into integer tokens in the VLM vocabulary. Simple, reuses the LM
@@ -119,7 +119,7 @@ The final and hardest change is distribution. SimplerEnv
 {% cite li2024simplerenv --file references %} exists precisely to measure the sim-to-real
 and cross-setup gap for manipulation; LIBERO {% cite liu2023libero --file references %}
 probes lifelong transfer across task suites; real-world ALOHA
-{% cite zhao2023act --file references %} out-of-distribution trials and *dynamic*
+{% cite zhao2023act --file references %} out-of-distribution trials and _dynamic_
 manipulation (moving targets) are where reported numbers fall hardest. This is the axis
 on which "foundation model" claims should be stress-tested, not the in-distribution
 suites.
@@ -138,13 +138,14 @@ Qwen-VLA {% cite qwen2026vla --file references %} threads all four axes:
   (§B.4).
 
 Reported scores (as stated by the paper): 97.9% LIBERO, 73.7% Simpler-WidowX,
-86.1/87.2% RoboTwin Easy/Hard, 69.0% R2R OSR, 59.6% RxR SR, 76.9% avg ALOHA OOD, and
-**26.6% zero-shot on DOMINO** dynamic manipulation. The full reading note is
-[here]({{ '/blog/2026/qwen-vla/' | relative_url }}).
+86.1/87.2% RoboTwin {% cite mu2025robotwin --file references %} Easy/Hard, 69.0% R2R
+OSR, 59.6% RxR SR, 76.9% avg ALOHA OOD, and **26.6% zero-shot on DOMINO
+{% cite fang2026domino --file references %}** dynamic manipulation. The full reading
+note is [here]({{ '/blog/2026/qwen-vla/' | relative_url }}).
 
 ## D. Reading it critically
 
-*(This section is deliberately cautious — hedged where the evidence is.)*
+_(This section is deliberately cautious — hedged where the evidence is.)_
 
 A benchmark table is a claim, not a proof. Five questions decide whether the numbers
 mean progress:
@@ -162,7 +163,7 @@ mean progress:
    rate — not just success rate — determines whether the policy is deployable.
 
 > **The number that reads both ways.** DOMINO zero-shot **26.6%** is simultaneously
-> evidence that cross-task transfer to *dynamic* manipulation is non-trivially
+> evidence that cross-task transfer to _dynamic_ manipulation is non-trivially
 > possible **and** evidence that dynamic manipulation remains largely unsolved.
 > Promise and open problem in one figure — and a caution against reading the
 > in-distribution 97.9% as the headline.
@@ -175,16 +176,16 @@ embodiment over learned embodiment embeddings; and joint manipulation-navigation
 trajectory training over siloed policies. What remains genuinely open — and where I
 would place research effort — is the fourth axis: **dynamic, out-of-distribution
 adaptation**, where even the strongest current numbers are low. A VLA that is an
-embodied *foundation* model, rather than a very good benchmark policy, will be decided
+embodied _foundation_ model, rather than a very good benchmark policy, will be decided
 there.
 
 ## Reference map
 
-*Not a flat list — a **clustered web**. Each paper links to its **[arXiv]** (formal) and,
+_Not a flat list — a **clustered web**. Each paper links to its **[arXiv]** (formal) and,
 where one exists, an **[on this blog]** deep-note (informal). The **→** edges are the
-spider: follow them to jump from any paper to the work it builds on or leads to.*
+spider: follow them to jump from any paper to the work it builds on or leads to._
 
-### ① The VLA lineage — *scale → web-knowledge → open → continuous*
+### ① The VLA lineage — _scale → web-knowledge → open → continuous_
 
 > RT-1 proved scale on real-robot data; **RT-2** turned actions into web-knowledge text
 > tokens; **OpenVLA / Octo** opened the recipe; **π0** made the decoder continuous —
@@ -198,7 +199,7 @@ spider: follow them to jump from any paper to the work it builds on or leads to.
 - <a id="rm-roboflamingo"></a>**RoboFlamingo** · [arXiv](https://arxiv.org/abs/2311.01378) — VLM backbone as imitator. → backbone idea in [Qwen-VLA](#rm-qwen)
 - <a id="rm-pi0"></a>**π0** · [arXiv](https://arxiv.org/abs/2410.24164) · [project](https://www.physicalintelligence.company/blog/pi0) — flow-matching continuous decoder. → same decoder family as [Qwen-VLA](#rm-qwen); theory [Flow Matching](#rm-flow)
 
-### ② How actions are emitted — *discrete tokens vs continuous flow*
+### ② How actions are emitted — _discrete tokens vs continuous flow_
 
 > The fork of §B.3: quantize actions into tokens, or generate them continuously.
 
@@ -208,16 +209,19 @@ spider: follow them to jump from any paper to the work it builds on or leads to.
 - <a id="rm-dit"></a>**DiT** · [arXiv](https://arxiv.org/abs/2212.09748) — transformer diffusion backbone. → the decoder in [π0](#rm-pi0) and [Qwen-VLA](#rm-qwen)
 - <a id="rm-flow"></a>**Flow Matching** · [arXiv](https://arxiv.org/abs/2210.02747) — the training objective. → used by [π0](#rm-pi0), [Qwen-VLA](#rm-qwen)
 
-### ③ One policy, many bodies — *embodiment & task unification*
+### ③ One policy, many bodies — _embodiment & task unification_
 
 > The §B.1–B.2 bet: pool bodies and tasks into one policy.
 
 - <a id="rm-openx"></a>**Open X-Embodiment** · [arXiv](https://arxiv.org/abs/2310.08864) · [project](https://robotics-transformer-x.github.io/) — 22-robot pooled dataset + RT-X. → scaled by [CrossFormer](#rm-crossformer)
 - <a id="rm-crossformer"></a>**CrossFormer** · [arXiv](https://arxiv.org/abs/2408.11812) · [project](https://crossformer-model.github.io/) — one transformer across 20 embodiments. → language-described bodies in [Qwen-VLA](#rm-qwen)
 - <a id="rm-vint"></a>**ViNT** · [arXiv](https://arxiv.org/abs/2306.14846) · [project](https://general-navigation-models.github.io/vint/) — cross-robot navigation foundation. → navigation benchmarks [R2R](#rm-r2r)/[RxR](#rm-rxr)
+- <a id="rm-navila"></a>**NaVILA** {% cite cheng2024navila --file references %} · [arXiv](https://arxiv.org/abs/2412.04453) — VLA for legged-robot navigation; mid-level language actions bridge to a low-level locomotion policy. → sibling unification attempt to [Uni-NaVid](#rm-uninavid)
+- <a id="rm-uninavid"></a>**Uni-NaVid** {% cite zhang2024uninavid --file references %} · [arXiv](https://arxiv.org/abs/2412.06224) — one video-based VLA unifying four navigation sub-tasks (instruction-following, object search, QA, tracking) instead of one model per task.
 - <a id="rm-gato"></a>**GATO** · [arXiv](https://arxiv.org/abs/2205.06175) · [blog](https://deepmind.google/discover/blog/a-generalist-agent/) — one net, 600+ tasks. → maximalist ancestor of [Qwen-VLA](#rm-qwen)
+- <a id="rm-robocat"></a>**RoboCat** {% cite bousmalis2023robocat --file references %} · [arXiv](https://arxiv.org/abs/2306.11706) · [blog](https://deepmind.google/blog/robocat-a-self-improving-robotic-agent/) — self-improving generalist: few-shot adapt to a new embodiment, then generate more of its own training data. → same multi-embodiment bet as [CrossFormer](#rm-crossformer)
 
-### ④ Where we measure — *benchmarks*
+### ④ Where we measure — _benchmarks_
 
 > The §B.4 proving grounds. Qwen-VLA is scored on all of these.
 
@@ -238,7 +242,7 @@ spider: follow them to jump from any paper to the work it builds on or leads to.
 
 </details>
 
-*All entries are established works with verified arXiv identifiers. Very recent (2025–26)
-systems named in prose — RoboTwin, DOMINO, NaVILA, Uni-NaVid, RoboCat — are mentioned but
-not formally cited pending second-source venue confirmation. **Informal / project-page
-links** can be layered onto each node next (verified before adding — none fabricated).*
+_All entries are established works with verified arXiv identifiers, including RoboTwin,
+DOMINO, NaVILA, Uni-NaVid, and RoboCat — added 2026-09-20 (previously named in prose but
+not formally cited). **Informal / project-page links** can be layered onto each node next
+(verified before adding — none fabricated)._
