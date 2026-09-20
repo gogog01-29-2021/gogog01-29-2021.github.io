@@ -5,6 +5,9 @@ date: 2026-07-26 11:00:00+0900
 description: "A review of CoGHP (arXiv 2602.03389), read as a case study in *internal* chain-of-thought: latent subgoals as reasoning steps inside a single autoregressive control policy — the big problem, the method, the honest numbers, and where it points."
 tags: chain-of-thought latent-reasoning offline-rl goal-conditioned-rl hierarchical-rl mlp-mixer paper-review
 categories: [reading, papers, reinforcement-learning, offline-gcrl]
+related:
+  - slug: cot-faithfulness
+    note: "the faithfulness problem in explicit CoT that motivates treating latent reasoning as a real alternative, not just an efficiency trick"
 related_posts: false
 toc:
   sidebar: left
@@ -27,21 +30,21 @@ Chain-of-thought {% cite wei2022cot --file references %} made one idea famous: a
 solves a hard problem better when it **generates intermediate steps** before the answer,
 instead of emitting the answer in one shot. But that framing hides a fork:
 
-- **Explicit CoT** — the steps are *human-readable tokens* (words, equations). Legible,
-  but not necessarily *faithful* to the computation.
-- **Internal / latent CoT** — the steps live in a *latent space*, never verbalized. Less
+- **Explicit CoT** — the steps are _human-readable tokens_ (words, equations). Legible,
+  but not necessarily _faithful_ to the computation.
+- **Internal / latent CoT** — the steps live in a _latent space_, never verbalized. Less
   interpretable, but the "reasoning" is a real intermediate structure the model
   conditions on.
 
-> **The big problem.** Is a chain of thought a *narrative* the model tells after the
-> fact, or the actual *computation* that produces the answer? And if it is real
+> **The big problem.** Is a chain of thought a _narrative_ the model tells after the
+> fact, or the actual _computation_ that produces the answer? And if it is real
 > computation, does it have to be words at all?
 
-**CoGHP** {% cite choi2026coghp --file references %} is a sharp instance of the *latent*
+**CoGHP** {% cite choi2026coghp --file references %} is a sharp instance of the _latent_
 side of that fork — in a domain far from language. It reformulates a long-horizon
 control policy so that it first generates a **chain of latent subgoals**, then an action.
 The subgoals are not language; they are points in a learned goal space. But their
-*function* is exactly a chain of thought: each intermediate structure conditions the next
+_function_ is exactly a chain of thought: each intermediate structure conditions the next
 prediction. Reading CoGHP is a way to ask the big problem in a setting where "reasoning"
 can be measured by task success, not vibes.
 
@@ -62,15 +65,15 @@ farther $\goal$ is from the current state $\st$, the sparser the reward signal, 
 Bellman-backup value error accumulates, and the harder it is to attribute a single
 action to a distant outcome.
 
-Hierarchy is the natural response: split "reach the far goal" into *high-level subgoal
-selection* + *low-level control*, so each policy faces a shorter horizon.
+Hierarchy is the natural response: split "reach the far goal" into _high-level subgoal
+selection_ + _low-level control_, so each policy faces a shorter horizon.
 
 ### 1-2. Why prior hierarchical methods fall short
 
 CoGHP names three structural limits of existing offline hierarchical RL (e.g. HIQL
 {% cite park2023hiql --file references %}):
 
-1. **Single subgoal.** Most methods emit *one* intermediate goal at a time; long-horizon
+1. **Single subgoal.** Most methods emit _one_ intermediate goal at a time; long-horizon
    tasks need several coordinated intermediate decisions (open → move → place → close).
 2. **Loss of final-goal awareness.** If the high level's subgoal is wrong, a low level
    that only sees the subgoal drifts from the true final goal.
@@ -88,7 +91,7 @@ graph.
 
 ### 2-2. Design intuition (the CoT link, stated carefully)
 
-The analogy to language CoT is *structural, not literal*: in both, the final output is
+The analogy to language CoT is _structural, not literal_: in both, the final output is
 **not** produced in one shot — an intermediate structure is built first to condition what
 comes next. The difference: CoGHP's subgoals are **latent future-state points**, not
 words, and the **final goal is kept as a condition across the entire sequence**, so
@@ -97,18 +100,18 @@ coarse plan, then refined toward the nearest control target.
 
 ## 3. Architecture / method
 
-| Piece | Choice |
-|---|---|
-| Token sequence | `[state] [goal] [subgoal₁ … subgoal_k] [action]`, each token a fixed semantic role |
-| Backbone | **MLP-Mixer** {% cite tolstikhin2021mlpmixer --file references %} (token-mixing + channel-mixing) |
-| Autoregression | a **causal mixer** — a learnable lower-triangular matrix over stacked tokens |
-| Value | goal-conditioned **IQL** {% cite kostrikov2022iql --file references %} |
-| Policy objective | **AWR** {% cite peng2019awr --file references %} (advantage-weighted regression) |
+| Piece            | Choice                                                                                            |
+| ---------------- | ------------------------------------------------------------------------------------------------- |
+| Token sequence   | `[state] [goal] [subgoal₁ … subgoal_k] [action]`, each token a fixed semantic role                |
+| Backbone         | **MLP-Mixer** {% cite tolstikhin2021mlpmixer --file references %} (token-mixing + channel-mixing) |
+| Autoregression   | a **causal mixer** — a learnable lower-triangular matrix over stacked tokens                      |
+| Value            | goal-conditioned **IQL** {% cite kostrikov2022iql --file references %}                            |
+| Policy objective | **AWR** {% cite peng2019awr --file references %} (advantage-weighted regression)                  |
 
-Why MLP-Mixer over a Transformer? The token roles are *fixed* (position = meaning) and
+Why MLP-Mixer over a Transformer? The token roles are _fixed_ (position = meaning) and
 the sequence is short, so feed-forward token-mixing is stable where attention's dynamic
 interaction is overkill. The shared value function is the quiet key: because latent
-subgoals and the final goal live in the *same* embedded goal space, one IQL value gives
+subgoals and the final goal live in the _same_ embedded goal space, one IQL value gives
 training signal to **both** subgoals and actions.
 
 ## 4. Training / data / recipe
@@ -120,7 +123,7 @@ training signal to **both** subgoals and actions.
   (ii) hierarchical policy via AWR on both subgoal and action, merged into one end-to-end
   loss.
 - **Teacher forcing** during training (ground-truth subgoal embeddings) → stable, but a
-  train/eval **exposure mismatch** remains (rollout uses *predicted* subgoals).
+  train/eval **exposure mismatch** remains (rollout uses _predicted_ subgoals).
 - **Knobs that matter:** subgoal interval (hierarchy granularity) and subgoal count
   (hierarchy depth).
 
@@ -128,17 +131,17 @@ training signal to **both** subgoals and actions.
 
 Reported success rates (OGBench, Table 1 — quoted from the paper):
 
-| Task | CoGHP | HIQL | OTA | SAW | note |
-|---|---|---|---|---|---|
-| pointmaze-giant | **79 ± 8** | 46 ± 9 | 72 ± 6 | 68 ± 8 | long nav |
-| antmaze-giant | **78 ± 8** | 65 ± 5 | 77 ± 4 | 73 ± 4 | long nav |
-| cube-single | 97 ± 3 | 41 ± 6 | 33 ± 4 | 77 ± 4 | **GCIQL 99 ± 1 edges it** |
-| cube-triple | **42 ± 3** | 2 ± 1 | 2 ± 1 | 17 ± 3 | hard multi-object |
-| scene | **78 ± 7** | 38 ± 3 | 20 ± 4 | 63 ± 6 | sequential (unlock→open→place→close) |
+| Task            | CoGHP      | HIQL   | OTA    | SAW    | note                                 |
+| --------------- | ---------- | ------ | ------ | ------ | ------------------------------------ |
+| pointmaze-giant | **79 ± 8** | 46 ± 9 | 72 ± 6 | 68 ± 8 | long nav                             |
+| antmaze-giant   | **78 ± 8** | 65 ± 5 | 77 ± 4 | 73 ± 4 | long nav                             |
+| cube-single     | 97 ± 3     | 41 ± 6 | 33 ± 4 | 77 ± 4 | **GCIQL 99 ± 1 edges it**            |
+| cube-triple     | **42 ± 3** | 2 ± 1  | 2 ± 1  | 17 ± 3 | hard multi-object                    |
+| scene           | **78 ± 7** | 38 ± 3 | 20 ± 4 | 63 ± 6 | sequential (unlock→open→place→close) |
 
-*(Professor-cautious read.)* The honest signal is **complexity scaling**, not the
+_(Professor-cautious read.)_ The honest signal is **complexity scaling**, not the
 average. On easy tasks the architecture barely matters — on `cube-single` a flat GCIQL
-(99) actually *beats* CoGHP (97). The chain pays off precisely where reasoning should:
+(99) actually _beats_ CoGHP (97). The chain pays off precisely where reasoning should:
 `cube-triple` (42 vs HIQL's 2) and `scene` (78 vs 38), the tasks that demand several
 coordinated intermediate decisions. That is the claim doing honest work: CoGHP is not a
 universal upgrade; it is a **long-horizon, multi-decision** upgrade.
@@ -146,13 +149,13 @@ universal upgrade; it is a **long-horizon, multi-decision** upgrade.
 ## 6. Limitations
 
 - **Latent subgoals aren't legible.** They approximate future states, not a
-  human-readable plan — so this is *internal* CoT: you cannot inspect the reasoning the
+  human-readable plan — so this is _internal_ CoT: you cannot inspect the reasoning the
   way you can read a language chain.
 - **Offline-data sensitivity.** Subgoal supervision is future states from the dataset;
   poor trajectory coverage weakens both subgoal and generalization.
 - **Teacher-forcing mismatch.** Train on ground-truth subgoals, roll out on predicted
   ones — error can re-accumulate at evaluation.
-- **Backbone conclusion is task-dependent.** MLP-Mixer wins *here* (fixed roles, short
+- **Backbone conclusion is task-dependent.** MLP-Mixer wins _here_ (fixed roles, short
   sequence); longer sequences, image tokens, or language conditioning may flip it.
 - **Hyperparameters.** Subgoal interval/count need tuning per task; auto-selecting them
   in a real robot setting is unsolved.
@@ -163,7 +166,7 @@ Read against §0's big problem, CoGHP is evidence for a strong claim: **a chain 
 thought does not have to be words to be real.** Its subgoals are latent, un-verbalized,
 and yet they measurably improve long-horizon control — the "reasoning" is validated by
 task success, not by how convincing the narrative reads. That is the cleanest rebuttal I
-know to "CoT is just post-hoc storytelling": here the chain *is* the computation, because
+know to "CoT is just post-hoc storytelling": here the chain _is_ the computation, because
 there is no language layer to narrate anything.
 
 Reusable ideas: (1) collapse planner + controller into **one** goal→subgoal→action
@@ -174,32 +177,38 @@ multi-step **agent planning**, where plan/tool/action need not be separate netwo
 ## 8. Summary
 
 CoGHP recasts long-horizon offline GCRL as autoregressive generation of latent subgoals
-+ action in one MLP-Mixer policy, sharing an IQL value across the hierarchy and keeping
-the final goal as a global condition. It shines as task difficulty rises — the signature
-of a method whose latent "chain of thought" earns its keep only when the horizon is long
-and the decisions are many.
+
+- action in one MLP-Mixer policy, sharing an IQL value across the hierarchy and keeping
+  the final goal as a global condition. It shines as task difficulty rises — the signature
+  of a method whose latent "chain of thought" earns its keep only when the horizon is long
+  and the decisions are many.
 
 ## Reference map
 
-*Clustered + cross-linked — follow the **→** edges. [arXiv] = formal, [code]/[blog] =
-informal.*
+_Clustered + cross-linked — follow the **→** edges. [arXiv] = formal, [code]/[blog] =
+informal._
 
 ### ① The paper
+
 - <a id="cg-coghp"></a>**CoGHP** · [arXiv](https://arxiv.org/abs/2602.03389) · [OpenReview](https://openreview.net/forum?id=ePycZoAvYQ) — the review's subject. → sits on [HIQL](#cg-hiql), scored on [OGBench](#cg-ogbench), built from [IQL](#cg-iql)+[AWR](#cg-awr)+[MLP-Mixer](#cg-mixer); reframed via [CoT](#cg-cot).
 
 ### ② Benchmark & closest baseline
+
 - <a id="cg-ogbench"></a>**OGBench** · [arXiv](https://arxiv.org/abs/2410.20092) · [code](https://github.com/seohongpark/ogbench) — the offline-GCRL benchmark CoGHP runs on.
 - <a id="cg-hiql"></a>**HIQL** · [arXiv](https://arxiv.org/abs/2307.11949) — the single-subgoal hierarchical baseline CoGHP most directly improves on. → value method [IQL](#cg-iql)
 
 ### ③ Method primitives
+
 - <a id="cg-iql"></a>**IQL** · [arXiv](https://arxiv.org/abs/2110.06169) — implicit Q-learning; the shared value learner (no OOD-action query).
 - <a id="cg-awr"></a>**AWR** · [arXiv](https://arxiv.org/abs/1910.00177) — advantage-weighted regression; the policy objective.
 - <a id="cg-mixer"></a>**MLP-Mixer** · [arXiv](https://arxiv.org/abs/2105.01601) — the fixed-role token backbone (vs a Transformer).
 
 ### ④ The CoT lineage (why this is a reasoning paper)
-- <a id="cg-cot"></a>**Chain-of-Thought** · [arXiv](https://arxiv.org/abs/2201.11903) — the explicit, verbalized ancestor. CoGHP is its *latent* cousin: reasoning steps that are never words. (Latent-space reasoning à la "Coconut" is the closest LLM analog — named in prose, not formally cited pending verification.)
+
+- <a id="cg-cot"></a>**Chain-of-Thought** · [arXiv](https://arxiv.org/abs/2201.11903) — the explicit, verbalized ancestor. CoGHP is its _latent_ cousin: reasoning steps that are never words. (Latent-space reasoning à la "Coconut" is the closest LLM analog — named in prose, not formally cited pending verification.)
 
 ### ⑤ Informal — another review
+
 - **DimensionSTP review** · [blog](https://dimensionstp.github.io/study-concept/coghp/) — an independent write-up of the same paper (structure inspiration; read for a second angle).
 
 <details markdown="1">
@@ -209,5 +218,5 @@ informal.*
 
 </details>
 
-*Numbers quoted from arXiv:2602.03389 (v2) Table 1. All cited works have verified arXiv
-identifiers.*
+_Numbers quoted from arXiv:2602.03389 (v2) Table 1. All cited works have verified arXiv
+identifiers._
