@@ -86,7 +86,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-ambient-attention-for-long-running-agent-sessions-kmux-observer",
+            },{id: "post-does-the-chain-of-thought-say-what-the-model-actually-did-the-faithfulness-problem",
+        
+          title: "Does the Chain of Thought Say What the Model Actually Did? The Faithfulness...",
+        
+        description: "Explicit chain-of-thought reads as a reasoning trace, but two papers show it can be a post-hoc story instead — and, more troublingly, that more capable models tend to produce less faithful explanations. What &#39;faithful&#39; means, the two core results, and why this is the real argument for latent reasoning.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/cot-faithfulness/";
+          
+        },
+      },{id: "post-ambient-attention-for-long-running-agent-sessions-kmux-observer",
         
           title: "Ambient Attention for Long-Running Agent Sessions: kmux-observer",
         
