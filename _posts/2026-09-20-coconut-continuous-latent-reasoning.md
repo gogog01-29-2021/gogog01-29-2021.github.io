@@ -100,3 +100,10 @@ Three things this doesn't solve, stated plainly rather than glossed over:
   states instead of verbalized ones) from completely different starting points — offline
   RL and LLM reasoning. Is that convergence a coincidence, or is "skip the discrete
   bottleneck" the actually-general idea underneath both?
+
+<details markdown="1">
+<summary>Formal cited bibliography (auto-generated)</summary>
+
+{% bibliography --file references --cited %}
+
+</details>

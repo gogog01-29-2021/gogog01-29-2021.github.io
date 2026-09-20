@@ -96,3 +96,10 @@ correctness with an opaque mechanism.
 - If verbalized CoT can't be trusted at face value and latent reasoning can't be
   inspected at all, what would an actual faithfulness _test_ for a black-box reasoning
   process look like — something short of full mechanistic interpretability?
+
+<details markdown="1">
+<summary>Formal cited bibliography (auto-generated)</summary>
+
+{% bibliography --file references --cited %}
+
+</details>
