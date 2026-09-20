@@ -86,7 +86,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-does-the-chain-of-thought-say-what-the-model-actually-did-the-faithfulness-problem",
+            },{id: "post-coconut-what-it-actually-looks-like-to-reason-without-words",
+        
+          title: "Coconut: What It Actually Looks Like to Reason Without Words",
+        
+        description: "CoGHP showed latent chain-of-thought works in a control domain; the faithfulness post argued verbalized CoT is a real liability. Coconut is the LLM-native mechanism that closes the loop — reasoning as fed-back hidden states instead of decoded tokens — plus the honest cost: what you give up to get there.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/coconut-continuous-latent-reasoning/";
+          
+        },
+      },{id: "post-does-the-chain-of-thought-say-what-the-model-actually-did-the-faithfulness-problem",
         
           title: "Does the Chain of Thought Say What the Model Actually Did? The Faithfulness...",
         
