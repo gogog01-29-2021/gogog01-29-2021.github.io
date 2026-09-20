@@ -12,4 +12,4 @@ custom_domain = true
 POLAR_ORGANIZATION_ID = "13bd28dc-7348-4386-95f2-fef34b3699d4"
 POLAR_PAID_BENEFIT_ID = "b27571ff-fe24-48dc-a4d0-5cd2cc40883b"
 POLAR_FREE_BENEFIT_ID = "28d175a4-4546-417e-b2a5-999ff835c05d"
-ALLOWED_ORIGIN = "https://gogog01-29-2021.github.io"
+ALLOWED_ORIGIN = "https://zavis.chat,https://gogog01-29-2021.github.io"
