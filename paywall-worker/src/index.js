@@ -14,18 +14,27 @@ const ARTICLES = {
   "sector-specialized-financial-llms": sectorSpecializedFinancialLlms,
 };
 
-function corsHeaders(env) {
+// ALLOWED_ORIGIN may be a single origin or a comma-separated list (covers the
+// github.io -> custom-domain transition window without a live breakage gap).
+function corsHeaders(request, env) {
+  const allowed = (env.ALLOWED_ORIGIN || "")
+    .split(",")
+    .map((o) => o.trim())
+    .filter(Boolean);
+  const origin = request.headers.get("Origin") || "";
+  const matched = allowed.includes(origin) ? origin : allowed[0] || "*";
   return {
-    "Access-Control-Allow-Origin": env.ALLOWED_ORIGIN || "*",
+    "Access-Control-Allow-Origin": matched,
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
+    Vary: "Origin",
   };
 }
 
-function json(data, status, env) {
+function json(data, status, request, env) {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { "Content-Type": "application/json", ...corsHeaders(env) },
+    headers: { "Content-Type": "application/json", ...corsHeaders(request, env) },
   });
 }
 
@@ -47,49 +56,45 @@ async function resolveTier(key, env) {
 export default {
   async fetch(request, env) {
     if (request.method === "OPTIONS") {
-      return new Response(null, { headers: corsHeaders(env) });
+      return new Response(null, { headers: corsHeaders(request, env) });
     }
     if (request.method !== "POST") {
-      return json({ ok: false, error: "method not allowed" }, 405, env);
+      return json({ ok: false, error: "method not allowed" }, 405, request, env);
     }
 
     const url = new URL(request.url);
     if (url.pathname !== "/unlock") {
-      return json({ ok: false, error: "not found" }, 404, env);
+      return json({ ok: false, error: "not found" }, 404, request, env);
     }
 
     let body;
     try {
       body = await request.json();
     } catch {
-      return json({ ok: false, error: "invalid JSON body" }, 400, env);
+      return json({ ok: false, error: "invalid JSON body" }, 400, request, env);
     }
 
     const slug = (body.slug || "").trim();
     const key = (body.license_key || "").trim();
     const article = ARTICLES[slug];
     if (!slug || !article) {
-      return json({ ok: false, error: "unknown article" }, 404, env);
+      return json({ ok: false, error: "unknown article" }, 404, request, env);
     }
     if (!key) {
-      return json({ ok: false, error: "license key required" }, 400, env);
+      return json({ ok: false, error: "license key required" }, 400, request, env);
     }
 
     // Admin bypass: always full access, no Polar round-trip.
     if (env.ADMIN_KEY && key === env.ADMIN_KEY) {
-      return json(
-        { ok: true, admin: true, tier: "paid", content: article.free + article.paid },
-        200,
-        env
-      );
+      return json({ ok: true, admin: true, tier: "paid", content: article.free + article.paid }, 200, request, env);
     }
 
     const tier = await resolveTier(key, env);
     if (!tier) {
-      return json({ ok: false, error: "license not valid or not active" }, 403, env);
+      return json({ ok: false, error: "license not valid or not active" }, 403, request, env);
     }
 
     const content = tier === "paid" ? article.free + article.paid : article.free;
-    return json({ ok: true, tier, content }, 200, env);
+    return json({ ok: true, tier, content }, 200, request, env);
   },
 };
