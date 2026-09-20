@@ -2,6 +2,11 @@ name = "blog-paywall"
 main = "src/index.js"
 compatibility_date = "2025-01-01"
 account_id = "dc864fa0bbc8cef92372c606ceddb6e3"
+workers_dev = true
+
+[[routes]]
+pattern = "gate.zavis.chat"
+custom_domain = true
 
 [vars]
 POLAR_ORGANIZATION_ID = "13bd28dc-7348-4386-95f2-fef34b3699d4"

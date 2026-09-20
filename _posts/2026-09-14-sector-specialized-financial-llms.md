@@ -71,7 +71,7 @@ honest limitations.
   function unlock(key, opts) {
     opts = opts || {};
     status.textContent = opts.silent ? 'Signed in — checking…' : 'Checking…';
-    fetch('https://blog-paywall.irongalactico0000.workers.dev/unlock', {
+    fetch('https://gate.zavis.chat/unlock', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ slug: SLUG, license_key: key })
