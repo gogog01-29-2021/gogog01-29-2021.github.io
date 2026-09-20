@@ -54,6 +54,36 @@ The model switches between two modes:
 > discrete token). Coconut removes the bottleneck — reasoning can stay in the model's
 > full continuous representation space for as many steps as the latent phase runs.
 
+**Worked example — what the two modes actually pass around, typed:**
+
+<pre style="white-space:pre-wrap;background:rgba(127,127,127,0.08);padding:0.9rem;border-radius:6px;font-size:0.85em;">
+# Language mode (standard CoT) — one step
+token_t:        int                          # discrete vocabulary index
+hidden_t:       Tensor[d_model]               # last hidden state at step t
+logits_t        = lm_head(hidden_t)           # Tensor[vocab_size]
+token_t+1       = argmax_or_sample(logits_t)  # COLLAPSES to one discrete choice
+embed_t+1       = embedding_table[token_t+1]  # Tensor[d_model], looked up by id
+# embed_t+1 is what conditions the next step — information not in the
+# top token is discarded at the argmax/sample step.
+
+# Latent mode (Coconut "continuous thought") — one step
+hidden_t:       Tensor[d_model]               # last hidden state at step t
+embed_t+1       = hidden_t                    # NO lm_head, NO argmax, NO lookup
+# embed_t+1 is the full continuous vector — every direction the model was
+# weighing survives into the next step, not just the single argmax winner.
+
+# Mode switch (per-step, decided by the model / a control token)
+if mode == "language":
+    next_input = embedding_table[argmax(lm_head(hidden_t))]
+elif mode == "latent":
+    next_input = hidden_t   # direct feedback, the whole point of Coconut
+</pre>
+
+The entire mechanism is that one branch: whether `next_input` comes from a
+**lookup table indexed by an argmax** (language mode — necessarily one winner) or
+from the **hidden state itself, untouched** (latent mode — everything the argmax
+would have discarded stays in play). Nothing else about the transformer changes.
+
 ## 2. Why this isn't just "faster CoT" — the BFS finding
 
 The efficiency angle (skip token generation, save compute) is real but not the
