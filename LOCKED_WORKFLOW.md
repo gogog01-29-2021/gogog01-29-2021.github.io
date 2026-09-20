@@ -1,7 +1,7 @@
 # Locked Writing Workflow
 
 This file is the **single source of truth** for how posts get written and shipped on
-this blog. It exists so the rules are checkable by a human *and* enforceable by a
+this blog. It exists so the rules are checkable by a human _and_ enforceable by a
 script (see [Enforcement](#enforcement)). Nothing here is optional.
 
 ---
@@ -23,16 +23,16 @@ Before **any** prose is written for a new article, agree in this exact order:
 Pick one register per article. The assistant must **ask** (plain lettered text —
 `AskUserQuestion` popups crash this terminal) and never choose on its own.
 
-| # | Tone | Character |
-|---|------|-----------|
-| 1 | Clean academic | Readable, precise, low notation density (good default) |
-| 2 | Math-compact | Indicator notation, terse, formal |
-| 3 | Simulation | Per-trial procedural narration |
-| 4 | Professor-cautious | Hedged, careful about hidden assumptions |
-| 5 | Mechanism-heavy | Foregrounds causal mechanism |
-| 6 | Risk-analysis | Frames through loss / tail / exposure |
-| 7 | Econometric | Latent-propensity / observable-feedback register |
-| 8 | Best-paper-ready | Submission register, indicator-driven, exact |
+| #   | Tone               | Character                                              |
+| --- | ------------------ | ------------------------------------------------------ |
+| 1   | Clean academic     | Readable, precise, low notation density (good default) |
+| 2   | Math-compact       | Indicator notation, terse, formal                      |
+| 3   | Simulation         | Per-trial procedural narration                         |
+| 4   | Professor-cautious | Hedged, careful about hidden assumptions               |
+| 5   | Mechanism-heavy    | Foregrounds causal mechanism                           |
+| 6   | Risk-analysis      | Frames through loss / tail / exposure                  |
+| 7   | Econometric        | Latent-propensity / observable-feedback register       |
+| 8   | Best-paper-ready   | Submission register, indicator-driven, exact           |
 
 ## 3. References (integrity — hard rule)
 
@@ -68,7 +68,7 @@ Runs as part of the writing workflow — no external service. On each new/edited
    under new upper-concept nodes. Renaming a leaf breaks its live `/blog/category/…` URL.
 6. **Validate** with `scripts/check-workflow.sh`, then deploy on the author's OK.
 
-*Future:* the concept-extraction step (1) generalizes into "auto concept finding from
+_Future:_ the concept-extraction step (1) generalizes into "auto concept finding from
 what I write (chain-of-thought concepts)" — the same pipeline, richer front end.
 
 ## 5. Deploy (hard rule)
@@ -79,6 +79,34 @@ what I write (chain-of-thought concepts)" — the same pipeline, richer front en
   `rsync --exclude .nojekyll` preserves it — do not delete it.
 - After a deploy: verify `gh api repos/<repo>/pages --jq .status` is `built` and the
   new URL returns `200`.
+
+## 6. Content shape — Original + Essence (hard rule, added 2026-09-20)
+
+Every post carries two identifiable pieces near the top, right after the tone
+blockquote and before the numbered sections begin:
+
+- **Original** — the raw source material the post is built from, **quoted verbatim**,
+  not paraphrased: a short excerpt from the paper's own abstract, or the author's own
+  original words if the post is about the author's project. Keep it short (a sentence
+  or two) — this is a pointer to the real source, not a reproduction of it.
+- **Essence** — a short (2–4 sentence) compressed synthesis immediately after, giving
+  the "zipped" takeaway independent of the rest of the post's prose.
+
+> Rationale (verbatim from the author): so a reader — human or an AI agent picking up
+> this repo cold — can get the real source and the compressed meaning without reading
+> the full argument, the same way a wiki entry's summary line works.
+
+Template:
+
+```markdown
+> **Original.** "<verbatim excerpt, quoted exactly, with attribution>"
+>
+> **Essence.** <2–4 sentence compressed synthesis in the author's own words.>
+```
+
+**Status: not yet retrofitted onto older posts.** Applies going forward from
+2026-09-20; existing posts get it opportunistically when they're next touched, not in
+a single mass edit.
 
 ---
 
@@ -92,5 +120,7 @@ deploy. It fails the commit if:
 - `papers.bib` and `references.bib` share a citation key (mixing);
 - `.nojekyll` is missing from the `gh-pages` branch.
 
-The order-of-work rules (§1, §2) and the per-deploy OK (§5) are **human-gated** —
-they cannot be fully automated, but this file makes them auditable.
+The order-of-work rules (§1, §2), the per-deploy OK (§5), and the Original/Essence
+content shape (§6) are **human-gated** — they cannot be fully automated (prose
+structure isn't string-matchable the way a citation key is), but this file makes them
+auditable.

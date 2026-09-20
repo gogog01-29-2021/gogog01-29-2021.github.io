@@ -20,7 +20,10 @@ agents, not on the published site. Follow the links to spider through it.
 ## Also in the repo root
 
 - **[LOCKED_WORKFLOW.md](../LOCKED_WORKFLOW.md)** — the enforced writing/deploy rules
-  (the single source of truth; the guard enforces it).
+  (the single source of truth; the guard enforces it). Includes §6, **Original +
+  Essence** — every post quotes its real source verbatim near the top, then gives a
+  short compressed synthesis, so a reader (human or an AI agent) never has to guess
+  what a post is actually built from.
 - **[BLOG_FEATURE_OPTIONS.md](../BLOG_FEATURE_OPTIONS.md)** — chosen feature paths + the
   alternatives to pick from later.
 - **[CLAUDE.md](../CLAUDE.md)** / **[AGENTS.md](../AGENTS.md)** — agent working agreement.

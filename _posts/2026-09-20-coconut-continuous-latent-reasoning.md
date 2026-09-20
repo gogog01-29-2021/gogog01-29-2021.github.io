@@ -20,6 +20,20 @@ toc:
 > [CoT-faithfulness post]({{ '/blog/2026/cot-faithfulness/' | relative_url }}) and
 > [CoGHP]({{ '/blog/2026/coghp-latent-chain-of-thought/' | relative_url }}).
 
+> **Original.** "Large language models (LLMs) are typically constrained to reason in
+> the language space, where they express the reasoning process through a
+> chain-of-thought (CoT) to solve complex problems. However, the language space may
+> not always be optimal for reasoning." — {% cite hao2024coconut --file references %},
+> opening lines of the abstract.
+>
+> **Essence.** The paper's whole bet is contained in that second sentence: language
+> was built for communication, not necessarily for the model's own internal
+> reasoning, so forcing every intermediate step through it may be a self-imposed
+> constraint rather than a necessity. Coconut tests that bet directly by letting the
+> model reason in its native continuous representation space instead, and finds a
+> concrete capability gain (implicit breadth-first search) where the language
+> bottleneck would have forced an early, possibly wrong, commitment to one path.
+
 ## 0. Where this sits in the series
 
 The [faithfulness post]({{ '/blog/2026/cot-faithfulness/' | relative_url }}) made a

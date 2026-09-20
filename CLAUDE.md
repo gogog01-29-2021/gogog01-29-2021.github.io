@@ -6,8 +6,8 @@
 
 This repo is **not** a generic al-folio deployment. It is Seonghyun's English,
 equation-heavy research blog (live: https://gogog01-29-2021.github.io). The
-al-folio theme docs above still apply for *mechanics*; the rules below govern
-*how content gets written and shipped*.
+al-folio theme docs above still apply for _mechanics_; the rules below govern
+_how content gets written and shipped_.
 
 ## Goal (standing)
 
@@ -51,14 +51,20 @@ Control me in precise order; do **not** do everything at once. Before any prose,
 agree in this sequence:
 
 1. **Structure / outline** — the section skeleton (e.g. ladder-of-generalization).
-2. **Detail level** — how much concrete computation per section. *Always write
-   specific worked examples with real numbers, never only the "meaning."*
+2. **Detail level** — how much concrete computation per section. _Always write
+   specific worked examples with real numbers, never only the "meaning."_
 3. **Reference list** — real published works only, into `_bibliography/references.bib`
    (NEVER `papers.bib`, which is reserved for the author's own work).
 4. **Tone** — chosen per topic from the tone palette.
 
-Each post is **layered**: a *settled core* (Direct — locked) plus *open threads*
+Each post is **layered**: a _settled core_ (Direct — locked) plus _open threads_
 (Indirect — revisable in a later dated edit, never by rewriting the locked core).
+
+**Content shape — Original + Essence (LOCKED_WORKFLOW.md §6).** Near the top of every
+post, after the tone blockquote: a short **verbatim** quote from the real source
+("Original"), then a 2–4 sentence compressed synthesis ("Essence"). So the real source
+and the takeaway are both visible before the full argument — no guessing what a post
+is actually built from, for a human reader or another agent picking up this repo cold.
 
 ## Hard rules
 
