@@ -8,6 +8,8 @@ categories: [reading, papers, reinforcement-learning, offline-gcrl]
 related:
   - slug: cot-faithfulness
     note: "the faithfulness problem in explicit CoT that motivates treating latent reasoning as a real alternative, not just an efficiency trick"
+  - slug: coconut-continuous-latent-reasoning
+    note: "the same latent-CoT bet in language models instead of control — same idea, different substrate"
 related_posts: false
 toc:
   sidebar: left

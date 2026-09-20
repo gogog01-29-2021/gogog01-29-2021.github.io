@@ -8,6 +8,8 @@ categories: [llm, ai-agents]
 related:
   - slug: coghp-latent-chain-of-thought
     note: "the latent-CoT case this post's conclusion motivates — reasoning that was never verbalized can't be unfaithful the way explicit CoT can"
+  - slug: coconut-continuous-latent-reasoning
+    note: "the LLM-native mechanism for the latent-reasoning alternative this post argues for"
 related_posts: false
 toc:
   sidebar: left
