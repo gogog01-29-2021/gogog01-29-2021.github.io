@@ -248,7 +248,12 @@ ninja.data = [{
             },},{id: "news-launched-this-research-blog-notes-on-ai-agent-architectures-reinforcement-learning-and-human-ai-interaction-risk",
           title: 'Launched this research blog — notes on AI-agent architectures, reinforcement learning, and human–AI...',
           description: "",
-          section: "News",},{id: "projects-cv-lpr-license-plate-detection-recognition-pipeline",
+          section: "News",},{id: "projects-capstone-simulator-post-training-mars-and-testing-what-a-restricted-agent-loses",
+          title: 'Capstone Simulator — post-training MarS, and testing what a restricted agent loses',
+          description: "Two studies built on top of the open-source MarS market simulation engine — does post-training the simulator make it more realistic, and does restricting a trading agent to model-proposed orders help or hurt execution?",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/capstone-simulator/";
+            },},{id: "projects-cv-lpr-license-plate-detection-recognition-pipeline",
           title: 'CV-LPR — license-plate detection + recognition pipeline',
           description: "A two-stage computer-vision pipeline — YOLO-based plate detection feeding an LPRNet-based character-sequence recognizer — wired through a Kafka producer/consumer for streaming results.",
           section: "Projects",handler: () => {
