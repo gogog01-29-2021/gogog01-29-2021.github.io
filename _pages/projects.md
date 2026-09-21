@@ -5,7 +5,7 @@ permalink: /projects/
 description: Agent systems and computer-vision work, outside the blog's research-writing track.
 nav: true
 nav_order: 4
-display_categories: [agents, computer-vision]
+display_categories: [agents, finance, computer-vision]
 horizontal: false
 ---
 
