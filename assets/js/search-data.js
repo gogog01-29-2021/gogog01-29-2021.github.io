@@ -86,7 +86,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-the-latent-continuous-reasoning-landscape-a-map",
+            },{id: "post-multi-agent-orchestration-patterns-a-map",
+        
+          title: "Multi-Agent Orchestration Patterns: A Map",
+        
+        description: "The field guide named orchestration as a sub-problem and gave you the reliability math; this post gives you the taxonomy the math was missing — Orchestrator-Workers, Multi-Agent Debate, Mixture-of-Agents, and Reflexion, compared on who talks to whom and which failure mode each actually targets.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/orchestration-patterns-landscape/";
+          
+        },
+      },{id: "post-the-latent-continuous-reasoning-landscape-a-map",
         
           title: "The Latent / Continuous Reasoning Landscape: A Map",
         
