@@ -263,6 +263,16 @@ ninja.data = [{
           description: "A desktop AI browser where the app is the browser itself (bundled Chromium) and an agent drives it with per-action consent — no browser-use, no Playwright in the path.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/eastside/";
+            },},{id: "projects-fbaquant-deep-hedging-with-rl",
+          title: 'FBAQuant — deep hedging with RL',
+          description: "Reinforcement-learning approach to option hedging — reward-function design for a hedging agent, grounded against the Kelly Criterion literature rather than an ad-hoc objective.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/fbaquant-deep-hedging/";
+            },},{id: "projects-solver-aware-deep-hedging-paper-1-adi-vs-crank-nicolson",
+          title: 'Solver-Aware Deep Hedging — Paper 1 (ADI vs. Crank-Nicolson)',
+          description: "A collaboration with Ibrahim Lanre Adedimeji (Seoul National University of Science and Technology) — benchmarking numerical PDE solvers for 2D Black-Scholes option pricing, the foundation for a planned RL-hedging paper on top.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/pde-solver-adi/";
             },},{id: "teachings-data-science-fundamentals",
           title: 'Data Science Fundamentals',
           description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
