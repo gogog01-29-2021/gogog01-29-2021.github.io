@@ -3,7 +3,7 @@ layout: post
 title: "Anshu & Arunachalam — and where RL-ES quantum state estimation lives inside it"
 date: 2026-05-26 12:00:00+0900
 description: Reading-archive entry for the 2023 survey on complexity of learning quantum states (arXiv 2305.20069). Used as the anchor for my RL-ES quantum-state-estimation drafts (Wasserstein gradient flow + λ-convex exponential decay) and to surface the PL-condition pivot once ES is dropped. The post is split by a hard divider into Direct (what the drafts and advisor feedback commit to — locked until next iteration) and Indirect (my own extensions from this reading — subject to revision).
-tags: reading papers quantum-computing reinforcement-learning math
+tags: reading papers quantum-computing reinforcement-learning math vertical
 categories: [reading, papers]
 related_posts: false
 toc:

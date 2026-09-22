@@ -3,7 +3,7 @@ layout: post
 title: "Chain-of-Goals: latent chain-of-thought for long-horizon offline RL"
 date: 2026-07-26 11:00:00+0900
 description: "A review of CoGHP (arXiv 2602.03389), read as a case study in *internal* chain-of-thought: latent subgoals as reasoning steps inside a single autoregressive control policy — the big problem, the method, the honest numbers, and where it points."
-tags: chain-of-thought latent-reasoning offline-rl goal-conditioned-rl hierarchical-rl mlp-mixer paper-review
+tags: chain-of-thought latent-reasoning offline-rl goal-conditioned-rl hierarchical-rl mlp-mixer paper-review vertical
 categories: [reading, papers, reinforcement-learning, offline-gcrl]
 related:
   - slug: cot-faithfulness

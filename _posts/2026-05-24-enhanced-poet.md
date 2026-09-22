@@ -3,7 +3,7 @@ layout: post
 title: "Enhanced POET — and the architecture of open-ended intelligence"
 date: 2026-05-24 12:00:00+0900
 description: Reading-archive entry on Wang et al. (ICML 2020). The paper makes a precise claim about open-ended search; this entry extracts that claim and uses it to anchor a five-axis framework — Discovery × Representation × Selection × Transfer × Memory × Meta — that names what the rest of the field is each (separately) optimizing.
-tags: reading papers open-ended-ml meta-learning representation-learning
+tags: reading papers open-ended-ml meta-learning representation-learning vertical
 categories: [reading, papers]
 related_posts: false
 toc:
