@@ -31,7 +31,7 @@ $$
 technical one. Almost every system called an agent in 2024–2026 is one of
 three things: a single language-model call with a tool attached, a fixed
 script that calls a model at a few points, or — rarely — something that
-actually decides *what to do next based on what just happened*. Only the
+actually decides _what to do next based on what just happened_. Only the
 third is interesting, and the thing that separates it from the other two is
 not the model. It is the **loop**.
 
@@ -59,7 +59,7 @@ $$
 
 This is just a partially observed controlled process. That framing is old —
 it predates language models by decades — and that is exactly why it is
-useful: it tells you what the hard parts *must* be, before you have written a
+useful: it tells you what the hard parts _must_ be, before you have written a
 line of prompt.
 
 - $$\obs_t$$ is raw observation (tool output, a file, a user message). It is
@@ -68,7 +68,7 @@ line of prompt.
   and relevant right now. Building $$s_t$$ from the history of observations is
   a sub-problem, not a given.
 - $$\policy$$ maps state to an action. In an LLM agent the policy is a model
-  *plus the scaffold around it* — the scaffold is part of the policy whether
+  _plus the scaffold around it_ — the scaffold is part of the policy whether
   you designed it on purpose or not.
 - $$\act_t$$ is a real effect: a tool call, a write, a message, a decision to
   stop.
@@ -93,7 +93,6 @@ the field has not.
 {% include figure.liquid path="assets/img/agent-loop/seven-subproblems.png" class="img-fluid rounded z-depth-1" caption="The seven sub-problems as a spec: each names what it decides and where in the loop oₜ → sₜ → π → aₜ it lives. Composed in Figma; use this as the source of truth for labels." %}
 -->
 
-
 ## Sub-problem 1 — Decision: turning a model into a policy
 
 A language model is a next-token distribution. A policy is a thing that
@@ -107,8 +106,8 @@ single-step tools, fragile the moment the task needs more than one decision.
 **Interleaved reasoning and acting.** The model alternates private reasoning
 with actions, each action conditioned on the result of the last — the pattern
 ReAct {% cite yao2022react --file references %} named and that most production
-agents now use in some form. The contribution was never the prompt; it was making the *action
-conditional on observed feedback inside one episode*. That is the first place
+agents now use in some form. The contribution was never the prompt; it was making the _action
+conditional on observed feedback inside one episode_. That is the first place
 the loop becomes a loop.
 
 **Self-revision.** The agent critiques or verifies its own output and retries
@@ -139,7 +138,7 @@ than the decision layer.
 The lineage is worth stating because it is short and often blurred.
 Toolformer {% cite schick2023toolformer --file references %} showed a model can
 be trained to decide
-*when* to call a tool. Structured function calling then moved that decision
+_when_ to call a tool. Structured function calling then moved that decision
 into a typed interface the model emits and a runtime executes. The current
 frontier — what I will call **augmented function calling** — is the recognition
 that the function interface is not plumbing but part of the policy: schema
@@ -149,7 +148,7 @@ is folded back into $$s_t$$ all shape behavior as much as the prompt does.
 The failure modes here are unglamorous and dominate real systems:
 
 - **Schema underspecification.** The model fills a field the way the field is
-  *named*, not the way it is *meant*. Most "the agent did something insane"
+  _named_, not the way it is _meant_. Most "the agent did something insane"
   incidents are this.
 - **Silent partial failure.** A tool returns something, the something is
   wrong, and the loop continues on a corrupted $$s_t$$. Partial failure that
@@ -179,10 +178,10 @@ The design space, from least to most committed:
    quality — a different sub-problem wearing a memory mask.
 4. **Learned/structured state.** Summaries, scratchpads, explicit world
    models — e.g. the skill-library line of Voyager {% cite wang2023voyager --file references %},
-   where what is retained is *reusable competence*, not transcript.
+   where what is retained is _reusable competence_, not transcript.
 
 The unifying question — and the one the field genuinely has not answered — is
-the objective: **what should $$s_t$$ be sufficient *for*?** A sufficient
+the objective: **what should $$s_t$$ be sufficient _for_?** A sufficient
 statistic is only definable relative to a decision. Memory designed without
 naming the decision it serves optimizes a proxy, and you discover the proxy
 was wrong only when the agent confidently acts on a state that omitted the
@@ -198,8 +197,8 @@ fails for one specific reason worth stating precisely.
 
 > Composition does not preserve reliability. Worker reliability $$p$$ across
 > $$n$$ sequential dependent steps gives roughly $$p^{\,n}$$ task reliability
-> *before* you add the orchestrator's own error in decomposition and result
-> integration. Multi-agent systems are often *less* reliable than the single
+> _before_ you add the orchestrator's own error in decomposition and result
+> integration. Multi-agent systems are often _less_ reliable than the single
 > loop they replaced, and the failure is located in the seams — task
 > specification and result fusion — not in the workers.
 
@@ -212,7 +211,7 @@ multi-agent demos are presented.
 ## Sub-problem 5 — Escalation: knowing when not to act
 
 An agent that always acts is a liability; an agent that always defers is
-useless. The competence to decide *whether to act, defer, or hand off* is its
+useless. The competence to decide _whether to act, defer, or hand off_ is its
 own sub-problem, and it is the one closest to my research, so I will be
 precise and still keep it general.
 
@@ -226,7 +225,7 @@ $$
 $$
 
 Trivial to write, and every term is the hard part. $$\E[\Loss_{\text{act}}
-\mid s_t]$$ requires the agent to estimate its *own* error rate on a state it
+\mid s_t]$$ requires the agent to estimate its _own_ error rate on a state it
 constructed — calibration about itself, which models are notoriously bad at.
 The literature has the ingredients (selective prediction and abstention; the
 defer-to-human framing of learning-to-defer {% cite madras2018defer --file references %})
@@ -252,8 +251,8 @@ positions, usually argued past each other:
   as a black box.
 
 These are presented as rivals and are actually a decomposition. Fine-tuning
-sets the *competence* of the policy at a single step; orchestration sets how
-steps are *composed* into a task. A loop with three sub-problems unsolved is
+sets the _competence_ of the policy at a single step; orchestration sets how
+steps are _composed_ into a task. A loop with three sub-problems unsolved is
 not rescued by a better-tuned single-step policy, and a perfectly orchestrated
 loop around an incompetent policy still fails. The defensible position is
 that the question "fine-tune or orchestrate" is mis-posed: the open problem is
@@ -299,7 +298,7 @@ plainly and with its limits:
 1. **The feedback-drift seam (Sub-problem 7) and escalation (Sub-problem 5).**
    When the agent's own actions reshape the human's reliance on it over
    repeated interactions, the loop is no longer just non-stationary — the
-   *interaction itself becomes the locus of risk*, separate from any single
+   _interaction itself becomes the locus of risk_, separate from any single
    decision's error. I model this as a coupled stochastic system in which the
    tendency to consult the AI updates from realized loss, asymmetrically,
    producing bias migration and tail "flash-risk" events that no per-step
@@ -309,7 +308,7 @@ plainly and with its limits:
    whole field.
 
 2. **The learned-policy / designed-loop interface (Sub-problem 6).** My
-   working position is that fine-tuning, the agent loop, and *learned*
+   working position is that fine-tuning, the agent loop, and _learned_
    escalation should be studied as one object rather than three, because the
    reliability lost in composition (Sub-problem 4) and the mis-pricing of
    self-error (Sub-problem 5) are the same failure viewed from two sides. This
@@ -348,6 +347,6 @@ honestly, and my own work only where it earns a sentence.
 
 {% bibliography --file references --cited %}
 
-*All references above are established, published work. No venue, DOI, or result
+_All references above are established, published work. No venue, DOI, or result
 is asserted for my own in-preparation work; the tri-system note is linked inline
-and labelled a model note, not a results paper.*
+and labelled a model note, not a results paper._

@@ -30,9 +30,9 @@ pagination:
   {% endif %}
 
 {% comment %}
-  Data-driven topic hierarchy. Edit _data/topics.yml to manage it.
-  Roll-up: posts declare categories: [big, sub] so a big category aggregates
-  all of its sub-category posts. Empty nodes render muted (no broken links).
+Data-driven topic hierarchy. Edit _data/topics.yml to manage it.
+Roll-up: posts declare categories: [big, sub] so a big category aggregates
+all of its sub-category posts. Empty nodes render muted (no broken links).
 {% endcomment %}
 
   <div class="topic-tree mb-4">

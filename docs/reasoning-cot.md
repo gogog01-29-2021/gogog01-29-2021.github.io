@@ -7,13 +7,13 @@ Back to the [hub](README.md). Related: [decisions](decisions.md),
 
 Chain-of-thought splits into **explicit CoT** (human-readable token steps — legible but
 maybe unfaithful) and **internal / latent CoT** (reasoning in latent space — real
-computation, not legible). The series' recurring question: *is the chain a post-hoc
-narrative, or the actual computation — and does it have to be words?*
+computation, not legible). The series' recurring question: _is the chain a post-hoc
+narrative, or the actual computation — and does it have to be words?_
 
 ## Posts
 
-| Post | Path / URL | Role |
-|---|---|---|
+| Post         | Path / URL                                                                                         | Role                                    |
+| ------------ | -------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | CoGHP review | `_posts/2026-07-26-coghp-latent-chain-of-thought.md` → `/blog/2026/coghp-latent-chain-of-thought/` | Latent CoT in control — the worked case |
 
 ## CoGHP (verified)

@@ -19,29 +19,29 @@ $$
 
 A risk model is only ever as good as the loss it can quantify. Strip away the
 dynamics and the story and the question that remains is the same one:
-*what is the expected — and tail — loss this system produces?* Stated that
+_what is the expected — and tail — loss this system produces?_ Stated that
 plainly, risk modeling has a single structural problem. The loss functional
 you actually care about is almost never available in closed form, and the
-part you care about *most* — the tail, the rare adverse alignment, the flash
+part you care about _most_ — the tail, the rare adverse alignment, the flash
 event — is exactly the part where closed-form approximations are least
 trustworthy.
 
 Monte Carlo is the response to that problem, and the history of risk
 modeling is largely the history of taking it seriously. This survey runs
-that history through a risk-analysis lens — *loss exposure*, not algorithms —
+that history through a risk-analysis lens — _loss exposure_, not algorithms —
 and then asks where two more recent answers fit: amortized variational
 methods (VAE) and quantum amplitude estimation. Field first; my own work
 makes no appearance.
 
 ## What a risk model must deliver
 
-Before simulating anything, the object being estimated has to be a *coherent*
+Before simulating anything, the object being estimated has to be a _coherent_
 notion of risk. The axioms of {% cite artzner1999coherent --file references %}
 fix what a risk measure must satisfy (monotonicity, sub-additivity, positive
 homogeneity, translation invariance) and, in doing so, expose why variance
 and plain value-at-risk mislead precisely in the tail. The operational
 consequence is that a risk specification has to connect adaptation and
-decisions to *realized loss exposure* — not to a convenient surrogate.
+decisions to _realized loss exposure_ — not to a convenient surrogate.
 
 Once the tail is the quantity of interest, the relevant functional is a
 conditional-tail object. {% cite rockafellar2000optimization --file references %}
@@ -63,7 +63,7 @@ work in high-dimensional, dependent state is
 {% cite metropolis1953equation --file references %}, generalized into the
 sampling framework still used today by
 {% cite hastings1970monte --file references %}. Any time you hear "Markov
-risk model," that lineage is what the word *Markov* is doing.
+risk model," that lineage is what the word _Markov_ is doing.
 
 The modern, risk-facing consolidation is textbook by now —
 {% cite rubinstein2016simulation --file references %} for the estimator and
@@ -81,7 +81,7 @@ was Monte Carlo. The variational autoencoder line of
 {% cite kingma2013vae --file references %} and
 {% cite rezende2014stochastic --file references %} added a second answer
 that the risk community has been slow to take seriously: replace the
-intractable posterior with a *learned* approximation, then sample from
+intractable posterior with a _learned_ approximation, then sample from
 that. The trade is precise and worth stating in risk terms.
 
 - **Monte Carlo** estimates an expectation directly. It is **unbiased**;
@@ -90,7 +90,7 @@ that. The trade is precise and worth stating in risk terms.
   of your samples carry no information about the quantity you care about,
   which is why {% cite glasserman2004monte --file references %} spends most
   of its pages on importance sampling and control variates.
-- **VAE** estimates a *distribution* parameterized by a neural encoder–decoder.
+- **VAE** estimates a _distribution_ parameterized by a neural encoder–decoder.
   It is **biased** by the choice of variational family; in exchange, the
   variance of any downstream expectation drops sharply because the
   approximation already concentrates mass where it matters. Once the
@@ -109,10 +109,10 @@ gap is zero. Both are common; neither survives a serious tail diagnostic.
 
 The third answer is the one the field is still partly arguing about. The
 core observation is older than the hype:
-{% cite brassard2002amplitude --file references %} showed that *amplitude
-estimation* — a quantum subroutine that estimates the probability of a
+{% cite brassard2002amplitude --file references %} showed that _amplitude
+estimation_ — a quantum subroutine that estimates the probability of a
 marked outcome — converges with error $$O(1/N)$$ in $$N$$ queries, where
-classical Monte Carlo converges as $$O(1/\sqrt{N})$$. That is a *quadratic*
+classical Monte Carlo converges as $$O(1/\sqrt{N})$$. That is a _quadratic_
 speedup, and it is not asymptotic hand-waving: it applies to the same
 expectation a financial-risk MC actually computes.
 
@@ -127,7 +127,7 @@ pricing on actual quantum hardware with the amplitude-estimation primitive.
 
 Read as risk analysis, the implication is narrow but real. A
 quadratic-in-precision speedup means estimating a tail quantile to one
-extra digit costs the *square root* of the classical sample count — not a
+extra digit costs the _square root_ of the classical sample count — not a
 constant factor saving but a different scaling regime. The honest caveat is
 equally narrow: you need a quantum oracle for the loss distribution, and
 loading classical data into amplitude form is its own hard problem. The
@@ -143,6 +143,7 @@ Each card: **Claim** · **Method** · **Matters** (the risk-analysis reason
 it is here) · **Connects to** (where it sits in the survey) · **Code**.
 
 **[1] {% cite metropolis1949monte --file references %} — The Monte Carlo Method**
+
 - Claim: an intractable expectation can be replaced by a sample average.
 - Method: stochastic sampling of the loss functional.
 - Matters: the entire reason a non-closeable risk integral is estimable.
@@ -150,6 +151,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: — (1949 historical paper; modern MC libraries are reimplementations).
 
 **[2] {% cite metropolis1953equation --file references %} — Equation of State by Fast Computing Machines**
+
 - Claim: dependent high-dimensional state can be sampled via a Markov chain.
 - Method: the Metropolis acceptance rule.
 - Matters: makes simulation feasible when state is correlated over time.
@@ -157,6 +159,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: — (historical; PyMC / Stan / emcee reimplement it).
 
 **[3] {% cite hastings1970monte --file references %} — MC Sampling Using Markov Chains**
+
 - Claim: generalizes Metropolis to arbitrary target distributions.
 - Method: Metropolis–Hastings.
 - Matters: the formal basis of Markov-chain risk simulation.
@@ -164,6 +167,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: — (historical; standard in every MCMC library).
 
 **[4] {% cite artzner1999coherent --file references %} — Coherent Measures of Risk**
+
 - Claim: axioms a sound risk measure must satisfy.
 - Method: the coherence axiom set (mono / sub-add / hom / transl-inv).
 - Matters: explains why variance and VaR mislead in the tail.
@@ -171,6 +175,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: — (theory paper; trivial to encode the axioms as predicates).
 
 **[5] {% cite rockafellar2000optimization --file references %} — Optimization of CVaR**
+
 - Claim: conditional tail loss is a tractable optimization target.
 - Method: convex reformulation of CVaR.
 - Matters: gives the flash-risk tail a workable definition.
@@ -178,6 +183,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: — (standard convex-solver implementations exist; e.g. cvxpy).
 
 **[6] {% cite glasserman2004monte --file references %} — Monte Carlo Methods in Financial Engineering**
+
 - Claim: tail risk is estimable but only with variance control.
 - Method: importance sampling, control variates, stratification.
 - Matters: the practical core of estimating a flash-risk tail.
@@ -185,6 +191,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: — (book; reference implementations widely available).
 
 **[7] {% cite rubinstein2016simulation --file references %} — Simulation and the Monte Carlo Method**
+
 - Claim: the MC estimator and its variance, end to end.
 - Method: estimator construction + rare-event simulation.
 - Matters: why naive tail simulation is noise, not an estimate.
@@ -192,6 +199,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: — (textbook; companion code by edition).
 
 **[8] {% cite kingma2013vae --file references %} — Auto-Encoding Variational Bayes**
+
 - Claim: a learned posterior approximation can replace MCMC for many inference tasks.
 - Method: reparameterization trick + amortized encoder.
 - Matters: turns repeated MC integrals into $$O(1)$$ sampling after training.
@@ -199,6 +207,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: ✓ — original implementation and many open-source clones (PyTorch / JAX).
 
 **[9] {% cite rezende2014stochastic --file references %} — Stochastic Backpropagation and Deep Generative Models**
+
 - Claim: gradients of expectations under deep generative models are tractable.
 - Method: stochastic backprop through the sampling layer.
 - Matters: the reason VAE-style estimators are end-to-end optimizable.
@@ -206,6 +215,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: ✓ — reference implementations in every deep-generative-model library.
 
 **[10] {% cite brassard2002amplitude --file references %} — Quantum Amplitude Amplification & Estimation**
+
 - Claim: quantum amplitude estimation gives $$O(1/N)$$ error in $$N$$ queries.
 - Method: Grover-style amplification + phase-estimation readout.
 - Matters: the quadratic-in-precision speedup over classical MC.
@@ -213,6 +223,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: — (theory; primitives in Qiskit / Cirq).
 
 **[11] {% cite montanaro2015quantum --file references %} — Quantum Speedup of Monte Carlo Methods**
+
 - Claim: any classical MC expectation inherits the quadratic speedup.
 - Method: reduces generic MC to amplitude estimation.
 - Matters: makes the speedup a general MC theorem, not a special case.
@@ -220,6 +231,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: — (theory; reference circuits in Qiskit Finance).
 
 **[12] {% cite rebentrost2018quantum --file references %} — Quantum Computational Finance: MC Pricing of Derivatives**
+
 - Claim: option pricing inherits the amplitude-estimation speedup.
 - Method: encodes payoff + path simulation into a quantum oracle.
 - Matters: the financial-risk-specific instantiation of Montanaro.
@@ -227,6 +239,7 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 - Code: ✓ — reference implementations in Qiskit Finance.
 
 **[13] {% cite stamatopoulos2020option --file references %} — Option Pricing on Quantum Computers**
+
 - Claim: amplitude-estimation option pricing runs on actual hardware.
 - Method: experiments on real superconducting devices.
 - Matters: pulls the speedup story out of theory and into measurement.
@@ -235,11 +248,11 @@ it is here) · **Connects to** (where it sits in the survey) · **Code**.
 
 ---
 
-*References are real, established works (verify exact fields before citing
+_References are real, established works (verify exact fields before citing
 formally). No DOIs are asserted. Code lines marked ✓ where I am confident a
 reference implementation is publicly available; "—" where the work is
 foundational/historical and the modern code is reimplementation, not the
-authors' release.*
+authors' release._
 
 ## References
 

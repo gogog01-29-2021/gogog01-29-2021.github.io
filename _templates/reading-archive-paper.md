@@ -8,7 +8,9 @@
   _bibliography/references.bib (it is NOT one of the user's own papers — keep
   papers.bib strictly Kim-only).
 -->
+
 ---
+
 layout: post
 title: "<PAPER TITLE> — <FIRST AUTHOR> et al. (<YEAR>)"
 date: <YYYY-MM-DD> <HH:MM:SS>+0900
@@ -17,7 +19,7 @@ tags: reading papers <field-tag>
 categories: [reading, papers]
 related_posts: false
 toc:
-  sidebar: left
+sidebar: left
 ---
 
 $$
@@ -26,14 +28,14 @@ $$
 
 ## Metadata
 
-| Field | Value |
-|---|---|
-| Title | <PAPER TITLE> |
-| Authors | <Author, A. and Author, B. and ...> |
-| Venue / Year | <ICLR 2023 · NeurIPS 2024 · arXiv-only · …> |
-| arXiv | <id, e.g. 2305.18290>   {# omit row if none #} |
-| Read on | <YYYY-MM-DD>   {# omit row if not provided #} |
-| Rating | <user-rating>   {# omit row if not provided #} |
+| Field        | Value                                        |
+| ------------ | -------------------------------------------- |
+| Title        | <PAPER TITLE>                                |
+| Authors      | <Author, A. and Author, B. and ...>          |
+| Venue / Year | <ICLR 2023 · NeurIPS 2024 · arXiv-only · …>  |
+| arXiv        | <id, e.g. 2305.18290> {# omit row if none #} |
+| Read on      | <YYYY-MM-DD> {# omit row if not provided #}  |
+| Rating       | <user-rating> {# omit row if not provided #} |
 
 ## Why this paper?
 

@@ -15,7 +15,9 @@
   Style register (analog reading-archive note): restrained, structured, clean
   headings, no SNS-style emoji or filler. Diagrams via mermaid if useful.
 -->
+
 ---
+
 layout: post
 title: "<TITLE> — <AUTHOR>"
 date: <YYYY-MM-DD> <HH:MM:SS>+0900
@@ -24,8 +26,8 @@ tags: reading books <user-tag-1> <user-tag-2>
 categories: [reading, books]
 related_posts: false
 toc:
-  sidebar: left
-thumbnail: /assets/img/reading-archive/<slug>.png   # delete this line if no image
+sidebar: left
+thumbnail: /assets/img/reading-archive/<slug>.png # delete this line if no image
 ---
 
 {% comment %} Cover/hero image — DELETE the next include block if no image. {% endcomment %}
@@ -33,13 +35,13 @@ thumbnail: /assets/img/reading-archive/<slug>.png   # delete this line if no ima
 
 ## Metadata
 
-| Field | Value |
-|---|---|
-| Title | <TITLE> |
-| Author | <AUTHOR> |
+| Field    | Value                                                                                      |
+| -------- | ------------------------------------------------------------------------------------------ |
+| Title    | <TITLE>                                                                                    |
+| Author   | <AUTHOR>                                                                                   |
 | Category | <literature · investing-strategy · science-history-philosophy-socsci · general nonfiction> |
-| Finished | <YYYY-MM-DD>   {# omit row if not provided #} |
-| Rating | <user-rating>   {# omit row if not provided #} |
+| Finished | <YYYY-MM-DD> {# omit row if not provided #}                                                |
+| Rating   | <user-rating> {# omit row if not provided #}                                               |
 
 ## Why this book?
 
@@ -51,7 +53,7 @@ thumbnail: /assets/img/reading-archive/<slug>.png   # delete this line if no ima
 2. <concept 2>
 3. <concept 3>
 4. <concept 4>
-{# add 5–6 only if the book or notes genuinely contain them #}
+   {# add 5–6 only if the book or notes genuinely contain them #}
 
 ## Summary
 
@@ -61,6 +63,7 @@ book. No invented claims, no invented data.>
 ## Notable quotes
 
 {# DELETE this whole section if the user didn't paste exact quotes. #}
+
 > "<exact quote, verbatim from user>" — p. <page>
 
 ## Personal insight / critique

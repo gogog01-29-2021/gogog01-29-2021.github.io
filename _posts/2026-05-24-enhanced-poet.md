@@ -18,18 +18,18 @@ $$
 
 ## Metadata
 
-| Field | Value |
-|---|---|
-| Title | Enhanced POET: Open-Ended Reinforcement Learning through Unbounded Invention of Learning Challenges and their Solutions |
-| Authors | Wang, Lehman, Rawal, Zhi, Li, Clune, Stanley |
-| Venue / Year | ICML 2020 |
-| arXiv | 2003.08536 |
-| Read on | 2026-05-23 |
+| Field        | Value                                                                                                                   |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| Title        | Enhanced POET: Open-Ended Reinforcement Learning through Unbounded Invention of Learning Challenges and their Solutions |
+| Authors      | Wang, Lehman, Rawal, Zhi, Li, Clune, Stanley                                                                            |
+| Venue / Year | ICML 2020                                                                                                               |
+| arXiv        | 2003.08536                                                                                                              |
+| Read on      | 2026-05-23                                                                                                              |
 
 ## Why this paper?
 
 The honest question behind reading it was not "is open-endedness real?" — it
-was *what specifically does open-endedness measure?* Most discussion of
+was _what specifically does open-endedness measure?_ Most discussion of
 "AI growing up on the internet" collapses into vibes the moment you ask
 that. POET is the paper that picks a definition with teeth, ships a metric
 to track it (**ANNECS**), and adds a transfer mechanism (**PATA-EC**) that
@@ -39,12 +39,12 @@ be worth reading slowly.
 ## The claim, in one sentence
 
 Intelligence-relevant progress is not "solve a fixed benchmark" but
-*continually invent, and solve, increasingly hard problems that the system
-itself has never seen before* — and that progress is measurable.
+_continually invent, and solve, increasingly hard problems that the system
+itself has never seen before_ — and that progress is measurable.
 
 ## Method
 
-POET runs a *population* of (environment, agent) pairs. Two mechanisms move
+POET runs a _population_ of (environment, agent) pairs. Two mechanisms move
 them forward:
 
 1. **Environment generation** — environments mutate from existing ones,
@@ -57,28 +57,28 @@ them forward:
 Enhanced POET adds two refinements over the 2019 paper
 ({% cite wang2019poet --file references %}). First, **PATA-EC** ("Performance
 of All Transferred Agents with Elite Catalysts") — a novelty metric that
-asks whether a new environment elicits *behaviorally* different agents from
+asks whether a new environment elicits _behaviorally_ different agents from
 the existing ones, not merely a different difficulty. Second, **ANNECS**
 ("Accumulated Number of Novel Environments Created and Solved"), the
 field's most honest open-endedness metric: it counts environments only when
-both *invented* and *eventually solved*, ruling out the easy cheats of
+both _invented_ and _eventually solved_, ruling out the easy cheats of
 generating gibberish or saturating one niche.
 
 ## Key result
 
 In bipedal-walking-style domains, Enhanced POET produces a steadily rising
-ANNECS curve over training: a system that keeps *adding* solved-novel
+ANNECS curve over training: a system that keeps _adding_ solved-novel
 environments at a roughly constant rate, with transfer keeping the
 population's solution quality high. The headline is not "agents got
 better" — it is "the joint system kept finding new problems worth solving,
 indefinitely, under a metric that does not reward stalling."
 
-## Limits — what the paper does *not* show
+## Limits — what the paper does _not_ show
 
 - The domain is constrained (procedural terrain, fixed action interface).
   POET on "the internet" — a frequent extrapolation — is not what's
   demonstrated.
-- ANNECS rewards *novel* + *solved*, which means a system that finds the
+- ANNECS rewards _novel_ + _solved_, which means a system that finds the
   same kind of problem from a slightly different angle still scores; this
   is a feature, but it caps how strong an "open-endedness" claim the metric
   alone can support.
@@ -89,11 +89,11 @@ indefinitely, under a metric that does not reward stalling."
 
 Reading POET twice while writing this entry pushed a framework I had been
 circling into a defendable form. It is the closest thing to a real answer
-to *what would 'raise an AI like a kid on the internet' actually require?*
+to _what would 'raise an AI like a kid on the internet' actually require?_
 
 **Intelligence = D × R × S × T × M × Meta.**
 
-Each factor is a *real research lineage*, not a coined term:
+Each factor is a _real research lineage_, not a coined term:
 
 - **D — Discovery.** Open-ended problem generation; the POET line itself
   ({% cite wang2019poet --file references %}, {% cite wang2020enhancedpoet --file references %}),
@@ -116,12 +116,12 @@ Each factor is a *real research lineage*, not a coined term:
 - **M — Memory.** Persistence and accumulation; external memory
   architectures ({% cite graves2014ntm --file references %}), experience
   replay in RL, POET's archive of environments and elites.
-- **Meta.** Self-modification *over* D, R, S, T, M. Not a sixth axis but the
-  *operator* that changes how the other five behave. POWERPLAY is the
+- **Meta.** Self-modification _over_ D, R, S, T, M. Not a sixth axis but the
+  _operator_ that changes how the other five behave. POWERPLAY is the
   canonical early instance; MAML is a partial instance (Meta over S only).
 
 The reason POET is more than a single-domain RL result is that it is the
-first system to *empirically* couple D and T inside one loop with a
+first system to _empirically_ couple D and T inside one loop with a
 metric (ANNECS) that does not let either axis cheat. Read in that light,
 most of the field's progress is one-axis: LLMs push R, RL pushes S,
 meta-learning pushes T, memory architectures push M. POET pushes D + T.
@@ -170,14 +170,14 @@ The honest probability decomposition the paper invites:
   generator, so the loop POET makes work breaks immediately.
 
 The conclusion that follows from those numbers, not from enthusiasm: the
-useful version of "raise an AI on the internet" is *not* unsupervised
+useful version of "raise an AI on the internet" is _not_ unsupervised
 exposure; it is **turn the internet into a structured evolutionary
 landscape with a Minimal-Criterion task generator on top.** POET says that
 out loud. Almost no production system does.
 
 The critique direction worth taking from here is Meta. POET modifies D
 through environment mutation and T through goal-switching, but the
-*rules* of D and T are fixed by the algorithm. A genuinely open-ended
+_rules_ of D and T are fixed by the algorithm. A genuinely open-ended
 system would let those rules themselves evolve under measured pressure —
 which is the line POWERPLAY ({% cite schmidhuber2013powerplay --file references %})
 started decades ago and the field still has not closed.

@@ -5,12 +5,12 @@ Back to the [hub](README.md). Related: [decisions](decisions.md) (D6, D7),
 
 ## The pieces
 
-| Piece | Path / URL | Role |
-|---|---|---|
-| Live-archive hub | `_posts/2026-07-11-icml-2026.md` → `/blog/2026/icml-2026/` | Day-by-day notes (Seoul · COEX · Jul 6–11) |
-| Index map (data) | `_data/icml2026.yml` | Classified catalog: invited talks + papers |
-| Index map (page) | `_pages/icml2026.md` → `/icml2026/` | Renders the catalog with arXiv/code/keywords/post columns |
-| Ontology node | `_data/topics.yml` | `Conferences → ICML 2026` (`conferences`/`icml-2026`) |
+| Piece            | Path / URL                                                 | Role                                                      |
+| ---------------- | ---------------------------------------------------------- | --------------------------------------------------------- |
+| Live-archive hub | `_posts/2026-07-11-icml-2026.md` → `/blog/2026/icml-2026/` | Day-by-day notes (Seoul · COEX · Jul 6–11)                |
+| Index map (data) | `_data/icml2026.yml`                                       | Classified catalog: invited talks + papers                |
+| Index map (page) | `_pages/icml2026.md` → `/icml2026/`                        | Renders the catalog with arXiv/code/keywords/post columns |
+| Ontology node    | `_data/topics.yml`                                         | `Conferences → ICML 2026` (`conferences`/`icml-2026`)     |
 
 **Model:** the index map is the lightweight catalog (link rows classified by topic);
 deep posts are written only for selected papers and linked from the index's `post:`

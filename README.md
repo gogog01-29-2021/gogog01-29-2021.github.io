@@ -20,9 +20,9 @@ Writing is gated by a strict **per-article workflow** (see `CLAUDE.md` for the
 full contract). In order, and one step at a time:
 
 1. **Structure / outline** → 2. **Detail level** (always concrete worked
-examples, never only "meaning") → 3. **Reference list** (real works → `_bibliography/references.bib`, never `papers.bib`) → 4. **Tone** (from the palette).
+   examples, never only "meaning") → 3. **Reference list** (real works → `_bibliography/references.bib`, never `papers.bib`) → 4. **Tone** (from the palette).
 
-Each post is **layered**: a *settled core* (Direct, locked) + *open threads*
+Each post is **layered**: a _settled core_ (Direct, locked) + _open threads_
 (Indirect, revisable later). Every article ships **two Figma-composed images**
 (hero + schematic; Figma — not AI image-gen — for math, to keep symbols exact).
 

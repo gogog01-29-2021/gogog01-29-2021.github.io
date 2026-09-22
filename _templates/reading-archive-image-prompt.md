@@ -49,6 +49,7 @@ Format: 16:9, ultra-high resolution, archival quality, premium editorial
 presentation, realistic paper texture, soft natural light, subtle shadows.
 
 ACCURACY (mandatory inside the image too):
+
 - If 완독일 / 평점 / 인용문 / 표지 are not provided, render those areas as
   TBD or leave them empty. Do NOT invent dates, quotes, awards, or covers.
 - Do NOT add fake publication info, fake reader scores, or fake award marks.
