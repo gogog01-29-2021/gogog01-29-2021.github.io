@@ -86,7 +86,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-coconut-what-it-actually-looks-like-to-reason-without-words",
+            },{id: "post-the-latent-continuous-reasoning-landscape-a-map",
+        
+          title: "The Latent / Continuous Reasoning Landscape: A Map",
+        
+        description: "Five real papers, one question: what do you do instead of verbalizing a reasoning step? A survey-style map (comparison table, tradeoffs, one-line thesis) to sit alongside the deep-dive posts — Pause Tokens, CoCoMix, Soft Thinking, Coconut, and CoGHP, compared on what each actually generates, whether it needs training, and whether it&#39;s inspectable.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/latent-reasoning-landscape/";
+          
+        },
+      },{id: "post-coconut-what-it-actually-looks-like-to-reason-without-words",
         
           title: "Coconut: What It Actually Looks Like to Reason Without Words",
         
