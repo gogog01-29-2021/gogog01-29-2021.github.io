@@ -5,13 +5,18 @@
 // Polar. Admin key bypasses Polar entirely and always gets full content.
 
 import sectorSpecializedFinancialLlms from "./articles/sector-specialized-financial-llms.js";
+import pdeSolverAdi from "./articles/pde-solver-adi.js";
+import fbaquantDeepHedging from "./articles/fbaquant-deep-hedging.js";
 
 const POLAR_VALIDATE_URL = "https://api.polar.sh/v1/customer-portal/license-keys/validate";
 
-// Tiered article content, keyed by slug (must match the `slug` the post's widget posts).
+// Tiered content, keyed by slug (must match the `slug` the page's widget posts).
 // Each entry is { free, paid } — free-tier keys get `free`; paid-tier keys get `free + paid`.
+// Covers both blog posts and gated project pages.
 const ARTICLES = {
   "sector-specialized-financial-llms": sectorSpecializedFinancialLlms,
+  "pde-solver-adi": pdeSolverAdi,
+  "fbaquant-deep-hedging": fbaquantDeepHedging,
 };
 
 // ALLOWED_ORIGIN may be a single origin or a comma-separated list (covers the

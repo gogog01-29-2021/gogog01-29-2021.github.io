@@ -1,0 +1,117 @@
+{% assign gate_id = include.slug | slugify %}
+<div
+  id="fx-gate-{{ gate_id }}"
+  style="border:1px solid var(--global-divider-color, #ccc); border-radius:8px; padding:1.25rem; margin:2rem 0;"
+>
+  <p id="fx-note-{{ gate_id }}" style="margin-top:0;">
+    <strong>Free (login required):</strong> {{ include.free_desc -}}
+    <br /> <strong>Members ($30/month):</strong> {{ include.paid_desc }}
+  </p>
+  <p>
+    <a href="{{ include.free_url }}" target="_blank" rel="noopener">Free login</a>
+    &nbsp;|&nbsp;
+    <a href="{{ include.paid_url }}" target="_blank" rel="noopener">Become a member — $30/month</a>
+    &nbsp;|&nbsp; Already have a key?
+  </p>
+  <div id="fx-keyrow-{{ gate_id }}">
+    <input
+      type="text"
+      id="fx-key-{{ gate_id }}"
+      placeholder="Enter your license key"
+      style="padding:0.4rem; width:60%; max-width:320px;"
+    />
+    <button id="fx-unlock-{{ gate_id }}">Unlock</button>
+  </div>
+  <button id="fx-logout-{{ gate_id }}" style="display:none;">Log out</button>
+  <div id="fx-status-{{ gate_id }}" style="margin-top:0.5rem; font-size:0.9em; opacity:0.7;"></div>
+  <div id="fx-content-{{ gate_id }}" style="margin-top:1.5rem;"></div>
+</div>
+
+<script>
+  (function () {
+    var SLUG = {{ include.slug | jsonify }};
+    var GID = {{ gate_id | jsonify }};
+    var STORAGE_KEY = "fx_gate_key_" + SLUG;
+    var btn = document.getElementById("fx-unlock-" + GID);
+    var logoutBtn = document.getElementById("fx-logout-" + GID);
+    var input = document.getElementById("fx-key-" + GID);
+    var status = document.getElementById("fx-status-" + GID);
+    var content = document.getElementById("fx-content-" + GID);
+    var note = document.getElementById("fx-note-" + GID);
+    var keyRow = document.getElementById("fx-keyrow-" + GID);
+
+    function savedKey() {
+      try {
+        return localStorage.getItem(STORAGE_KEY) || "";
+      } catch (e) {
+        return "";
+      }
+    }
+    function saveKey(key) {
+      try {
+        localStorage.setItem(STORAGE_KEY, key);
+      } catch (e) {}
+    }
+    function clearKey() {
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (e) {}
+    }
+
+    function unlock(key, opts) {
+      opts = opts || {};
+      status.textContent = opts.silent ? "Signed in — checking…" : "Checking…";
+      fetch("https://gate.zavis.chat/unlock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug: SLUG, license_key: key }),
+      })
+        .then(function (r) {
+          return r.json();
+        })
+        .then(function (data) {
+          if (data.ok) {
+            saveKey(key);
+            status.textContent =
+              (data.tier === "paid" ? "Full access unlocked." : "Free tier unlocked.") +
+              " You'll stay signed in on this browser.";
+            content.innerHTML = data.content;
+            if (note) note.style.display = "none";
+            keyRow.style.display = "none";
+            logoutBtn.style.display = "inline-block";
+          } else {
+            clearKey();
+            status.textContent = data.error || "Could not verify that key.";
+          }
+        })
+        .catch(function () {
+          if (!opts.silent) status.textContent = "Network error — try again.";
+        });
+    }
+
+    btn.addEventListener("click", function () {
+      var key = input.value.trim();
+      if (!key) {
+        status.textContent = "Enter a license key first.";
+        return;
+      }
+      unlock(key);
+    });
+
+    logoutBtn.addEventListener("click", function () {
+      clearKey();
+      input.value = "";
+      content.innerHTML = "";
+      status.textContent = "Logged out on this browser.";
+      keyRow.style.display = "";
+      logoutBtn.style.display = "none";
+      if (note) note.style.display = "";
+    });
+
+    var existing = savedKey();
+    if (existing) {
+      input.value = existing;
+      unlock(existing, { silent: true });
+    }
+  })();
+</script>

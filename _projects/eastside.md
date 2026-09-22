@@ -14,4 +14,12 @@ An agentic browser built to own the full stack above Chromium, not sit on top of
 
 Grew out of the East Manus study (a Claude-Code-style reference agent), which still supplies model/session/tool infrastructure underneath.
 
+**Collaboration.** Co-working with [Baryon AI Laboratory](https://github.com/baryonlabs)
+on the desktop/browser-in-one-window direction — their
+[OpenWorkCompiler](https://github.com/baryonlabs/workcompiler) explores the adjacent
+problem of compiling verified agent work into deterministic, repeatable execution, and
+their desktop product covers similar browser+AI+terminal-in-one-window territory with
+an embedded "webclaw" controlled browser — the same component name already used inside
+this codebase.
+
 Code is private.
