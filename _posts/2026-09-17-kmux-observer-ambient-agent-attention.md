@@ -3,11 +3,13 @@ layout: post
 title: "Ambient Attention for Long-Running Agent Sessions: kmux-observer"
 date: 2026-09-17 06:00:00+0900
 description: "Dashboards fail for watching multiple long-running AI agent sessions — context-switch cost, staleness, visual noise, disconnection from the actual session. kmux-observer's answer: treat sessions like browser tabs, not dashboard rows. What it is, what's actually built (v0.1) vs. planned, and how it connects to the agent-loop escalation question."
-tags: agent-observability multi-agent developer-tooling agent-loop
+tags: agent-observability multi-agent developer-tooling agent-loop vertical
 categories: [llm, ai-agents]
 related:
   - slug: orchestrator-workers-augfc-agent-loop
     note: "the complementary half — that post asks when a model should escalate itself; this one asks when a human's attention should get pulled to a session"
+  - slug: orchestration-patterns-landscape
+    note: "the survey's open question — none of the 4 compared patterns answer when a human, not just a bigger model, should get pulled in"
 related_posts: false
 toc:
   sidebar: left

@@ -3,11 +3,13 @@ layout: post
 title: "Sector-Specialized Financial LLMs: Filing Evidence, Calculation Tools, and Verifiable Reasoning"
 date: 2026-09-14 12:00:00+0900
 description: "A research-framing post: why nobody has combined fine-tuning, an agent loop, and escalation for evidence-grounded financial reasoning — and the two open questions that matter most (a chain-of-thought method for tool-verifiable calculation, and how to generate training data for it)."
-tags: financial-llm chain-of-thought tool-use agent-loop orchestrator-workers retrieval-augmentation
+tags: financial-llm chain-of-thought tool-use agent-loop orchestrator-workers retrieval-augmentation vertical
 categories: [llm, ai-agents, math, probability-finance, finance]
 related:
   - slug: orchestrator-workers-augfc-agent-loop
     note: "the general framing this post is one worked instance of"
+  - slug: orchestration-patterns-landscape
+    note: "this post is the worked Orchestrator-Workers example in the survey's comparison table"
 related_posts: false
 toc:
   sidebar: left

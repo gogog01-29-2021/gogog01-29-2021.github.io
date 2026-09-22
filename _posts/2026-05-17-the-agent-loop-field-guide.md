@@ -5,6 +5,9 @@ date: 2026-05-17 11:00:00+0900
 description: A survey-first deep dive into what an AI agent actually is — the loop, its seven sub-problems, the design space for each, and where the open research lives. The field first; my own work only at the end.
 tags: agentic-ai reinforcement-learning llm survey
 categories: [llm, ai-agents]
+related:
+  - slug: orchestration-patterns-landscape
+    note: "the concrete pattern taxonomy this post's Sub-problem 4 (Orchestration) names but doesn't enumerate — comparison table of 4 real patterns"
 related_posts: false
 toc:
   sidebar: left

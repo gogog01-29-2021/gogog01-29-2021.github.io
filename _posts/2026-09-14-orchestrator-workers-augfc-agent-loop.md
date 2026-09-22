@@ -3,13 +3,15 @@ layout: post
 title: "Orchestrator-Workers + Augmented Function-Calling + Agent Loop: The Combination Nobody's Tried"
 date: 2026-09-14 13:00:00+0900
 description: "Three agent-design patterns exist separately in the literature — task-decomposing orchestrators, tool-augmented reasoning, and iterative loops with escalation. Nobody has combined all three with fine-tuning specifically for working inside that loop. This is the general framing; the financial-LLM post is one worked instance of it."
-tags: agent-loop orchestrator-workers tool-use fine-tuning escalation multi-agent
+tags: agent-loop orchestrator-workers tool-use fine-tuning escalation multi-agent vertical
 categories: [llm, ai-agents]
 related:
   - slug: sector-specialized-financial-llms
     note: "a worked instance of this gap in one domain (financial filing evidence + calculation)"
   - slug: kmux-observer-ambient-agent-attention
     note: "the human-facing complement — when should a person's attention get pulled to a session, rather than when the model escalates itself"
+  - slug: orchestration-patterns-landscape
+    note: "the survey map this post's gap sits within — 4 real orchestration patterns compared"
 related_posts: false
 toc:
   sidebar: left
