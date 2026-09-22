@@ -10,6 +10,8 @@ related:
     note: "the latent-CoT case this post's conclusion motivates — reasoning that was never verbalized can't be unfaithful the way explicit CoT can"
   - slug: coconut-continuous-latent-reasoning
     note: "the LLM-native mechanism for the latent-reasoning alternative this post argues for"
+  - slug: latent-reasoning-landscape
+    note: "the wider survey map — this post's argument is why the whole landscape exists"
 related_posts: false
 toc:
   sidebar: left

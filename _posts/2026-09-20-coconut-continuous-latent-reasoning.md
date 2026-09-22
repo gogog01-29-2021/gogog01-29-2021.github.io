@@ -10,6 +10,8 @@ related:
     note: "the faithfulness problem this mechanism sidesteps structurally, by removing the verbalization step entirely"
   - slug: coghp-latent-chain-of-thought
     note: "the same latent-CoT idea in a control/RL domain instead of language — same bet, different substrate"
+  - slug: latent-reasoning-landscape
+    note: "the survey-style map this deep-dive is one entry in — comparison table across five paradigms"
 related_posts: false
 toc:
   sidebar: left

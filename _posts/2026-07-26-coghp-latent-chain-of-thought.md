@@ -10,6 +10,8 @@ related:
     note: "the faithfulness problem in explicit CoT that motivates treating latent reasoning as a real alternative, not just an efficiency trick"
   - slug: coconut-continuous-latent-reasoning
     note: "the same latent-CoT bet in language models instead of control — same idea, different substrate"
+  - slug: latent-reasoning-landscape
+    note: "this post is paradigm #5 in the wider survey map"
 related_posts: false
 toc:
   sidebar: left
