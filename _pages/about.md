@@ -42,6 +42,3 @@ honest.
 This site collects my notes, working papers, and a research blog. The posts
 lean technical and equation-heavy; they are written for readers who want the
 math, not just the intuition.
-
-> Profile photo (`assets/img/prof_pic.jpg`) is still the theme's placeholder
-> image — pending a real one.
