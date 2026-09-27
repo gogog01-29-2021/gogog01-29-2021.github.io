@@ -22,6 +22,18 @@
   children:
     - name: AI Agents
       slug: ai-agents
+      children:
+        - name: Orchestration
+          slug: orchestration
+    - name: Reasoning
+      slug: reasoning
+      children:
+        - name: Latent Reasoning
+          slug: latent-reasoning
+        - name: CoT Faithfulness
+          slug: cot-faithfulness
+    - name: Domain LLMs
+      slug: domain-llms
 
 - name: Math
   slug: math
@@ -57,7 +69,9 @@
 
 - name: Physics
   slug: physics
-  children: []
+  children:
+    - name: Quantum Computing
+      slug: quantum-computing
 
 - name: Reading
   slug: reading
@@ -78,6 +92,8 @@
   children:
     - name: Offline & Goal-Conditioned RL
       slug: offline-gcrl
+    - name: Open-Ended Learning
+      slug: open-endedness
 
 - name: Conferences
   slug: conferences

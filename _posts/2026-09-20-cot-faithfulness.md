@@ -4,7 +4,7 @@ title: "Does the Chain of Thought Say What the Model Actually Did? The Faithfuln
 date: 2026-09-20 21:00:00+0900
 description: "Explicit chain-of-thought reads as a reasoning trace, but two papers show it can be a post-hoc story instead — and, more troublingly, that more capable models tend to produce less faithful explanations. What 'faithful' means, the two core results, and why this is the real argument for latent reasoning."
 tags: chain-of-thought faithfulness interpretability latent-reasoning paper-review vertical
-categories: [llm, ai-agents]
+categories: [llm, reasoning, cot-faithfulness]
 related:
   - slug: coghp-latent-chain-of-thought
     note: "the latent-CoT case this post's conclusion motivates — reasoning that was never verbalized can't be unfaithful the way explicit CoT can"

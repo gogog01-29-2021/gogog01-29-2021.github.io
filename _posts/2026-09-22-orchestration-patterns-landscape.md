@@ -4,7 +4,7 @@ title: "Multi-Agent Orchestration Patterns: A Map"
 date: 2026-09-22 23:00:00+0900
 description: "The field guide named orchestration as a sub-problem and gave you the reliability math; this post gives you the taxonomy the math was missing — Orchestrator-Workers, Multi-Agent Debate, Mixture-of-Agents, and Reflexion, compared on who talks to whom and which failure mode each actually targets."
 tags: agent-loop orchestrator-workers multi-agent survey vertical
-categories: [llm, ai-agents]
+categories: [llm, ai-agents, orchestration]
 related:
   - slug: the-agent-loop-field-guide
     note: "the theory this survey fills in with a concrete taxonomy — see Sub-problem 4 (Orchestration) and 5 (Escalation) there for the reliability-composition math"

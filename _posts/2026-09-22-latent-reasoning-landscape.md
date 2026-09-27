@@ -4,7 +4,7 @@ title: "The Latent / Continuous Reasoning Landscape: A Map"
 date: 2026-09-22 22:00:00+0900
 description: "Five real papers, one question: what do you do instead of verbalizing a reasoning step? A survey-style map (comparison table, tradeoffs, one-line thesis) to sit alongside the deep-dive posts — Pause Tokens, CoCoMix, Soft Thinking, Coconut, and CoGHP, compared on what each actually generates, whether it needs training, and whether it's inspectable."
 tags: chain-of-thought latent-reasoning survey interpretability llm
-categories: [llm, ai-agents]
+categories: [llm, reasoning, latent-reasoning]
 related:
   - slug: coconut-continuous-latent-reasoning
     note: "the deep-dive this survey's paradigm #4 (Coconut) summarizes — read here first for the mechanism, there for the full typed worked example"
