@@ -72,6 +72,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/references/";
           },
+        },{id: "nav-bookshelf",
+          title: "bookshelf",
+          description: "The books behind the posts. Click a cover for its 5-line card (Claim · Method · Matters · Connects to · Code) and the exact reference.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/books/";
+          },
         },{id: "dropdown-bookshelf",
               title: "bookshelf",
               description: "",
@@ -262,11 +269,61 @@ ninja.data = [{
             window.location.href = "/blog/2026/tri-system-risk-model/";
           
         },
-      },{id: "books-the-godfather",
-          title: 'The Godfather',
+      },{id: "books-algorithmic-and-high-frequency-trading",
+          title: 'Algorithmic and High-Frequency Trading',
           description: "",
           section: "Books",handler: () => {
-              window.location.href = "/books/the_godfather/";
+              window.location.href = "/books/cartea-jaimungal-penalva-hft/";
+            },},{id: "books-market-liquidity-theory-evidence-and-policy",
+          title: 'Market Liquidity: Theory, Evidence, and Policy',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/foucault-pagano-roell-market-liquidity/";
+            },},{id: "books-empirical-market-microstructure",
+          title: 'Empirical Market Microstructure',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/hasbrouck-empirical-market-microstructure/";
+            },},{id: "books-algorithmic-trading-methods",
+          title: 'Algorithmic Trading Methods',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/kissell-algorithmic-trading-methods/";
+            },},{id: "books-an-introduction-to-the-mathematics-of-financial-derivatives",
+          title: 'An Introduction to the Mathematics of Financial Derivatives',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/neftci-mathematics-financial-derivatives/";
+            },},{id: "books-파이썬과-리액트를-활용한-주식-자동-거래-시스템-구축",
+          title: '파이썬과 리액트를 활용한 주식 자동 거래 시스템 구축',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/parkjaehyun-stock-trading-system/";
+            },},{id: "books-foundations-of-reinforcement-learning-with-applications-in-finance",
+          title: 'Foundations of Reinforcement Learning with Applications in Finance',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/rao-jelvis-rl-finance/";
+            },},{id: "books-the-cathedral-and-the-bazaar",
+          title: 'The Cathedral and the Bazaar',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/raymond-cathedral-bazaar/";
+            },},{id: "books-applied-stochastic-differential-equations",
+          title: 'Applied Stochastic Differential Equations',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/sarkka-solin-applied-sdes/";
+            },},{id: "books-operating-system-concepts",
+          title: 'Operating System Concepts',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/silberschatz-os-concepts/";
+            },},{id: "books-reinforcement-learning-an-introduction",
+          title: 'Reinforcement Learning: An Introduction',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/sutton-barto-rl/";
             },},{id: "news-launched-this-research-blog-notes-on-ai-agent-architectures-reinforcement-learning-and-human-ai-interaction-risk",
           title: 'Launched this research blog — notes on AI-agent architectures, reinforcement learning, and human–AI...',
           description: "",
