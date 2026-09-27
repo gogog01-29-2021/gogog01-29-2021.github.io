@@ -4,7 +4,7 @@ title: "Coconut: What It Actually Looks Like to Reason Without Words"
 date: 2026-09-20 22:00:00+0900
 description: "CoGHP showed latent chain-of-thought works in a control domain; the faithfulness post argued verbalized CoT is a real liability. Coconut is the LLM-native mechanism that closes the loop — reasoning as fed-back hidden states instead of decoded tokens — plus the honest cost: what you give up to get there."
 tags: chain-of-thought latent-reasoning interpretability paper-review llm vertical
-categories: [llm, reasoning, latent-reasoning]
+categories: [llm, ai-agents, reasoning, latent-reasoning]
 related:
   - slug: cot-faithfulness
     note: "the faithfulness problem this mechanism sidesteps structurally, by removing the verbalization step entirely"

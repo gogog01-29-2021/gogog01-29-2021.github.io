@@ -25,13 +25,13 @@
       children:
         - name: Orchestration
           slug: orchestration
-    - name: Reasoning
-      slug: reasoning
-      children:
-        - name: Latent Reasoning
-          slug: latent-reasoning
-        - name: CoT Faithfulness
-          slug: cot-faithfulness
+        - name: Reasoning
+          slug: reasoning
+          children:
+            - name: Latent Reasoning
+              slug: latent-reasoning
+            - name: CoT Faithfulness
+              slug: cot-faithfulness
     - name: Domain LLMs
       slug: domain-llms
 
