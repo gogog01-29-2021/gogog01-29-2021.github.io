@@ -4,8 +4,31 @@ layout: default
 <div class="post">
   <header class="post-header">
     {% if page.type == 'categories' %}
-      <h1 class="post-title"><i class="fa-solid fa-tag fa-sm"></i> {{ page.title }}</h1>
+      {% assign topic = site.data.topic_index[page.title] %}
+      {% if topic and topic.path.size > 0 %}
+        <p class="post-meta">
+          <a href="{{ '/topics/' | relative_url }}">topics</a>
+          {% for crumb in topic.path %}
+            &rsaquo; <a href="{{ '/blog/category/' | append: crumb.slug | append: '/' | relative_url }}">{{ crumb.name }}</a>
+          {% endfor %}
+        </p>
+      {% endif %}
+      <h1 class="post-title">
+        <i class="fa-solid fa-tag fa-sm"></i>
+        {% if topic %}{{ topic.name }}{% else %}{{ page.title }}{% endif %}
+      </h1>
       <p class="post-description">an archive of {{ page.collection_name }} in this category</p>
+      {% if topic and topic.children.size > 0 %}
+        <p class="post-tags">
+          sub-topics:
+          {% for child in topic.children %}
+            <a href="{{ '/blog/category/' | append: child.slug | append: '/' | relative_url }}"
+              ><i class="fa-solid fa-tag fa-sm"></i> {{ child.name -}}
+            </a>
+            {%- unless forloop.last %} &nbsp; &middot; &nbsp; {% endunless %}
+          {% endfor %}
+        </p>
+      {% endif %}
     {% elsif page.type == 'year' %}
       <h1 class="post-title"><i class="fa-solid fa-calendar fa-sm"></i> {{ page.date | date: '%Y' }}</h1>
       <p class="post-description">an archive of {{ page.collection_name }} from this year</p>

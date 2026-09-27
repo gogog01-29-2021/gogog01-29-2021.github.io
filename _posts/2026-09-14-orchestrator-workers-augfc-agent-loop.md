@@ -4,7 +4,7 @@ title: "Orchestrator-Workers + Augmented Function-Calling + Agent Loop: The Comb
 date: 2026-09-14 13:00:00+0900
 description: "Three agent-design patterns exist separately in the literature — task-decomposing orchestrators, tool-augmented reasoning, and iterative loops with escalation. Nobody has combined all three with fine-tuning specifically for working inside that loop. This is the general framing; the financial-LLM post is one worked instance of it."
 tags: agent-loop orchestrator-workers tool-use fine-tuning escalation multi-agent vertical
-categories: [llm, ai-agents]
+categories: [llm, ai-agents, orchestration]
 related:
   - slug: sector-specialized-financial-llms
     note: "a worked instance of this gap in one domain (financial filing evidence + calculation)"

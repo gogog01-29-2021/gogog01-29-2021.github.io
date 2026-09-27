@@ -2,12 +2,12 @@
 layout: book-shelf
 title: bookshelf
 permalink: /books/
-nav: false
+nav: true
+nav_order: 7.5
 collection: books
+description: The books behind the posts. Click a cover for its 5-line card (Claim · Method · Matters · Connects to · Code) and the exact reference.
 ---
 
-> What an astonishing thing a book is. It's a flat object made from a tree with flexible parts on which are imprinted lots of funny dark squiggles. But one glance at it and you're inside the mind of another person, maybe somebody dead for thousands of years. Across the millennia, an author is speaking clearly and silently inside your head, directly to you. Writing is perhaps the greatest of human inventions, binding together people who never knew each other, citizens of distant epochs. Books break the shackles of time. A book is proof that humans are capable of working magic.
->
-> -- Carl Sagan, Cosmos, Part 11: The Persistence of Memory (1980)
-
-## Books that I am reading, have read, or will read
+Books only — papers and lecture notes live on [references]({{ '/references/' | relative_url }}).
+Each book page gives five lines: what the book **claims**, its **method**, why it
+**matters** here, what it **connects to** on this site, and any official **code**.

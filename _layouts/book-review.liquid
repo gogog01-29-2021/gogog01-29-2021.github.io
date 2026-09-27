@@ -77,7 +77,9 @@ layout: default
       </p>
     {% endif %}
     <p class="post-tags">
-      <a href="{{ year | prepend: '/books/' | relative_url }}"> <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}</a>
+      {% if page.started %}
+        <a href="{{ year | prepend: '/books/' | relative_url }}"> <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}</a>
+      {% endif %}
       {% if tags != '' %}
         &nbsp;&middot;&nbsp;
         {% for tag in page.tags %}
@@ -99,6 +101,32 @@ layout: default
       {% endif %}
     </p>
     <hr>
+    {% if page.reference %}
+      <p class="book-reference">
+        <strong>Reference.</strong>
+        {{ page.reference | markdownify | remove: '<p>' | remove: '</p>' | strip }}
+        {% if page.url_source -%}
+          &nbsp;<a href="{{ page.url_source }}" target="_blank" rel="noopener noreferrer">[link]</a>
+        {%- endif %}
+      </p>
+    {% endif %}
+    {% if page.card %}
+      {% comment %} The 5-line card: same five fields as the reference cards in the posts. {% endcomment %}
+      <ul class="book-card">
+        <li><strong>Claim:</strong> {{ page.card.claim | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+        <li><strong>Method:</strong> {{ page.card.method | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+        <li><strong>Matters:</strong> {{ page.card.matters | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+        <li><strong>Connects to:</strong> {{ page.card.connects | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+        <li>
+          <strong>Code:</strong>
+          {% if page.card.code contains '://' -%}
+            <a href="{{ page.card.code }}" target="_blank" rel="noopener noreferrer">{{ page.card.code }}</a>
+          {%- else -%}
+            {{- page.card.code | default: '—' -}}
+          {%- endif %}
+        </li>
+      </ul>
+    {% endif %}
   </header>
 
   <article>
@@ -129,10 +157,12 @@ layout: default
           </figcaption>
         {% endif %}
       </figure>
-      {% assign status = page.status | upcase %}
-      <div class="clearfix">
-        <h4>{{ status }}</h4>
-      </div>
+      {% if page.status %}
+        {% assign status = page.status | upcase %}
+        <div class="clearfix">
+          <h4>{{ status }}</h4>
+        </div>
+      {% endif %}
     {% else %}
       <figure>
         {% if page.cover %}

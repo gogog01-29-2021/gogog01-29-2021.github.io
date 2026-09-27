@@ -26,6 +26,9 @@ A category page becomes browsable once at least one post uses its slug
 **The tree is generated, not hand-edited.** `_data/topics.yml` is a snapshot of
 an LLM-derived ontology (see `LOCKED_WORKFLOW.md` §4): concepts are extracted
 from each post, placed under the right branch, and the tree is rebalanced into
-upper/lower concepts as it grows. Leaf slugs never get renamed (they drive these
+upper/lower concepts as it grows. A category splits into sub-topics only once it
+holds more than 10 posts directly; once created, a category is frozen (its name,
+URL and place in the tree don't change). Open any category to see its parents and
+sub-topics. Leaf slugs never get renamed (they drive these
 URLs); regrouping only adds new upper-concept nodes above them. The renderer
 (`_includes/topic-tree.liquid`) recurses to any depth automatically.

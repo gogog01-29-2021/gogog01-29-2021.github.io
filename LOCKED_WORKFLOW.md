@@ -68,6 +68,22 @@ Runs as part of the writing workflow — no external service. On each new/edited
    under new upper-concept nodes. Renaming a leaf breaks its live `/blog/category/…` URL.
 6. **Validate** with `scripts/check-workflow.sh`, then deploy on the author's OK.
 
+### Split threshold + frozen categories (added 2026-09-27, author's rule)
+
+- **Split at > 10.** A node may hold at most **10 posts directly** (posts that
+  declare it but none of its children). The 11th post makes `scripts/check_topics.py`
+  fail; the agent then splits that node into child concepts (step 3 above). The
+  parent keeps its slug and still rolls up every post, so e.g. **AI Agents** stays
+  the home of all agent/reasoning posts while its sub-topics grow underneath it.
+  Below the threshold, do **not** split — a small category stays as it is.
+- **Frozen once created.** Every node is recorded as `<slug> <parent>` in
+  `scripts/topics.lock`. Removing, renaming or re-parenting a locked node fails the
+  guard. Changing one means editing `topics.lock` by hand, **only with the author's
+  explicit OK**. New nodes are frozen with `python3 scripts/check_topics.py --lock`.
+- **See it behind the click.** Each `/blog/category/<slug>/` page shows its
+  breadcrumb (parents) and its sub-topics, built from `topics.yml` at build time
+  (`_plugins/topic-index.rb`), so clicking a category shows how it is split.
+
 _Future:_ the concept-extraction step (1) generalizes into "auto concept finding from
 what I write (chain-of-thought concepts)" — the same pipeline, richer front end.
 
@@ -108,6 +124,27 @@ Template:
 2026-09-20; existing posts get it opportunistically when they're next touched, not in
 a single mass edit.
 
+## 7. Default outline — Hook → One line → Steps → Table → Strengths/Weaknesses → Next (added 2026-09-27)
+
+Every new **vertical** and **survey** post starts from this skeleton (after the
+Original + Essence block of §6). It is the default proposal for step 1 of §1
+(Outline) — the author still approves the outline, detail level, references and
+tone before any prose.
+
+| #   | Section (훅 → 한 줄 → 3–5단계 → 표 → 강점/약점 → 다음) | Vertical (one paper / project)                  | Survey (a field)                            |
+| --- | ------------------------------------------------------ | ----------------------------------------------- | ------------------------------------------- |
+| 1   | **Hook** — a question or one formula                   | the question this work answers                  | the question the field is fighting over     |
+| 2   | **One line**                                           | the result in one sentence, with its number     | the landscape in one sentence               |
+| 3   | **How it works, in 3–5 steps**                         | the pipeline, each step with a worked number    | the 3–5 main approaches                     |
+| 4   | **One table**                                          | the results (real numbers, baselines included)  | approaches compared side by side            |
+| 5   | **Strengths / weaknesses**                             | honest limits, negative results kept            | who wins where, and why                     |
+| 6   | **What to compare next**                               | the next experiment or paper to read against it | the next vertical post the survey points to |
+
+Rules: exactly **one** main table (more tables go in an appendix); the hook is a
+question or an equation, never a definition; section 6 names a concrete next item
+so posts link into a series. Old posts are **not** retrofitted in bulk — they adopt
+this shape when next touched (same policy as §6).
+
 ---
 
 ## Enforcement
@@ -116,6 +153,8 @@ Run `scripts/check-workflow.sh` (added by the classification/lint task) before a
 deploy. It fails the commit if:
 
 - a post declares a `categories:` slug missing from `_data/topics.yml`;
+- a node holds more than 10 posts directly, or a frozen node in `scripts/topics.lock`
+  was removed, renamed or moved (`scripts/check_topics.py`);
 - a `{% raw %}{% cite %}{% endraw %}` key does not resolve in its target `.bib`;
 - `papers.bib` and `references.bib` share a citation key (mixing);
 - `.nojekyll` is missing from the `gh-pages` branch.

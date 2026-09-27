@@ -34,6 +34,16 @@ for f in _posts/*.md; do
 done
 [ "$fail" -eq 0 ] && ok "all post categories resolve in the topic tree"
 
+# ---- 1b. Split threshold + frozen nodes (scripts/check_topics.py) ------------
+note "== Classification: split threshold + frozen nodes =="
+py=""
+for c in python3 python; do "$c" -c "import sys" >/dev/null 2>&1 && { py="$c"; break; }; done
+if [ -n "$py" ]; then
+  "$py" scripts/check_topics.py || fail=1
+else
+  warn "python not found — skipping topic split/lock check"
+fi
+
 # ---- 2. Every {% cite key --file references %} resolves in references.bib ----
 note "== References: cite keys resolve =="
 cite_fail=0
