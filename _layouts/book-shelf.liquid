@@ -6,44 +6,47 @@ layout: page
 {% if page.collection and page.collection.size > 0 %}
   {% assign collection = site[page.collection] %}
   {% if collection and collection.size > 0 %}
-    {% for item in collection reversed %}
-      {% assign current_year = item.started | date: '%Y' %}
-      {% if current_year != year %}
-        {% unless forloop.first %}
-          </ul>
-        {% endunless %}
-        <h1 id="y{{item.started | date: "%Y"}}">
-          <a href="{{ current_year | prepend: '/books/' | relative_url }}">{{ current_year }}</a>
-        </h1>
-        <ul>
-          {% assign year = current_year %}
-      {% endif %}
-
-      <figure class="cover">
-        <a class="cover-link" href="{{ item.url | relative_url }}">
-          {% if item.cover %}
-            <img alt="{{ item.title }} cover" src="{{ item.cover | prepend: page.covers | relative_url }}" style="height:200px">
-          {% elsif item.olid %}
-            <img alt="{{ item.title }} cover" src="https://covers.openlibrary.org/b/olid/{{ item.olid }}-L.jpg?default=false" style="height:200px">
-          {% elsif item.isbn %}
-            <img alt="{{ item.title }} cover" src="https://covers.openlibrary.org/b/isbn/{{ item.isbn }}-L.jpg?default=false" style="height:200px">
-          {% endif %}
-          {% if item.status %}
-            {% assign statuses = 'abandoned,finished,interested,paused,queued,reading,reread' | split: ',' %}
-            {% assign status = item.status | downcase | strip %}
-            {% if statuses contains status %}
-              <figcaption class="{{ status | downcase }}">{{ status | upcase }}</figcaption>
-            {% else %}
-              <figcaption class="uncategorized">UNCATEGORIZED</figcaption>
-            {% endif %}
-          {% else %}
-            <figcaption class="uncategorized">UNCATEGORIZED</figcaption>
-          {% endif %}
-        </a>
-      </figure>
-      {% if forloop.last %}
-        </ul>
-      {% endif %}
+    {% comment %}
+      Books are grouped by `shelf` (topic). A book without a shelf lands under "Other".
+      Each cover links to the book's page, which holds its 5-line card + exact reference.
+    {% endcomment %}
+    {% assign shelves = collection | group_by: 'shelf' | sort: 'name' %}
+    {% for shelf in shelves %}
+      <h2 id="{{ shelf.name | default: 'other' | slugify }}">{{ shelf.name | default: 'Other' }}</h2>
+      <ul>
+        {% assign books = shelf.items | sort: 'title' %}
+        {% for item in books %}
+          <figure class="cover">
+            <a class="cover-link" href="{{ item.url | relative_url }}" title="{{ item.title }}">
+              {% if item.cover %}
+                <img alt="{{ item.title }} cover" src="{{ item.cover | prepend: page.covers | relative_url }}" style="height:200px">
+              {% elsif item.olid %}
+                <img
+                  alt="{{ item.title }} cover"
+                  src="https://covers.openlibrary.org/b/olid/{{ item.olid }}-L.jpg?default=false"
+                  style="height:200px"
+                  onerror="this.remove()"
+                >
+              {% elsif item.isbn %}
+                <img
+                  alt="{{ item.title }} cover"
+                  src="https://covers.openlibrary.org/b/isbn/{{ item.isbn }}-L.jpg?default=false"
+                  style="height:200px"
+                  onerror="this.remove()"
+                >
+              {% endif %}
+              {% if item.status %}
+                {% assign statuses = 'abandoned,finished,interested,paused,queued,reading,reread' | split: ',' %}
+                {% assign status = item.status | downcase | strip %}
+                {% if statuses contains status %}
+                  <figcaption class="{{ status }}">{{ status | upcase }}</figcaption>
+                {% endif %}
+              {% endif %}
+              <p class="book-title">{{ item.title }}</p>
+            </a>
+          </figure>
+        {% endfor %}
+      </ul>
     {% endfor %}
   {% endif %}
 {% endif %}
