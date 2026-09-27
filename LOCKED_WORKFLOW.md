@@ -124,6 +124,27 @@ Template:
 2026-09-20; existing posts get it opportunistically when they're next touched, not in
 a single mass edit.
 
+## 7. Default outline — Hook → One line → Steps → Table → Strengths/Weaknesses → Next (added 2026-09-27)
+
+Every new **vertical** and **survey** post starts from this skeleton (after the
+Original + Essence block of §6). It is the default proposal for step 1 of §1
+(Outline) — the author still approves the outline, detail level, references and
+tone before any prose.
+
+| #   | Section (훅 → 한 줄 → 3–5단계 → 표 → 강점/약점 → 다음) | Vertical (one paper / project)                  | Survey (a field)                            |
+| --- | ------------------------------------------------------ | ----------------------------------------------- | ------------------------------------------- |
+| 1   | **Hook** — a question or one formula                   | the question this work answers                  | the question the field is fighting over     |
+| 2   | **One line**                                           | the result in one sentence, with its number     | the landscape in one sentence               |
+| 3   | **How it works, in 3–5 steps**                         | the pipeline, each step with a worked number    | the 3–5 main approaches                     |
+| 4   | **One table**                                          | the results (real numbers, baselines included)  | approaches compared side by side            |
+| 5   | **Strengths / weaknesses**                             | honest limits, negative results kept            | who wins where, and why                     |
+| 6   | **What to compare next**                               | the next experiment or paper to read against it | the next vertical post the survey points to |
+
+Rules: exactly **one** main table (more tables go in an appendix); the hook is a
+question or an equation, never a definition; section 6 names a concrete next item
+so posts link into a series. Old posts are **not** retrofitted in bulk — they adopt
+this shape when next touched (same policy as §6).
+
 ---
 
 ## Enforcement

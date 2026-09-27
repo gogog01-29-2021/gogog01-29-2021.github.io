@@ -567,6 +567,30 @@ figure.cover {
   a.cover-link:hover {
     color: #23212d !important;
   }
+
+  /* title under the cover (covers can be missing on Open Library) */
+  p.book-title {
+    width: 140px;
+    margin: 0.35rem auto 0;
+    font-size: 0.8rem;
+    line-height: 1.25;
+    white-space: normal;
+  }
+}
+
+// Book page: exact reference + 5-line card
+
+p.book-reference {
+  margin: 1rem 0 0.5rem;
+}
+
+ul.book-card {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+
+  li {
+    margin: 0.2rem 0;
+  }
 }
 
 // Calendar
