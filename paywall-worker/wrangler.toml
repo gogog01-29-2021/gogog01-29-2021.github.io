@@ -16,7 +16,7 @@ ALLOWED_ORIGIN = "https://zavis.chat,https://gogog01-29-2021.github.io"
 # /write GitHub-login save-to-repo (see paywall-worker/src/index.js).
 # GITHUB_CLIENT_ID is public (shows up in the OAuth authorize URL); the paired
 # GITHUB_CLIENT_SECRET and SESSION_SECRET are set via `wrangler secret put`, never here.
-GITHUB_CLIENT_ID = "REPLACE_ME_AFTER_REGISTERING_OAUTH_APP"
+GITHUB_CLIENT_ID = "Ov23liYuo0uoG3nJB43C"
 GITHUB_OWNER = "gogog01-29-2021"
 GITHUB_REPO = "gogog01-29-2021.github.io"
 GITHUB_BRANCH = "main"
