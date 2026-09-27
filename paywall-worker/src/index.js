@@ -113,6 +113,15 @@ function utf8ToBase64(str) {
   return btoa(Array.from(new TextEncoder().encode(str), (b) => String.fromCharCode(b)).join(""));
 }
 
+// Set-Cookie cannot be comma-joined into one header like other HTTP headers (commas
+// appear inside Expires dates), so multiple cookies must be appended individually or
+// browsers silently keep only the first. Headers.append() does this correctly.
+function redirectWithCookies(location, cookies) {
+  const headers = new Headers({ Location: location });
+  for (const c of cookies) headers.append("Set-Cookie", c);
+  return new Response(null, { status: 302, headers });
+}
+
 async function handleAuthGithub(request, env) {
   const url = new URL(request.url);
   const next = url.searchParams.get("next") || "/write/";
@@ -122,16 +131,10 @@ async function handleAuthGithub(request, env) {
   authorizeUrl.searchParams.set("redirect_uri", `https://gate.zavis.chat/auth/github/callback`);
   authorizeUrl.searchParams.set("scope", "repo read:user");
   authorizeUrl.searchParams.set("state", state);
-  return new Response(null, {
-    status: 302,
-    headers: {
-      Location: authorizeUrl.toString(),
-      "Set-Cookie": [
-        `gh_oauth_state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`,
-        `gh_oauth_next=${encodeURIComponent(next)}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`,
-      ].join(", "),
-    },
-  });
+  return redirectWithCookies(authorizeUrl.toString(), [
+    `gh_oauth_state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`,
+    `gh_oauth_next=${encodeURIComponent(next)}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`,
+  ]);
 }
 
 async function handleAuthGithubCallback(request, env) {
@@ -174,18 +177,25 @@ async function handleAuthGithubCallback(request, env) {
 
   const secret = mustSecret(env, "SESSION_SECRET");
   const session = await makeSession({ login: user.login, token: tokenData.access_token, t: Date.now() }, secret);
-  return new Response(null, {
-    status: 302,
-    headers: {
-      Location: next,
-      "Set-Cookie": [
-        `ds_write_session=${session}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=21600`,
-        `gh_user=${user.login}; Path=/; Secure; SameSite=Lax; Max-Age=21600`,
-        `gh_oauth_state=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0`,
-        `gh_oauth_next=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0`,
-      ].join(", "),
-    },
-  });
+  // gh_user is Domain-scoped to zavis.chat (not just gate.zavis.chat) so the /write page's
+  // own JS -- running on a different subdomain -- can read it via document.cookie to know
+  // sign-in happened. ds_write_session stays host-only: it's only ever read server-side by
+  // gate.zavis.chat itself when /write POSTs to /api/save-post.
+  return redirectWithCookies(next, [
+    `ds_write_session=${session}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=21600`,
+    `gh_user=${user.login}; Path=/; Domain=zavis.chat; Secure; SameSite=Lax; Max-Age=21600`,
+    `gh_oauth_state=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0`,
+    `gh_oauth_next=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0`,
+  ]);
+}
+
+function handleAuthSignout(request, env) {
+  const url = new URL(request.url);
+  const next = url.searchParams.get("next") || "https://zavis.chat/write/";
+  return redirectWithCookies(next, [
+    `ds_write_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0`,
+    `gh_user=; Path=/; Domain=zavis.chat; Secure; SameSite=Lax; Max-Age=0`,
+  ]);
 }
 
 async function handleSavePost(request, env) {
@@ -259,6 +269,9 @@ export default {
     }
     if (url.pathname === "/auth/github/callback" && request.method === "GET") {
       return handleAuthGithubCallback(request, env);
+    }
+    if (url.pathname === "/auth/signout" && request.method === "GET") {
+      return handleAuthSignout(request, env);
     }
     if (url.pathname === "/api/save-post" && request.method === "POST") {
       return handleSavePost(request, env);

@@ -36,9 +36,14 @@ description: In-browser draft studio — write a post in Markdown + LaTeX with l
   .ws-toolbar-link { padding:0.4rem 0.8rem; border-radius:6px; border:1px solid #24292f; background:#24292f; color:#fff !important; text-decoration:none !important; font-size:0.85rem; display:inline-flex; align-items:center; gap:0.4rem; }
   .ws-toolbar-link:hover { background:#32383f; }
   #ws-save { background:#1a7f37; border-color:#1a7f37; }
+  .ws-auth-banner { font-size:0.8rem; padding:0.5rem 0.75rem; border-radius:6px; margin-bottom:0.5rem; display:flex; align-items:center; gap:0.4rem; }
+  .ws-auth-banner.signed-out { background:rgba(180,80,0,0.08); color:#a35a00; }
+  .ws-auth-banner.signed-in { background:rgba(26,127,55,0.08); color:#1a7f37; }
   .ws-hint { font-size:0.75rem; opacity:0.7; margin-top:0.2rem; }
   #ws-status { font-size:0.8rem; margin-left:auto; align-self:center; opacity:0.8; }
 </style>
+
+<div id="ws-auth-banner" class="ws-auth-banner"></div>
 
 <div class="ws-toolbar">
   <button type="button" onclick="wsInsert('$$\\n  \\n$$')">Display math $$…$$</button>
@@ -228,9 +233,18 @@ description: In-browser draft studio — write a post in Markdown + LaTeX with l
   }
   function wsRefreshAuthUI() {
     var user = wsGithubUser();
-    document.getElementById("ws-signin").style.display = user ? "none" : "inline";
+    document.getElementById("ws-signin").style.display = user ? "none" : "inline-flex";
     document.getElementById("ws-save").style.display = user ? "inline-block" : "none";
     if (user) document.getElementById("ws-gh-user").textContent = user;
+    var banner = document.getElementById("ws-auth-banner");
+    if (user) {
+      banner.className = "ws-auth-banner signed-in";
+      banner.innerHTML = "&#9679; Signed in as <strong>@" + user + "</strong> — Save writes straight to _posts/ on main. " +
+        '<a href="' + GATE_ORIGIN + '/auth/signout?next=' + encodeURIComponent(location.href) + '" style="margin-left:auto;color:inherit;text-decoration:underline;">Sign out</a>';
+    } else {
+      banner.className = "ws-auth-banner signed-out";
+      banner.textContent = "○ Not signed in — Copy/Download still work; sign in with GitHub to save straight to the blog.";
+    }
   }
   function wsSaveToGithub() {
     var title = document.getElementById("ws-title").value;
