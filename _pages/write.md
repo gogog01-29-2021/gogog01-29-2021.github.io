@@ -225,7 +225,7 @@ description: In-browser draft studio — write a post in Markdown + LaTeX with l
     URL.revokeObjectURL(a.href);
   }
 
-  // ---- GitHub sign-in + save (paywall-worker at gate.zavis.chat holds the OAuth token) ----
+  // ---- GitHub sign-in + save (paywall worker at gate.zavis.chat, private repo blog-paywall, holds the OAuth token) ----
   var GATE_ORIGIN = "https://gate.zavis.chat";
   function wsGithubUser() {
     var m = document.cookie.match(/(?:^|; )gh_user=([^;]*)/);

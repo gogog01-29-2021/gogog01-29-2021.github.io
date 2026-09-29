@@ -1,8 +1,8 @@
-// Top-nav sign-in status. gh_user is set (Domain=zavis.chat) by paywall-worker's
+// Top-nav sign-in status. gh_user is set (Domain=zavis.chat) by the paywall worker's (private repo gogog01-29-2021/blog-paywall)
 // /auth/github/callback on gate.zavis.chat, so it's readable from any page here too --
 // this is what lets the nav reflect sign-in state without a page reload after /write/
 // redirects back. Signed-in only ever means the single admin account (see
-// paywall-worker/src/index.js ADMIN_GITHUB_LOGIN); there is no other role.
+// blog-paywall: src/index.js ADMIN_GITHUB_LOGIN); there is no other role.
 (function () {
   function getGhUser() {
     var m = document.cookie.match(/(?:^|; )gh_user=([^;]*)/);
