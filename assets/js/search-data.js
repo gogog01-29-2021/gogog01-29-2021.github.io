@@ -93,7 +93,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-multi-agent-orchestration-patterns-a-map",
+            },{id: "post-when-many-industries-crash-together-the-joint-tail-that-pairwise-correlations-miss",
+        
+          title: "When many industries crash together: the joint tail that pairwise correlations miss",
+        
+        description: "A vertical on my own study of joint industry crashes. Pairwise statistics cannot pin down how often three or more industries crash on the same day, so the object is the full joint distribution of a day&#39;s crash pattern: learned from a century of Ken French industry data, scored against eleven alternative models on sealed holdout periods, and read out of a quantum state with a measured shot cost. Negative results kept.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/joint-tail-structure/";
+          
+        },
+      },{id: "post-multi-agent-orchestration-patterns-a-map",
         
           title: "Multi-Agent Orchestration Patterns: A Map",
         
