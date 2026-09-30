@@ -93,7 +93,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-when-many-industries-crash-together-the-joint-tail-that-pairwise-correlations-miss",
+            },{id: "post-pair-statistics-can-39-t-see-the-triangle-preserving-higher-order-risk-in-a-quantum-pipeline",
+        
+          title: "Pair statistics can&#39;t see the triangle: preserving higher-order risk in a quantum pipeline...",
+        
+        description: "A vertical on my paper &#39;Preserving Higher Order Risk Information in Quantum Financial Analysis&#39;. Two three-asset markets share every single and pairwise downside statistic, yet one has a triple-crash face its twin lacks. What compression before computation destroys, how many samples a probability, a complex and a Betti number each need, and how to compare classical samples with coherent oracle calls fairly. No quantum advantage claimed.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/higher-order-quantum-risk/";
+          
+        },
+      },{id: "post-when-many-industries-crash-together-the-joint-tail-that-pairwise-correlations-miss",
         
           title: "When many industries crash together: the joint tail that pairwise correlations miss",
         
