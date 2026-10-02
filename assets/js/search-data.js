@@ -93,7 +93,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-pair-statistics-can-39-t-see-the-triangle-preserving-higher-order-risk-in-a-quantum-pipeline",
+            },{id: "post-who-moves-first-a-quantum-lead-lag-chain-measured-end-to-end-and-the-crash-signal-that-wasn-39-t",
+        
+          title: "Who moves first? A quantum lead–lag chain measured end to end, and the...",
+        
+        description: "A vertical on my ONE CHAIN v15 report. A 7-qubit circuit judges which of two assets moves first; the judgments become one ranking plus cycles; four leaders are picked; then the same three questions are asked of real industry data, and whether rotation stopping signals a crash. Measurement error is tracked through every step. The circuit only matches the classical score it imitates, the relation carries no next-day information, and the crash signal is not confirmed — one earlier claim is retracted.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/quantum-lead-lag-ranking/";
+          
+        },
+      },{id: "post-pair-statistics-can-39-t-see-the-triangle-preserving-higher-order-risk-in-a-quantum-pipeline",
         
           title: "Pair statistics can&#39;t see the triangle: preserving higher-order risk in a quantum pipeline...",
         
